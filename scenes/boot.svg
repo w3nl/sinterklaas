@@ -1,0 +1,317 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="scene on" id="sc-boot" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-label="De stoomboot op de Maas">
+  <defs>
+    <linearGradient id="sbSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6f8fb3"/><stop offset=".6" stop-color="#c9d6e0"/><stop offset="1" stop-color="#f1e3c8"/></linearGradient>
+    <linearGradient id="sbWater" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5d7f8f"/><stop offset="1" stop-color="#22404d"/></linearGradient>
+    <linearGradient id="sbHull" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2f3a"/><stop offset="1" stop-color="#14171e"/></linearGradient>
+    <linearGradient id="sbFunnel" x1="0" x2="1"><stop offset="0" stop-color="#9c1d22"/><stop offset=".5" stop-color="#d93a35"/><stop offset="1" stop-color="#8d181d"/></linearGradient>
+    <linearGradient id="sbGold" x1="0" x2="1"><stop offset="0" stop-color="#b8861f"/><stop offset=".5" stop-color="#f5d26e"/><stop offset="1" stop-color="#a87618"/></linearGradient>
+    <radialGradient id="sbSun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fff6d8"/><stop offset=".4" stop-color="#ffe9a8" stop-opacity=".7"/><stop offset="1" stop-color="#ffe9a8" stop-opacity="0"/></radialGradient>
+    <radialGradient id="sbFire" cx=".5" cy=".6" r=".6"><stop offset="0" stop-color="#ffd25a"/><stop offset=".5" stop-color="#ff7a2e"/><stop offset="1" stop-color="#b3260f"/></radialGradient>
+    <linearGradient id="sbCabin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a2f1e"/><stop offset="1" stop-color="#3a1d12"/></linearGradient>
+    <radialGradient id="sbLamp" cx=".5" cy=".2" r=".9"><stop offset="0" stop-color="#ffd58a" stop-opacity=".5"/><stop offset="1" stop-color="#ffd58a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="sbVign" cx=".5" cy=".45" r=".75"><stop offset=".62" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></radialGradient>
+    <clipPath id="sbSkyClip"><rect width="1600" height="700"/></clipPath>
+  </defs>
+
+  <!-- de lucht: een grijze novemberochtend met een bleke zon -->
+  <rect width="1600" height="700" fill="url(#sbSky)"/>
+  <circle cx="1320" cy="150" r="120" fill="url(#sbSun)"/>
+  <circle cx="1320" cy="150" r="34" fill="#fff4cf"/>
+  <g clip-path="url(#sbSkyClip)">
+    <g class="sb-cloud"><ellipse cx="300" cy="120" rx="120" ry="30" fill="#eef2f5" opacity=".85"/><ellipse cx="360" cy="100" rx="70" ry="30" fill="#f4f6f8" opacity=".9"/></g>
+    <g class="sb-cloud b"><ellipse cx="900" cy="80" rx="150" ry="28" fill="#e6ebf0" opacity=".8"/><ellipse cx="960" cy="62" rx="80" ry="26" fill="#f1f4f7" opacity=".85"/></g>
+    <g class="sb-gull"><path d="M0 0 q12 -10 24 0 q12 -10 24 0" stroke="#3c4653" stroke-width="3" fill="none"/></g>
+  </g>
+
+  <!-- achtergrond 1: de Maas, met knotwilgen en weilanden -->
+  <g id="sb-bg-river">
+    <path d="M0 600 Q400 560 800 590 T1600 580 V700 H0 Z" fill="#8aa36b"/>
+    <path d="M0 640 Q500 610 1000 640 T1600 630 V700 H0 Z" fill="#6f8c55"/>
+    <g fill="#4f6b3d">
+      <g transform="translate(120 560)"><rect x="-8" y="0" width="16" height="70" fill="#5b4632"/><circle cx="0" cy="-10" r="34"/><circle cx="-24" cy="4" r="20"/><circle cx="24" cy="2" r="22"/></g>
+      <g transform="translate(260 575)"><rect x="-7" y="0" width="14" height="60" fill="#5b4632"/><circle cx="0" cy="-8" r="28"/><circle cx="20" cy="4" r="18"/></g>
+      <g transform="translate(1500 560)"><rect x="-8" y="0" width="16" height="70" fill="#5b4632"/><circle cx="0" cy="-10" r="30"/><circle cx="-22" cy="2" r="20"/></g>
+    </g>
+    <g fill="#f5f2ea" stroke="#3b3b3b" stroke-width="2">
+      <g transform="translate(200 618)"><ellipse rx="20" ry="10"/><circle cx="-20" cy="-6" r="6"/><path d="M-12 8v8M12 8v8" /></g>
+      <g transform="translate(320 630) scale(.8)"><ellipse rx="20" ry="10"/><circle cx="20" cy="-6" r="6"/><path d="M-12 8v8M12 8v8"/></g>
+    </g>
+    <circle cx="200" cy="616" r="5" fill="#3b3b3b"/>
+    <!-- de molen in de verte -->
+    <g transform="translate(60 520)"><path d="M-12 80 L-6 0 H6 L12 80Z" fill="#5d4a3a"/><path d="M-6 -2 L6 -2 L0 -12Z" fill="#3e3128"/>
+      <g class="sb-mill"><path d="M0 0 L0 -60 M0 0 L60 0 M0 0 L0 60 M0 0 L-60 0" stroke="#3e3128" stroke-width="5"/></g></g>
+    <rect y="600" width="1600" height="100" fill="#dfe6ea" opacity=".25"/>
+  </g>
+
+  <!-- achtergrond 2: de sluis bij Grave -->
+  <g id="sb-bg-lock" style="display:none">
+    <rect y="560" width="1600" height="140" fill="#8d9298"/>
+    <path d="M0 560 H1600" stroke="#6b7076" stroke-width="6"/>
+    <g stroke="#7b8086" stroke-width="2"><path d="M0 600 H1600 M0 640 H1600 M0 680 H1600"/></g>
+    <!-- het sluiswachtershuisje -->
+    <rect x="50" y="440" width="210" height="160" fill="#a24a32"/>
+    <g stroke="#7f3524" stroke-width="2" opacity=".6"><path d="M50 470 H260 M50 500 H260 M50 530 H260 M50 560 H260"/></g>
+    <path d="M36 444 L155 360 L274 444 Z" fill="#3d3a3f"/>
+    <rect x="100" y="470" width="90" height="70" fill="#fdf0c4" stroke="#f3f3f3" stroke-width="6"/>
+    <g id="sb-keeper"><circle cx="145" cy="500" r="16" fill="#e7b896"/><path d="M128 494 q17 -20 34 0" fill="#6b6b6b"/><rect x="128" y="514" width="34" height="26" fill="#2f5a8a"/><circle cx="140" cy="499" r="2" fill="#222"/><circle cx="151" cy="499" r="2" fill="#222"/></g>
+    <rect x="210" y="520" width="34" height="80" fill="#5a3a2a"/>
+    <!-- het stoplicht van de sluis -->
+    <rect x="300" y="400" width="10" height="200" fill="#333"/>
+    <rect x="286" y="380" width="38" height="78" rx="6" fill="#1d1d1d"/>
+    <circle id="sb-lockred" cx="305" cy="400" r="12" fill="#e2483d"/>
+    <circle id="sb-lockgreen" cx="305" cy="436" r="12" fill="#244a2a"/>
+    <!-- de sluismuur vooraan -->
+    <rect y="600" width="370" height="300" fill="#7b8086"/>
+    <g stroke="#62666b" stroke-width="3"><path d="M0 640 H370 M0 700 H370 M0 760 H370 M0 820 H370"/></g>
+    <path d="M330 600 V900 M350 600 V900" stroke="#4a4d52" stroke-width="5"/>
+    <g stroke="#4a4d52" stroke-width="4"><path d="M330 630 H350 M330 670 H350 M330 710 H350 M330 750 H350 M330 790 H350"/></g>
+  </g>
+
+  <!-- achtergrond 3: de kade van Grave, vol kinderen -->
+  <g id="sb-bg-quay" style="display:none">
+    <!-- huizen met trapgevels en de kerktoren -->
+    <g>
+      <path d="M150 140 L180 60 L210 140 Z" fill="#4a4d55"/>
+      <rect x="150" y="140" width="60" height="380" fill="#8f6f55"/>
+      <rect x="140" y="230" width="80" height="16" fill="#7a5d47"/>
+      <rect x="164" y="170" width="32" height="48" rx="16" fill="#3a2f2a"/>
+      <circle cx="180" cy="290" r="18" fill="#efe6cf" stroke="#3a2f2a" stroke-width="4"/>
+      <path d="M180 290 V278 M180 290 H190" stroke="#3a2f2a" stroke-width="3"/>
+      <path d="M0 520 V330 H20 V310 H40 V290 H60 V310 H80 V330 H100 V520Z" fill="#b25b3f"/>
+      <path d="M220 520 V350 H240 V330 H260 V310 H290 V330 H310 V350 H330 V520Z" fill="#c9824f"/>
+      <path d="M100 520 V380 L125 350 L150 380 V520Z" fill="#8d4433"/>
+      <g fill="#f6e6b3"><rect x="20" y="360" width="22" height="30"/><rect x="58" y="360" width="22" height="30"/><rect x="20" y="420" width="22" height="30"/><rect x="58" y="420" width="22" height="30"/>
+        <rect x="240" y="380" width="22" height="30"/><rect x="286" y="380" width="22" height="30"/><rect x="240" y="440" width="22" height="30"/><rect x="286" y="440" width="22" height="30"/><rect x="115" y="400" width="20" height="28"/></g>
+      <!-- vlaggetjes tussen de huizen -->
+      <path d="M0 300 Q180 360 360 320" stroke="#333" stroke-width="2" fill="none"/>
+      <g class="sb-bunting">
+        <path d="M30 312 l14 0 l-7 18z" fill="#d6242f"/><path d="M70 324 l14 0 l-7 18z" fill="#fff"/><path d="M110 333 l14 0 l-7 18z" fill="#1f4fa8"/>
+        <path d="M150 338 l14 0 l-7 18z" fill="#f2b631"/><path d="M190 340 l14 0 l-7 18z" fill="#d6242f"/><path d="M230 338 l14 0 l-7 18z" fill="#fff"/>
+        <path d="M270 333 l14 0 l-7 18z" fill="#1f4fa8"/><path d="M310 326 l14 0 l-7 18z" fill="#f2b631"/></g>
+    </g>
+    <!-- de kade -->
+    <rect y="520" width="380" height="90" fill="#a59a8a"/>
+    <rect y="606" width="380" height="294" fill="#7a5b48"/>
+    <g stroke="#64493a" stroke-width="3"><path d="M0 650 H380 M0 700 H380 M0 750 H380 M0 800 H380 M0 850 H380"/></g>
+    <!-- de kinderen achter het hek, die zwaaien -->
+    <g id="sb-crowd">
+      <g class="sb-kid"><rect x="12" y="540" width="30" height="50" rx="10" fill="#2f6fb1"/><circle cx="27" cy="530" r="14" fill="#f0c4a0"/><path d="M15 520 L27 494 L39 520Z" fill="#d6242f" stroke="#f2b631" stroke-width="2"/><path class="sb-wave" d="M40 548 l14 -26" stroke="#f0c4a0" stroke-width="6" stroke-linecap="round"/></g>
+      <g class="sb-kid b"><rect x="58" y="546" width="30" height="44" rx="10" fill="#e07a2e"/><circle cx="73" cy="534" r="13" fill="#8a5a3c"/><path d="M60 528 q13 -20 26 0" fill="#1f1f1f"/><path class="sb-wave" d="M58 552 l-12 -24" stroke="#8a5a3c" stroke-width="6" stroke-linecap="round"/><rect x="40" y="512" width="16" height="11" fill="#d6242f"/><rect x="40" y="519" width="16" height="4" fill="#fff"/></g>
+      <g class="sb-kid"><rect x="104" y="538" width="32" height="52" rx="10" fill="#4f9a4a"/><circle cx="120" cy="527" r="14" fill="#f3d2b8"/><path d="M106 520 q14 -22 28 0" fill="#e5b84a"/><path class="sb-wave" d="M136 546 l14 -28" stroke="#f3d2b8" stroke-width="6" stroke-linecap="round"/></g>
+      <g class="sb-kid b"><rect x="152" y="548" width="28" height="42" rx="10" fill="#c73f6d"/><circle cx="166" cy="536" r="12" fill="#c8906a"/><ellipse cx="166" cy="524" rx="14" ry="5" fill="#2e7d4f"/><path d="M174 522 q12 -16 20 -10" stroke="#f2b631" stroke-width="3" fill="none"/></g>
+      <g class="sb-kid"><rect x="196" y="540" width="30" height="50" rx="10" fill="#6a4fb0"/><circle cx="211" cy="529" r="14" fill="#f0c4a0"/><path d="M199 520 L211 494 L223 520Z" fill="#d6242f" stroke="#f2b631" stroke-width="2"/><path class="sb-wave" d="M226 546 l14 -26" stroke="#f0c4a0" stroke-width="6" stroke-linecap="round"/></g>
+      <g class="sb-kid b"><rect x="238" y="546" width="30" height="44" rx="10" fill="#2f6fb1"/><circle cx="253" cy="534" r="13" fill="#6e4630"/><path d="M240 530 q13 -22 26 0" fill="#141414"/><path class="sb-wave" d="M238 552 l-12 -24" stroke="#6e4630" stroke-width="6" stroke-linecap="round"/></g>
+      <rect y="586" width="300" height="6" fill="#f2b631"/>
+      <g fill="#f2b631"><rect x="0" y="560" width="5" height="46"/><rect x="100" y="560" width="5" height="46"/><rect x="200" y="560" width="5" height="46"/><rect x="295" y="560" width="5" height="46"/></g>
+    </g>
+    <!-- de burgemeester met zijn ambtsketen -->
+    <g id="sb-mayor">
+      <rect x="318" y="560" width="10" height="48" fill="#1f1f24"/><rect x="334" y="560" width="10" height="48" fill="#1f1f24"/>
+      <rect x="312" y="498" width="38" height="66" rx="8" fill="#26262e"/>
+      <path d="M318 502 Q331 540 344 502" stroke="url(#sbGold)" stroke-width="5" fill="none"/><circle cx="331" cy="530" r="6" fill="#f2c94c"/>
+      <circle cx="331" cy="484" r="15" fill="#f0c4a0"/><path d="M316 478 q15 -18 30 0" fill="#8a8a8a"/>
+      <circle cx="326" cy="484" r="2" fill="#222"/><circle cx="337" cy="484" r="2" fill="#222"/><path d="M325 491 q6 4 12 0" stroke="#7a3a2a" stroke-width="2" fill="none"/>
+    </g>
+  </g>
+
+  <!-- het water -->
+  <rect y="690" width="1600" height="210" fill="url(#sbWater)"/>
+  <g class="sb-waves" stroke="#9fc0cc" stroke-width="3" fill="none" opacity=".6">
+    <path d="M-200 730 q40 -12 80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0"/>
+    <path d="M-160 800 q40 -12 80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0"/>
+    <path d="M-240 870 q40 -12 80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0 t80 0"/>
+  </g>
+
+  <!-- de loopplank naar de kade (als alles klaar is) -->
+  <g id="sb-gangway" style="display:none">
+    <path d="M410 548 L190 606 L190 620 L410 562 Z" fill="#a8743f" stroke="#5a3a1d" stroke-width="3"/>
+    <g stroke="#5a3a1d" stroke-width="3"><path d="M380 556 v12 M340 566 v12 M300 577 v12 M260 587 v12 M220 598 v12"/></g>
+    <path d="M410 520 L190 578" stroke="#d6242f" stroke-width="4"/>
+  </g>
+
+  <!-- de stoomboot -->
+  <g id="sb-ship">
+    <!-- de mast met vlaggetjes -->
+    <rect x="996" y="90" width="10" height="300" fill="#6b4a2a"/>
+    <path d="M1001 96 L400 528 M1001 96 L1555 528" stroke="#3b3b3b" stroke-width="2"/>
+    <g class="sb-flags" id="sb-flagline"></g>
+    <g class="sb-topflag"><path d="M1006 96 h70 v44 h-70z" fill="#d6242f"/><path d="M1032 132 l4 -22 q5 -8 10 0 l4 22z" fill="#fff"/><path d="M1041 106 v6 M1038 109 h6" stroke="#f2b631" stroke-width="2"/></g>
+    <!-- de romp -->
+    <path d="M370 545 L1570 545 L1545 735 Q1000 765 470 735 Z" fill="url(#sbHull)"/>
+    <path d="M374 560 L1566 560" stroke="#f3efe6" stroke-width="10"/>
+    <path d="M384 590 L1558 590" stroke="#d6242f" stroke-width="8"/>
+    <text x="440" y="640" font-family="Fredoka, sans-serif" font-weight="700" font-size="34" fill="#f2c94c" letter-spacing="4">MYRA</text>
+    <!-- de machinekamer, opengewerkt -->
+    <rect x="580" y="600" width="290" height="100" rx="6" fill="#1b0f0a" stroke="#6b4a2a" stroke-width="5"/>
+    <rect x="580" y="600" width="290" height="100" rx="6" fill="url(#sbLamp)"/>
+    <rect x="640" y="618" width="150" height="56" rx="28" fill="#555c66" stroke="#2e3238" stroke-width="4"/>
+    <path d="M660 618 v56 M770 618 v56" stroke="#2e3238" stroke-width="3"/>
+    <rect x="600" y="636" width="34" height="38" rx="4" fill="#2a2a2a"/>
+    <rect id="sb-firebox" x="606" y="644" width="22" height="24" fill="#3b1d10"/>
+    <g id="sb-fire" style="display:none"><ellipse class="flame" cx="617" cy="660" rx="9" ry="11" fill="url(#sbFire)"/></g>
+    <path d="M592 696 q14 -26 36 -10 q10 -16 22 10z" fill="#151515"/>
+    <circle cx="826" cy="630" r="22" fill="#f6ead2" stroke="#b8861f" stroke-width="5"/>
+    <path id="sb-needle" d="M826 630 L812 640" stroke="#c4302b" stroke-width="3" stroke-linecap="round"/>
+    <rect x="800" y="656" width="10" height="38" fill="#cfe6f0" stroke="#7b8086" stroke-width="2"/>
+    <rect id="sb-gaugewater" x="802" y="684" width="6" height="8" fill="#3d8fd0"/>
+    <path d="M790 636 H804" stroke="#2e3238" stroke-width="6"/>
+    <!-- het schoepenrad -->
+    <g id="sb-paddle">
+      <path d="M910 690 A90 90 0 0 1 1090 690 Z" fill="#c4302b" stroke="#7a1a16" stroke-width="5"/>
+      <g class="sb-spin" id="sb-wheel">
+        <circle cx="1000" cy="690" r="70" fill="none" stroke="#3a2a1f" stroke-width="8"/>
+        <g stroke="#3a2a1f" stroke-width="7"><path d="M1000 620 V760 M930 690 H1070 M950 640 L1050 740 M1050 640 L950 740"/></g>
+        <circle cx="1000" cy="690" r="10" fill="#f2c94c"/>
+      </g>
+      <path d="M910 690 A90 90 0 0 1 1090 690" fill="none" stroke="#f2c94c" stroke-width="4"/>
+    </g>
+    <!-- de schoorsteen met stoomfluit -->
+    <rect x="690" y="330" width="62" height="216" fill="url(#sbFunnel)"/>
+    <rect x="686" y="322" width="70" height="26" fill="#1c1c1c"/>
+    <rect x="690" y="420" width="62" height="12" fill="#f3efe6"/>
+    <path d="M752 380 h16 v-16 h8 v40 h-8 v-12 h-16z" fill="url(#sbGold)"/>
+    <g id="sb-smoke" style="display:none">
+      <circle class="sb-puff" cx="721" cy="300" r="22" fill="#d9dde2"/>
+      <circle class="sb-puff b" cx="721" cy="300" r="26" fill="#e6e9ec"/>
+      <circle class="sb-puff c" cx="721" cy="300" r="20" fill="#cfd4da"/>
+    </g>
+    <g id="sb-whistle" style="display:none"><circle class="sb-steam" cx="776" cy="360" r="10" fill="#fff" opacity=".8"/></g>
+    <!-- de pakjes en jutezakken voorop -->
+    <g id="sb-sacks">
+      <path d="M410 545 q-6 -50 22 -66 l12 -10 l12 10 q26 16 20 66z" fill="#b9935a" stroke="#7a5a2a" stroke-width="3"/>
+      <path d="M432 479 q12 6 24 0" stroke="#7a5a2a" stroke-width="4" fill="none"/>
+      <path d="M470 545 q-4 -40 18 -54 l10 -8 l10 8 q20 14 16 54z" fill="#c4a067" stroke="#7a5a2a" stroke-width="3"/>
+      <rect x="510" y="505" width="40" height="40" fill="#1f4fa8"/><path d="M530 505 v40 M510 525 h40" stroke="#f2b631" stroke-width="5"/>
+      <rect x="400" y="515" width="34" height="30" fill="#d6242f"/><path d="M417 515 v30 M400 530 h34" stroke="#fff" stroke-width="4"/>
+    </g>
+    <!-- Sinterklaas -->
+    <g id="sb-sint">
+      <path d="M560 400 Q530 470 538 546 L640 546 Q648 470 618 400 Z" fill="#c21f2b"/>
+      <path d="M560 400 Q530 470 538 546" stroke="url(#sbGold)" stroke-width="5" fill="none"/>
+      <path d="M618 400 Q648 470 640 546" stroke="url(#sbGold)" stroke-width="5" fill="none"/>
+      <rect x="566" y="420" width="46" height="126" fill="#f6f3ea"/>
+      <rect x="573" y="420" width="8" height="126" fill="url(#sbGold)"/><rect x="598" y="420" width="8" height="126" fill="url(#sbGold)"/>
+      <circle cx="589" cy="384" r="18" fill="#efc3a3"/>
+      <path d="M571 388 Q570 440 589 452 Q608 440 607 388 Q600 404 589 404 Q578 404 571 388Z" fill="#fbfbf7"/>
+      <path d="M578 398 q11 -6 22 0" stroke="#fbfbf7" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <circle cx="582" cy="381" r="2.4" fill="#2a1d18"/><circle cx="596" cy="381" r="2.4" fill="#2a1d18"/>
+      <path d="M577 375 q5 -3 10 0 M591 375 q5 -3 10 0" stroke="#fbfbf7" stroke-width="3" fill="none"/>
+      <g id="sb-hair"><path d="M570 380 q-2 -22 19 -24 q21 2 19 24 q-6 -12 -19 -12 q-13 0 -19 12z" fill="#fbfbf7"/></g>
+      <g id="sb-mitre" style="display:none">
+        <path d="M570 372 L573 326 Q589 306 605 326 L608 372 Z" fill="#c21f2b" stroke="url(#sbGold)" stroke-width="4"/>
+        <path d="M589 334 v24 M580 344 h18" stroke="url(#sbGold)" stroke-width="5"/>
+      </g>
+      <g id="sb-staff" style="display:none">
+        <path d="M630 546 V330" stroke="#e0b040" stroke-width="7"/>
+        <path d="M630 334 q0 -30 -22 -30 q-18 0 -18 18 q0 12 12 12" stroke="#e0b040" stroke-width="7" fill="none"/>
+      </g>
+      <circle cx="624" cy="452" r="8" fill="#fbfbf7"/>
+    </g>
+    <!-- de hut van Sinterklaas, opengewerkt -->
+    <g id="sb-cabin">
+      <rect x="826" y="384" width="330" height="162" fill="url(#sbCabin)"/>
+      <rect x="816" y="372" width="350" height="16" fill="#2b150c"/>
+      <!-- loopplanken op het dak -->
+      <g id="sb-planks"><rect x="830" y="356" width="300" height="8" fill="#b88449" stroke="#5a3a1d" stroke-width="2"/><rect x="850" y="346" width="230" height="8" fill="#a8743f" stroke="#5a3a1d" stroke-width="2"/><rect x="880" y="336" width="150" height="8" fill="#b88449" stroke="#5a3a1d" stroke-width="2"/><rect x="905" y="326" width="80" height="8" fill="#a8743f" stroke="#5a3a1d" stroke-width="2"/></g>
+      <rect x="846" y="404" width="290" height="126" fill="#f3dfb6"/>
+      <rect x="846" y="404" width="290" height="126" fill="url(#sbLamp)"/>
+      <!-- de oorkonde aan de muur -->
+      <rect x="860" y="418" width="50" height="62" fill="#7a4a1f"/><rect x="865" y="423" width="40" height="52" fill="#fbf3dc"/>
+      <path d="M871 434 h28 M871 442 h28 M871 450 h20 M871 462 h28" stroke="#6b4a2a" stroke-width="2"/>
+      <circle cx="896" cy="466" r="5" fill="#c21f2b"/>
+      <!-- de kalender -->
+      <rect x="926" y="420" width="44" height="50" fill="#fff" stroke="#999" stroke-width="2"/><rect x="926" y="420" width="44" height="12" fill="#c21f2b"/>
+      <text x="948" y="457" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="20" fill="#222">14</text>
+      <!-- het lampje -->
+      <path d="M1010 404 v14" stroke="#333" stroke-width="2"/><path d="M998 418 h24 l-5 12 h-14z" fill="#f2c94c"/>
+      <!-- de poster met Romeinse cijfers -->
+      <rect x="1062" y="414" width="62" height="70" fill="#f9f1dc" stroke="#7a4a1f" stroke-width="3"/>
+      <text x="1093" y="432" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#7a1a16">I V X</text>
+      <text x="1093" y="450" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#7a1a16">L C</text>
+      <text x="1093" y="468" text-anchor="middle" font-family="Georgia, serif" font-size="12" fill="#7a1a16">D M</text>
+      <!-- de tafel met de hoedendoos en de speculaaspop -->
+      <rect x="880" y="500" width="220" height="10" fill="#6b3a1d"/><rect x="890" y="510" width="8" height="20" fill="#5a2f17"/><rect x="1082" y="510" width="8" height="20" fill="#5a2f17"/>
+      <g id="sb-hatbox"><ellipse cx="950" cy="498" rx="40" ry="8" fill="#9c1d22"/><rect x="910" y="460" width="80" height="38" fill="#c21f2b"/><ellipse cx="950" cy="460" rx="40" ry="8" fill="#d93a35"/><rect x="910" y="474" width="80" height="6" fill="url(#sbGold)"/>
+        <g id="sb-boxlock"><rect x="941" y="480" width="18" height="14" rx="2" fill="#f2c94c" stroke="#7a5a1a" stroke-width="2"/><path d="M944 480 v-6 a6 6 0 0 1 12 0 v6" stroke="#7a5a1a" stroke-width="3" fill="none"/></g></g>
+      <g id="sb-koek"><path d="M1040 470 a7 7 0 0 1 7 7 a7 7 0 0 1 -2 5 l9 5 -2 4 -8 -3 2 7 4 9 -4 2 -6 -9 -6 9 -4 -2 4 -9 2 -7 -8 3 -2 -4 9 -5 a7 7 0 0 1 -2 -5 a7 7 0 0 1 7 -7z" fill="#b8742f" stroke="#7a4518" stroke-width="1.5"/></g>
+      <!-- het Grote Boek -->
+      <g id="sb-book"><rect x="1000" y="484" width="34" height="16" fill="#c21f2b" stroke="#7a1a16" stroke-width="2"/><rect x="1002" y="488" width="30" height="3" fill="#f2c94c"/></g>
+      <path d="M826 546 V384 M1156 546 V384" stroke="#2b150c" stroke-width="10"/>
+    </g>
+    <!-- Hoofdpiet -->
+    <g id="sb-hoofd" class="sb-bob">
+      <rect x="1186" y="500" width="9" height="42" fill="#5b2a86"/><rect x="1206" y="500" width="9" height="42" fill="#f2b631"/>
+      <ellipse cx="1190" cy="544" rx="9" ry="4" fill="#1a1a1a"/><ellipse cx="1211" cy="544" rx="9" ry="4" fill="#1a1a1a"/>
+      <ellipse cx="1201" cy="492" rx="25" ry="16" fill="#5b2a86"/><path d="M1182 492 q19 10 38 0" stroke="#f2b631" stroke-width="3" fill="none"/>
+      <rect x="1181" y="438" width="40" height="48" rx="6" fill="#f2b631"/><path d="M1201 440 v44" stroke="#5b2a86" stroke-width="10"/>
+      <g fill="#5b2a86"><circle cx="1188" cy="452" r="2.5"/><circle cx="1188" cy="466" r="2.5"/></g>
+      <rect x="1216" y="448" width="26" height="32" rx="2" fill="#f6ead2" stroke="#6b4a2a" stroke-width="3" transform="rotate(10 1229 464)"/>
+      <path d="M1220 456 h16 M1219 462 h16 M1218 468 h12" stroke="#6b4a2a" stroke-width="1.5" transform="rotate(10 1229 464)"/>
+      <path d="M1178 438 q23 12 46 0 q-3 -9 -23 -9 q-20 0 -23 9z" fill="#fff" stroke="#ddd" stroke-width="1.5"/>
+      <circle cx="1201" cy="417" r="15" fill="#e3b18a"/>
+      <ellipse cx="1193" cy="423" rx="5" ry="3" fill="#4a3a33" opacity=".45"/><ellipse cx="1208" cy="412" rx="3" ry="2" fill="#4a3a33" opacity=".4"/><ellipse cx="1202" cy="427" rx="3" ry="2" fill="#4a3a33" opacity=".35"/>
+      <circle cx="1196" cy="415" r="2" fill="#2a1d18"/><circle cx="1207" cy="415" r="2" fill="#2a1d18"/><path d="M1196 422 q5 4 10 0" stroke="#7a3a2a" stroke-width="2" fill="none"/>
+      <path d="M1186 412 q-4 -12 6 -14 M1216 412 q4 -12 -6 -14" stroke="#4a2d1a" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <ellipse cx="1201" cy="402" rx="21" ry="7" fill="#5b2a86"/><path d="M1206 398 q20 -24 34 -18 q-14 2 -30 22" fill="#fff"/>
+    </g>
+    <!-- Ozosnel in zijn stal op het dek -->
+    <g id="sb-horse" class="sb-restless">
+      <path d="M1420 470 q26 10 22 52 q-10 -26 -26 -36z" fill="#9aa1a8"/>
+      <rect x="1302" y="490" width="13" height="54" rx="4" fill="#ecebe6"/><rect x="1322" y="490" width="13" height="54" rx="4" fill="#dcdad3"/>
+      <rect x="1384" y="490" width="13" height="54" rx="4" fill="#ecebe6"/><rect x="1404" y="490" width="13" height="54" rx="4" fill="#dcdad3"/>
+      <ellipse cx="1360" cy="472" rx="72" ry="32" fill="#f3f1ec" stroke="#b9b6ad" stroke-width="2"/>
+      <path d="M1328 448 h64 v40 h-64z" fill="#c21f2b"/><path d="M1328 484 h64" stroke="url(#sbGold)" stroke-width="5"/>
+      <g id="sb-horsehead">
+        <path d="M1302 470 L1282 410 L1306 398 L1332 456Z" fill="#f3f1ec" stroke="#b9b6ad" stroke-width="2"/>
+        <path d="M1290 404 q10 -12 26 4 q4 22 14 44" stroke="#9aa1a8" stroke-width="9" fill="none" stroke-linecap="round"/>
+        <ellipse cx="1270" cy="414" rx="28" ry="14" fill="#f3f1ec" stroke="#b9b6ad" stroke-width="2" transform="rotate(-28 1270 414)"/>
+        <path d="M1288 392 l4 -16 l7 14z" fill="#e4e2dc" stroke="#b9b6ad" stroke-width="2"/>
+        <circle cx="1278" cy="404" r="3" fill="#222"/><circle cx="1250" cy="424" r="2" fill="#555"/>
+      </g>
+      <g stroke="#8a5a2a" stroke-width="7"><path d="M1250 512 H1450 M1250 532 H1450"/></g>
+      <g fill="#6b4220"><rect x="1250" y="500" width="9" height="46"/><rect x="1346" y="500" width="9" height="46"/><rect x="1441" y="500" width="9" height="46"/></g>
+    </g>
+    <!-- de voerkist -->
+    <g id="sb-crate"><rect x="1462" y="500" width="76" height="46" fill="#a8743f" stroke="#5a3a1d" stroke-width="3"/><path d="M1462 516 h76 M1462 532 h76" stroke="#5a3a1d" stroke-width="2"/>
+      <path d="M1474 500 l-6 -18 M1486 500 l2 -20 M1496 500 l8 -16" stroke="#e8902e" stroke-width="6" stroke-linecap="round"/><path d="M1468 482 l-4 -6 M1488 480 l1 -8" stroke="#4f9a4a" stroke-width="3"/>
+      <path d="M1508 500 q8 -20 24 -6 q-8 -2 -12 6z" fill="#e5c86a"/></g>
+    <!-- de Nederlandse vlag achterop -->
+    <rect x="1548" y="420" width="5" height="126" fill="#6b4a2a"/>
+    <g class="sb-flag"><rect x="1553" y="420" width="40" height="10" fill="#c8102e"/><rect x="1553" y="430" width="40" height="10" fill="#fff"/><rect x="1553" y="440" width="40" height="10" fill="#21468b"/></g>
+    <!-- de reling -->
+    <path d="M380 528 H1560" stroke="#f3efe6" stroke-width="4"/>
+  </g>
+
+  <!-- het water vóór de boot -->
+  <path class="sb-front" d="M0 740 q50 -14 100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 t100 0 V900 H0Z" fill="#2c4c5a" opacity=".55"/>
+
+  <rect width="1600" height="900" fill="url(#sbVign)" pointer-events="none"/>
+
+  <!-- klikvlakken -->
+  <g id="sb-hits">
+    <rect class="hit" data-hs="ketel" data-label="Machinekamer met de stoomketel" x="580" y="596" width="292" height="108"/>
+    <rect class="hit" data-hs="fluit" data-label="Schoorsteen en stoomfluit" x="684" y="300" width="96" height="240"/>
+    <rect class="hit" data-hs="sint" data-label="Sinterklaas" x="534" y="300" width="112" height="246"/>
+    <rect class="hit" data-hs="zakken" data-label="Jutezakken vol pakjes" x="396" y="470" width="134" height="76"/>
+    <rect class="hit" data-hs="doos" data-label="Hoedendoos" x="906" y="452" width="88" height="50"/>
+    <rect class="hit" data-hs="koek" data-label="Speculaaspop" x="1034" y="466" width="30" height="40" id="hit-koek"/>
+    <rect class="hit" data-hs="boek" data-label="Het Grote Boek" x="998" y="480" width="36" height="22"/>
+    <rect class="hit" data-hs="oorkonde" data-label="Oorkonde aan de muur" x="856" y="414" width="58" height="70"/>
+    <rect class="hit" data-hs="kalender" data-label="Kalender" x="922" y="416" width="52" height="58"/>
+    <rect class="hit" data-hs="cijfers" data-label="Poster met Romeinse cijfers" x="1058" y="410" width="70" height="78"/>
+    <rect class="hit" data-hs="planken" data-label="Loopplanken op het dak van de hut" x="826" y="320" width="310" height="50"/>
+    <rect class="hit" data-hs="hoofd" data-label="Hoofdpiet" x="1172" y="380" width="72" height="166"/>
+    <rect class="hit" data-hs="paard" data-label="Ozosnel, het paard van Sinterklaas" x="1244" y="372" width="206" height="174"/>
+    <rect class="hit" data-hs="voer" data-label="Voerkist" x="1458" y="474" width="84" height="74"/>
+    <rect class="hit" data-hs="vlag" data-label="Vlaggetjes" x="1006" y="90" width="80" height="54"/>
+    <rect class="hit" data-hs="rad" data-label="Schoepenrad" x="908" y="600" width="184" height="96"/>
+    <g id="sb-hit-river"><rect class="hit" data-hs="oever" data-label="De oever van de Maas" x="0" y="480" width="370" height="200"/></g>
+    <g id="sb-hit-lock" style="display:none"><rect class="hit" data-hs="sluis" data-label="Sluiswachtershuisje" x="40" y="360" width="290" height="240"/></g>
+    <g id="sb-hit-quay" style="display:none">
+      <rect class="hit" data-hs="kade" data-label="Kinderen op de kade" x="0" y="490" width="300" height="110"/>
+      <rect class="hit" data-hs="burg" data-label="De burgemeester" x="306" y="466" width="50" height="146"/>
+      <rect class="hit" data-hs="kerk" data-label="Kerktoren van Grave" x="140" y="56" width="80" height="230"/>
+      <rect class="hit" data-hs="loopplank" data-label="Naar de kade" x="186" y="540" width="230" height="80" id="hit-gangway"/>
+    </g>
+  </g>
+</svg>

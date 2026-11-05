@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><title>Hoofdpiet</title>
+  <rect width="120" height="120" rx="14" fill="#3a1d5a"/>
+  <path d="M12 120 q6 -32 48 -34 q42 2 48 34z" fill="#f2b631"/><path d="M60 88 v32" stroke="#5b2a86" stroke-width="14"/>
+  <path d="M28 88 q32 16 64 0 q-4 -12 -32 -12 q-28 0 -32 12z" fill="#fff" stroke="#ddd" stroke-width="2"/>
+  <circle cx="60" cy="56" r="24" fill="#e3b18a"/>
+  <ellipse cx="47" cy="66" rx="7" ry="4" fill="#4a3a33" opacity=".45"/><ellipse cx="72" cy="50" rx="5" ry="3" fill="#4a3a33" opacity=".4"/><ellipse cx="61" cy="72" rx="4" ry="2.6" fill="#4a3a33" opacity=".35"/>
+  <circle cx="51" cy="54" r="3.2" fill="#2a1d18"/><circle cx="69" cy="54" r="3.2" fill="#2a1d18"/>
+  <path d="M50 66 q10 8 20 0" stroke="#7a3a2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M38 52 q-6 -18 8 -22 M82 52 q6 -18 -8 -22" stroke="#4a2d1a" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <ellipse cx="60" cy="34" rx="34" ry="11" fill="#5b2a86"/>
+  <path d="M68 28 q32 -36 50 -26 q-22 2 -46 32z" fill="#fff"/>
+</svg>

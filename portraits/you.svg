@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><title>Jij, de Hulppiet</title>
+  <rect width="120" height="120" rx="14" fill="#6b1a20"/>
+  <path d="M16 120 q6 -34 44 -36 q38 2 44 36z" fill="#4f9a4a"/>
+  <path d="M34 90 q26 12 52 0 q-4 -10 -26 -10 q-22 0 -26 10z" fill="#fff"/>
+  <circle cx="60" cy="58" r="24" fill="#eabf9b"/>
+  <circle cx="51" cy="58" r="3.2" fill="#2a1d18"/><circle cx="69" cy="58" r="3.2" fill="#2a1d18"/>
+  <path d="M49 69 q11 9 22 0" stroke="#7a3a2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <circle cx="45" cy="66" r="4" fill="#e88a7a" opacity=".5"/><circle cx="75" cy="66" r="4" fill="#e88a7a" opacity=".5"/>
+  <path d="M36 52 q-2 -18 24 -20 q26 2 24 20" fill="#7a4a26"/>
+  <ellipse cx="60" cy="36" rx="30" ry="10" fill="#2e7d4f"/>
+  <path d="M66 30 q28 -30 46 -22 q-20 2 -42 26z" fill="#f2b631"/>
+</svg>

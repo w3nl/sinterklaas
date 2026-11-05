@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><title>De burgemeester</title>
+  <rect width="120" height="120" rx="14" fill="#2a3a5a"/>
+  <path d="M12 120 q6 -34 48 -36 q42 2 48 36z" fill="#26262e"/>
+  <path d="M34 90 Q60 124 86 90" stroke="#f2c94c" stroke-width="7" fill="none"/><circle cx="60" cy="110" r="8" fill="#f2c94c"/>
+  <circle cx="60" cy="56" r="25" fill="#f0c4a0"/>
+  <path d="M34 50 q26 -36 52 0 q-8 -14 -26 -14 q-18 0 -26 14z" fill="#8a8a8a"/>
+  <circle cx="51" cy="56" r="3.2" fill="#222"/><circle cx="69" cy="56" r="3.2" fill="#222"/>
+  <path d="M46 68 q14 6 28 0" stroke="#7a3a2a" stroke-width="3" fill="none"/>
+  <path d="M46 64 q14 -4 28 0" stroke="#8a8a8a" stroke-width="5" fill="none" stroke-linecap="round"/>
+</svg>

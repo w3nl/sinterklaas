@@ -1,0 +1,20 @@
+{
+  "name": "Sinterklaas: Het Grote Pakjesavontuur",
+  "short_name": "Sinterklaas",
+  "description": "Een escaperoom in de browser over Sinterklaas: de intocht, schoen zetten, op het dak met Klimpiet en pakjesavond.",
+  "lang": "nl",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1a0c10",
+  "theme_color": "#1a0c10",
+  "categories": ["games", "education", "kids"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="scene" id="sc-feest" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-label="Pakjesavond in de woonkamer">
+  <defs>
+    <pattern id="paPaper" width="60" height="60" patternUnits="userSpaceOnUse"><rect width="60" height="60" fill="#2f4a3c"/><path d="M30 10 l6 10 -6 10 -6 -10z" fill="#3c5c4a"/><circle cx="0" cy="45" r="3" fill="#c9a24a" opacity=".5"/><circle cx="60" cy="45" r="3" fill="#c9a24a" opacity=".5"/></pattern>
+    <pattern id="paFloor" width="160" height="40" patternUnits="userSpaceOnUse"><rect width="160" height="40" fill="#7a4a26"/><path d="M0 39.5 H160 M60 0 V40" stroke="#5a3418" stroke-width="2"/></pattern>
+    <linearGradient id="paNight" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b1330"/><stop offset="1" stop-color="#28345e"/></linearGradient>
+    <radialGradient id="paFireG" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#ffe07a"/><stop offset=".45" stop-color="#ff8a2e"/><stop offset="1" stop-color="#a8240f"/></radialGradient>
+    <radialGradient id="paGlow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffb24a" stop-opacity=".35"/><stop offset="1" stop-color="#ffb24a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="paCandle" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd27a" stop-opacity=".7"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="paVign" cx=".5" cy=".45" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient>
+    <clipPath id="paWinClip"><rect x="1110" y="170" width="240" height="260"/></clipPath>
+  </defs>
+
+  <!-- muur en vloer -->
+  <rect width="1600" height="660" fill="url(#paPaper)"/>
+  <rect y="620" width="1600" height="40" fill="#3a2414"/>
+  <rect y="660" width="1600" height="240" fill="url(#paFloor)"/>
+  <rect width="1600" height="30" fill="#24170e"/>
+
+  <!-- slingers en een spandoek -->
+  <g id="pa-garland"></g>
+  <g class="pa-banner"><path d="M290 70 H830 L810 120 H310Z" fill="#c21f2b"/><text x="560" y="106" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="30" fill="#f2c94c" letter-spacing="2">WELKOM SINTERKLAAS!</text></g>
+
+  <!-- de voordeur (in de gang) -->
+  <rect x="50" y="220" width="210" height="430" fill="#5a3a1d"/>
+  <rect x="66" y="236" width="178" height="414" fill="#3a2414"/>
+  <rect x="80" y="250" width="150" height="390" fill="#8a2a22"/>
+  <rect x="110" y="280" width="90" height="70" fill="#f6d77a" opacity=".5"/>
+  <path d="M155 280 v70 M110 315 h90" stroke="#5a1a14" stroke-width="5"/>
+  <circle cx="210" cy="460" r="7" fill="#f2c94c"/><rect x="130" y="420" width="50" height="10" rx="3" fill="#f2c94c"/>
+  <g id="pa-knock" style="display:none"><text class="pa-bonk" x="150" y="210" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="40" fill="#f2c94c">BONK BONK BONK!</text></g>
+
+  <!-- papa, oma, mama en Sem -->
+  <rect x="300" y="470" width="300" height="60" rx="20" fill="#8a3a3a"/>
+  <rect x="290" y="520" width="320" height="90" rx="16" fill="#9e4646"/>
+  <rect x="280" y="500" width="40" height="110" rx="16" fill="#8a3a3a"/><rect x="580" y="500" width="40" height="110" rx="16" fill="#8a3a3a"/>
+  <g id="pa-papa">
+    <path d="M330 600 q-6 -84 42 -88 q48 4 42 88z" fill="#2f5a8a"/>
+    <circle cx="372" cy="478" r="26" fill="#c98b62"/><path d="M346 470 q26 -34 52 0 q-6 -12 -26 -12 q-20 0 -26 12z" fill="#2a1a10"/>
+    <path d="M354 492 q18 18 36 0 q-4 14 -18 14 q-14 0 -18 -14z" fill="#2a1a10"/>
+    <circle cx="363" cy="478" r="2.6" fill="#1a120c"/><circle cx="381" cy="478" r="2.6" fill="#1a120c"/>
+    <path d="M354 460 l18 -44 l18 44z" fill="#c21f2b" stroke="#f2b631" stroke-width="2"/>
+  </g>
+  <g id="pa-oma">
+    <path d="M450 600 q-6 -80 40 -84 q46 4 40 84z" fill="#7a4fa0"/>
+    <path d="M454 540 q36 -14 72 0 v20 q-36 -10 -72 0z" fill="#e8902e"/>
+    <circle cx="490" cy="484" r="24" fill="#f0c9a6"/><path d="M466 482 q-4 -34 24 -34 q28 0 24 34 q-6 -18 -24 -18 q-18 0 -24 18z" fill="#e6e6e6"/>
+    <circle cx="482" cy="484" r="7" fill="none" stroke="#555" stroke-width="2"/><circle cx="498" cy="484" r="7" fill="none" stroke="#555" stroke-width="2"/><path d="M489 484 h2" stroke="#555" stroke-width="2"/>
+    <path d="M482 496 q8 6 16 0" stroke="#7a3a2a" stroke-width="2.5" fill="none"/>
+  </g>
+  <g id="pa-mama">
+    <path d="M530 600 q-6 -80 40 -86 q46 6 40 86z" fill="#2f6f7a"/>
+    <circle cx="570" cy="482" r="26" fill="#d9a07a"/>
+    <path d="M542 486 q-4 -42 28 -40 q34 -2 28 40 q-4 -20 -28 -22 q-22 2 -28 22z" fill="#5a3418"/>
+    <path d="M544 482 q-8 30 4 44 M596 482 q8 30 -4 44" stroke="#5a3418" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <circle cx="561" cy="482" r="2.6" fill="#2a1d18"/><circle cx="579" cy="482" r="2.6" fill="#2a1d18"/><path d="M562 494 q8 6 16 0" stroke="#7a3a2a" stroke-width="2.5" fill="none"/>
+  </g>
+  <g id="pa-sem" class="pa-hop">
+    <path d="M640 720 q-4 -50 26 -52 q30 2 26 52z" fill="#f2b631"/>
+    <circle cx="666" cy="650" r="20" fill="#e7b896"/><path d="M646 646 q20 -30 40 0 q-10 -10 -20 -10 q-10 0 -20 10z" fill="#d9a24a"/>
+    <circle cx="659" cy="650" r="2.4" fill="#2a1d18"/><circle cx="673" cy="650" r="2.4" fill="#2a1d18"/><path d="M658 660 q8 7 16 0" stroke="#7a3a2a" stroke-width="2.5" fill="none"/>
+    <path d="M652 632 l14 -28 l14 28z" fill="#1f4fa8" stroke="#f2b631" stroke-width="2"/>
+  </g>
+
+  <!-- de houtkachel, met een feestelijke slinger -->
+  <circle cx="880" cy="560" r="220" fill="url(#paGlow)" class="pulse"/>
+  <rect x="864" y="0" width="32" height="466" fill="#1c1c1c"/>
+  <rect x="786" y="456" width="188" height="18" rx="4" fill="#2a2a2a"/>
+  <rect x="800" y="470" width="160" height="176" rx="10" fill="#1d1d1d"/>
+  <rect x="822" y="496" width="116" height="100" rx="8" fill="#0d0805" stroke="#4a4a4a" stroke-width="5"/>
+  <ellipse class="flame" cx="862" cy="562" rx="16" ry="30" fill="url(#paFireG)"/>
+  <ellipse class="flame b" cx="886" cy="558" rx="18" ry="36" fill="url(#paFireG)"/>
+  <ellipse class="flame" cx="908" cy="566" rx="13" ry="24" fill="url(#paFireG)"/>
+  <rect x="808" y="644" width="14" height="16" fill="#1d1d1d"/><rect x="938" y="644" width="14" height="16" fill="#1d1d1d"/>
+
+  <!-- het raam -->
+  <rect x="1094" y="154" width="272" height="292" fill="#5a3a1d"/>
+  <g clip-path="url(#paWinClip)">
+    <rect x="1110" y="170" width="240" height="260" fill="url(#paNight)"/>
+    <g fill="#fff"><circle class="tw" cx="1140" cy="200" r="2"/><circle class="tw b" cx="1200" cy="230" r="1.6"/><circle class="tw" cx="1320" cy="196" r="2"/><circle class="tw b" cx="1170" cy="270" r="1.4"/></g>
+    <path d="M1110 350 L1170 300 L1230 350 L1260 320 L1310 360 L1350 330 V430 H1110Z" fill="#0d1124"/>
+    <g fill="#f6d77a"><rect x="1130" y="380" width="12" height="14"/><rect x="1200" y="390" width="12" height="14"/><rect x="1280" y="384" width="12" height="14"/></g>
+    <!-- Sint en Klimpiet op het dak aan de overkant (aan het eind) -->
+    <g id="pa-wave" style="display:none">
+      <path d="M1200 304 q-8 -26 6 -40 q14 14 8 40z" fill="#c21f2b"/><path d="M1198 266 l4 -18 q6 -6 10 0 l4 18z" fill="#c21f2b"/><circle cx="1208" cy="270" r="6" fill="#efc3a3"/><path d="M1202 272 q6 14 12 0" fill="#fff"/>
+      <g class="pa-arm"><path d="M1214 280 l14 -14" stroke="#c21f2b" stroke-width="5" stroke-linecap="round"/></g>
+      <path d="M1246 316 q-6 -20 6 -30 q12 10 6 30z" fill="#ef8a2e"/><circle cx="1252" cy="280" r="6" fill="#e7b18e"/><ellipse cx="1252" cy="274" rx="9" ry="3" fill="#2e7d4f"/>
+      <g class="pa-arm b"><path d="M1258 292 l12 -14" stroke="#ef8a2e" stroke-width="5" stroke-linecap="round"/></g>
+    </g>
+  </g>
+  <path d="M1230 170 V430 M1110 300 H1350" stroke="#5a3a1d" stroke-width="10"/>
+  <rect x="1084" y="442" width="292" height="14" fill="#6b4220"/>
+
+  <!-- de feesttafel -->
+  <rect x="1060" y="560" width="400" height="16" fill="#8a5a2a"/>
+  <rect x="1074" y="576" width="12" height="84" fill="#6b4220"/><rect x="1434" y="576" width="12" height="84" fill="#6b4220"/>
+  <circle cx="1140" cy="500" r="60" fill="url(#paCandle)"/><circle cx="1380" cy="500" r="60" fill="url(#paCandle)"/>
+  <rect x="1134" y="516" width="12" height="44" fill="#f6ead2"/><ellipse class="flame" cx="1140" cy="508" rx="5" ry="10" fill="url(#paFireG)"/>
+  <rect x="1374" y="516" width="12" height="44" fill="#f6ead2"/><ellipse class="flame b" cx="1380" cy="508" rx="5" ry="10" fill="url(#paFireG)"/>
+  <g id="pa-bowl"><path d="M1180 540 h90 q-6 22 -45 22 q-39 0 -45 -22z" fill="#1f4fa8"/>
+    <g fill="#a8642a"><circle cx="1200" cy="538" r="6"/><circle cx="1214" cy="534" r="6"/><circle cx="1228" cy="538" r="6"/><circle cx="1242" cy="534" r="6"/><circle cx="1256" cy="538" r="6"/><circle cx="1221" cy="528" r="6"/><circle cx="1238" cy="527" r="6"/></g></g>
+  <g fill="#f3efe6"><rect x="1290" y="526" width="22" height="34" rx="3"/><rect x="1320" y="526" width="22" height="34" rx="3"/></g>
+  <rect x="1292" y="532" width="18" height="24" fill="#8a5a3a"/><rect x="1322" y="532" width="18" height="24" fill="#8a5a3a"/>
+  <g id="pa-koek"><path d="M1420 520 a8 8 0 0 1 8 8 a8 8 0 0 1 -2 5 l10 6 -2 4 -9 -3 2 8 5 10 -4 2 -8 -10 -8 10 -4 -2 5 -10 2 -8 -9 3 -2 -4 10 -6 a8 8 0 0 1 -2 -5 a8 8 0 0 1 8 -8z" fill="#b8742f" stroke="#7a4518" stroke-width="1.5"/></g>
+
+  <!-- de jutezak en de pakjes (als je hem binnen hebt) -->
+  <g id="pa-sack" style="display:none">
+    <path d="M700 760 q-30 -110 40 -150 l34 -26 l34 26 q70 40 40 150z" fill="#b9935a" stroke="#7a5a2a" stroke-width="4"/>
+    <path d="M740 610 q34 16 68 0" stroke="#7a5a2a" stroke-width="7" fill="none"/>
+    <path d="M730 680 l10 8 M820 700 l-8 6 M770 740 l6 -8" stroke="#8a6a3a" stroke-width="3"/>
+    <text x="774" y="710" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="22" fill="#7a5a2a">S</text>
+  </g>
+  <g id="pa-gifts" style="display:none">
+    <circle cx="620" cy="790" r="34" fill="#c21f2b"/><path d="M586 790 h68 M620 756 v68" stroke="#f2b631" stroke-width="5"/>
+    <rect x="890" y="770" width="80" height="20" fill="#1f4fa8"/><path d="M930 770 v20" stroke="#fff" stroke-width="4"/>
+    <rect x="990" y="700" width="20" height="100" fill="#4f9a4a" transform="rotate(14 1000 750)"/><path d="M990 750 h20" stroke="#f2b631" stroke-width="4" transform="rotate(14 1000 750)"/>
+    <ellipse cx="1060" cy="790" rx="40" ry="22" fill="#c73f6d"/><path d="M1040 774 q20 12 40 0" stroke="#f2b631" stroke-width="4" fill="none"/>
+  </g>
+  <g id="pa-surprise" style="display:none"><rect x="1150" y="720" width="70" height="70" fill="#f6ead2" stroke="#8a6a4a" stroke-width="3"/><g fill="#222"><circle cx="1170" cy="740" r="5"/><circle cx="1200" cy="770" r="5"/><circle cx="1185" cy="755" r="5"/></g></g>
+  <g id="pa-big" style="display:none"><rect x="1300" y="690" width="140" height="110" fill="#f2b631"/><path d="M1370 690 v110 M1300 745 h140" stroke="#c21f2b" stroke-width="10"/><path d="M1370 690 q-30 -30 -40 -6 q10 10 40 6 q30 -30 40 -6 q-10 10 -40 6z" fill="#c21f2b"/></g>
+
+  <rect width="1600" height="900" fill="url(#paVign)" pointer-events="none"/>
+
+  <!-- klikvlakken -->
+  <g>
+    <rect class="hit" data-hs="voordeur" data-label="Voordeur" x="50" y="220" width="216" height="430"/>
+    <rect class="hit" data-hs="papa" data-label="Papa" x="326" y="390" width="96" height="214"/>
+    <rect class="hit" data-hs="oma" data-label="Oma" x="446" y="440" width="88" height="164"/>
+    <rect class="hit" data-hs="mama" data-label="Mama" x="534" y="440" width="84" height="164"/>
+    <rect class="hit" data-hs="sem" data-label="Sem, je broertje" x="630" y="600" width="72" height="124"/>
+    <rect class="hit" data-hs="kachel4" data-label="Houtkachel" x="784" y="450" width="194" height="212"/>
+    <rect class="hit" data-hs="raam4" data-label="Raam" x="1094" y="154" width="272" height="292"/>
+    <rect class="hit" data-hs="pepernoten" data-label="Schaal met pepernoten" x="1176" y="514" width="100" height="52"/>
+    <rect class="hit" data-hs="choco" data-label="Chocolademelk" x="1286" y="520" width="60" height="44"/>
+    <rect class="hit" data-hs="koek" data-label="Speculaaspop" x="1404" y="514" width="40" height="52" id="hit-koek4"/>
+    <rect class="hit" data-hs="spandoek" data-label="Spandoek" x="290" y="64" width="540" height="60"/>
+    <g id="pa-hit-sack" style="display:none"><rect class="hit" data-hs="zak4" data-label="De jutezak van Sinterklaas" x="690" y="580" width="180" height="184"/></g>
+    <g id="pa-hit-gifts" style="display:none"><rect class="hit" data-hs="pakjes" data-label="Pakjes zonder naam" x="580" y="740" width="530" height="90"/></g>
+    <g id="pa-hit-big" style="display:none"><rect class="hit" data-hs="groot" data-label="Het grootste pakje" x="1294" y="660" width="152" height="144"/></g>
+  </g>
+</svg>

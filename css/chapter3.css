@@ -1,0 +1,62 @@
+/* Hoofdstuk 3: op het dak. Wat er beweegt, en de close-ups: de Pietencode, de straat, de pakjes, het touw
+   en de windhaan. */
+@keyframes dkSmoke{0%{transform:translate(0,0);opacity:.9}100%{transform:translate(60px,-30px);opacity:0}}
+.dk-smoke circle{animation:dkSmoke 4s ease-out infinite}
+.dk-smoke circle:nth-child(2){animation-delay:-1.3s} .dk-smoke circle:nth-child(3){animation-delay:-2.6s}
+.dk-smoke.b circle{animation-duration:5s}
+@keyframes dkRide{0%,100%{transform:translate(0,0)}25%{transform:translate(6px,-4px)}50%{transform:translate(12px,0)}75%{transform:translate(6px,-4px)}}
+.dk-ride{animation:dkRide 3s ease-in-out infinite}
+@keyframes dkSwing{0%,100%{transform:rotate(0)}50%{transform:rotate(2deg)}}
+.dk-swing{transform-box:fill-box;transform-origin:50% 90%;animation:dkSwing 2.6s ease-in-out infinite}
+@keyframes dkCapFly{0%{transform:translate(945px,528px) rotate(0)}50%{transform:translate(1300px,420px) rotate(200deg)}100%{transform:translate(1700px,470px) rotate(400deg)}}
+.dk-capfly{transform:translate(1700px,470px);animation:dkCapFly 3s ease-in forwards}
+
+/* ---------- de Pietencode ---------- */
+.code3{display:flex;flex-direction:column;gap:12px}
+.cd-label{background:#e8d8b8;color:#2b2118;padding:12px 14px;border-radius:4px;display:flex;flex-direction:column;gap:6px;transform:rotate(-1deg)}
+.cd-word{font-family:var(--f-mono);font-size:clamp(22px,6vw,32px);letter-spacing:.14em;color:#7a1a16;font-weight:600}
+.cd-label small{font-size:13px}
+.cd-abc{display:grid;grid-template-columns:repeat(13,1fr);gap:3px;font-family:var(--f-mono);font-size:14px;text-align:center}
+.cd-abc span{background:#3a2016;border-radius:3px;padding:3px 0}
+.code3 input{width:220px;text-transform:uppercase}
+
+/* ---------- de straat ---------- */
+.adres{display:flex;flex-direction:column;gap:10px}
+.ad-who{margin:0;font-size:15px;min-height:1.4em}
+.ad-street{display:grid;grid-template-columns:1fr 54px 1fr;gap:8px;background:#121630;border-radius:8px;padding:10px}
+.ad-col{display:flex;flex-direction:column;gap:5px}
+.ad-h{display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:4px;border:1px solid #2a3260;background:#1d2448;color:var(--paper)}
+.ad-h:hover{border-color:var(--amber)}
+.ad-h.done{background:#2e5a3a;border-color:var(--phosphor)}
+.ad-roof{width:22px;height:14px;background:#7a2e22;clip-path:polygon(50% 0,100% 100%,0 100%)}
+.ad-num{font-family:var(--f-mono);font-weight:600}
+.ad-road{background:#2a2a2a;border-radius:4px;display:flex;align-items:center;justify-content:center}
+.ad-road span{writing-mode:vertical-rl;font-size:12px;color:#ddd;letter-spacing:.1em}
+
+/* ---------- welke pakjes passen ---------- */
+.past p{margin:0 0 10px;font-size:14px}
+.ps-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.ps-gift{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:8px;border:2px solid var(--line);background:#3a2016;text-align:center}
+.ps-gift.on{border-color:var(--phosphor);background:#2e5a3a}
+.ps-gift b{font-size:12px;font-weight:600}
+.ps-gift small{font-family:var(--f-mono);font-size:11px;color:var(--amber)}
+.ps-box{display:block;border:2px solid #f2b631}
+.ps-A{width:44px;height:8px;background:#c21f2b} .ps-B{width:8px;height:56px;background:#4f9a4a} .ps-C{width:24px;height:32px;background:#c73f6d} .ps-D{width:46px;height:50px;background:#1f4fa8} .ps-E{width:16px;height:52px;background:#6a4fb0}
+@media (max-width:560px){.ps-row{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* ---------- het touw, op ruitjespapier ---------- */
+.touw3{display:flex;gap:14px;flex-wrap:wrap}
+.tw-pic{position:relative;width:min(160px,40vw);aspect-ratio:160/240;background:#fffaf0;border-radius:4px;flex:0 0 auto}
+.tw-grid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(12,1fr)}
+.tw-grid i{border-right:1px solid #bcd0e8;border-bottom:1px solid #bcd0e8}
+.tw-house{position:absolute;inset:0;width:100%;height:100%}
+.tw-side{flex:1 1 220px;min-width:0}
+.tw-side p{margin:0 0 10px;font-size:14px}
+
+/* ---------- de windhaan ---------- */
+.wind3{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.wd-svg{width:min(200px,60vw);height:auto;flex:0 0 auto}
+@keyframes wdWobble{0%,100%{transform:rotate(0)}50%{transform:rotate(4deg)}}
+.wd-rooster{transform-box:view-box;transform-origin:100px 100px;animation:wdWobble 2s ease-in-out infinite}
+.wd-side{flex:1 1 220px;min-width:0}
+.wd-side p{margin:0 0 10px;font-size:14px}
