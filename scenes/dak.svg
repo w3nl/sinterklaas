@@ -6,6 +6,9 @@
     <pattern id="dkBrick" width="30" height="16" patternUnits="userSpaceOnUse"><rect width="30" height="16" fill="#8a3e2a"/><path d="M0 15.5 H30 M15 0 V8 M0 8 H30 M0 8 V16 M30 8 V16" stroke="#5a2618" stroke-width="2"/></pattern>
     <radialGradient id="dkLamp" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd58a" stop-opacity=".55"/><stop offset="1" stop-color="#ffd58a" stop-opacity="0"/></radialGradient>
     <radialGradient id="dkVign" cx=".5" cy=".45" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient>
+    <radialGradient id="dkSkin" cx=".45" cy=".35" r=".75"><stop offset="0" stop-color="#f6d0ae"/><stop offset="1" stop-color="#d39a76"/></radialGradient>
+    <linearGradient id="dkSuit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f59a3c"/><stop offset="1" stop-color="#c9661a"/></linearGradient>
+    <linearGradient id="dkGreen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d9c64"/><stop offset="1" stop-color="#1f5e39"/></linearGradient>
   </defs>
 
   <!-- de nachtlucht -->
@@ -47,11 +50,21 @@
 
   <!-- Sinterklaas op Ozosnel, op een dak in het maanlicht -->
   <g transform="translate(0 22)"><g id="dk-sint" class="dk-ride">
-    <path d="M1140 330 q20 -10 50 -6 q20 2 34 -4 l6 -14 l6 4 -4 14 q4 6 -2 12 l-4 34 h-6 l0 -26 h-50 l-4 26 h-6 l0 -30 q-14 -4 -20 -10z" fill="#e9e6dc"/>
-    <path d="M1150 340 l-14 14" stroke="#e9e6dc" stroke-width="6" stroke-linecap="round"/>
-    <path d="M1172 324 q-6 -26 8 -44 q14 18 10 44z" fill="#c21f2b"/>
+    <path d="M1144 326 q-14 4 -18 18 q-2 8 -8 10 q10 2 16 -8 q4 -8 10 -12z" fill="#b9bfc8"/>
+    <path d="M1140 330 q20 -10 50 -6 q20 2 34 -4 l6 -14 l6 4 -4 14 q4 6 -2 12 l-4 34 h-6 l0 -26 h-50 l-4 26 h-6 l0 -30 q-14 -4 -20 -10z" fill="#ece9e0"/>
+    <path d="M1150 340 l-14 14" stroke="#ece9e0" stroke-width="6" stroke-linecap="round"/>
+    <path d="M1222 312 q-6 4 -10 14 q6 -2 12 -6z" fill="#b9bfc8"/>
+    <circle cx="1233" cy="314" r="1.4" fill="#222"/>
+    <path d="M1226 318 l-10 10" stroke="#c21f2b" stroke-width="1.6"/>
+    <path d="M1162 330 h30 v8 h-30z" fill="#c21f2b"/><path d="M1162 337 h30" stroke="#f2b631" stroke-width="1.6"/>
+    <path d="M1172 326 q-14 -26 4 -46 q18 16 14 46z" fill="#c21f2b"/>
+    <path d="M1172 326 q-14 -26 4 -46" stroke="#f2b631" stroke-width="1.6" fill="none"/>
+    <path d="M1176 300 h8 v26 h-8z" fill="#f6f3ea"/>
+    <path d="M1185 300 q8 6 10 18" stroke="#c21f2b" stroke-width="5" stroke-linecap="round" fill="none"/><circle cx="1195" cy="319" r="2.6" fill="#fff"/>
     <path d="M1170 286 l4 -22 q6 -8 12 0 l4 22z" fill="#c21f2b" stroke="#f2b631" stroke-width="2"/>
-    <circle cx="1180" cy="292" r="7" fill="#efc3a3"/><path d="M1173 294 q7 18 14 0" fill="#fff"/>
+    <path d="M1180 268 v10 M1176.5 272 h7" stroke="#f2b631" stroke-width="1.6"/>
+    <circle cx="1180" cy="292" r="7" fill="#efc3a3"/><path d="M1172.5 292 q7.5 22 15 0 q-3 4 -7.5 4 q-4.5 0 -7.5 -4z" fill="#fff"/>
+    <circle cx="1177.6" cy="290.6" r="1" fill="#2a1d18"/><circle cx="1182.4" cy="290.6" r="1" fill="#2a1d18"/>
     <path d="M1196 320 V262" stroke="#f2b631" stroke-width="3"/><path d="M1196 264 q0 -12 -8 -12 q-6 0 -6 6" stroke="#f2b631" stroke-width="3" fill="none"/>
   </g></g>
 
@@ -83,17 +96,30 @@
   <!-- Klimpiet, op de nok van het dak -->
   <g id="dk-piet" class="dk-swing">
     <path d="M930 640 q-10 30 -30 40" stroke="#2e7d4f" stroke-width="12" stroke-linecap="round" fill="none"/><path d="M960 640 q10 30 30 40" stroke="#ef8a2e" stroke-width="12" stroke-linecap="round" fill="none"/>
-    <ellipse cx="898" cy="684" rx="12" ry="6" fill="#1a1a1a"/><ellipse cx="992" cy="684" rx="12" ry="6" fill="#1a1a1a"/>
-    <ellipse cx="945" cy="630" rx="30" ry="18" fill="#2e7d4f"/><path d="M920 630 q25 12 50 0" stroke="#ef8a2e" stroke-width="3" fill="none"/>
-    <rect x="924" y="566" width="42" height="60" rx="8" fill="#ef8a2e"/><path d="M945 568 v56" stroke="#2e7d4f" stroke-width="10"/>
-    <path d="M924 580 q-24 10 -34 -16" stroke="#ef8a2e" stroke-width="11" stroke-linecap="round" fill="none"/><circle cx="890" cy="562" r="7" fill="#e7b18e"/>
-    <path d="M966 580 q22 14 20 36" stroke="#ef8a2e" stroke-width="11" stroke-linecap="round" fill="none"/><circle cx="986" cy="618" r="7" fill="#e7b18e"/>
-    <path d="M920 566 q25 12 50 0 q-3 -9 -25 -9 q-22 0 -25 9z" fill="#fff" stroke="#ddd" stroke-width="1.5"/>
-    <circle cx="945" cy="544" r="16" fill="#e7b18e"/>
-    <ellipse cx="936" cy="551" rx="5" ry="3" fill="#3a2e2a" opacity=".5"/><ellipse cx="953" cy="538" rx="4" ry="2.4" fill="#3a2e2a" opacity=".45"/><ellipse cx="946" cy="556" rx="3" ry="2" fill="#3a2e2a" opacity=".4"/>
-    <circle cx="939" cy="542" r="2.2" fill="#2a1d18"/><circle cx="951" cy="542" r="2.2" fill="#2a1d18"/><path d="M938 549 q7 6 14 0" stroke="#7a3a2a" stroke-width="2" fill="none"/>
-    <path d="M928 538 q-6 -14 6 -16 M962 538 q6 -14 -6 -16" stroke="#2a1a10" stroke-width="6" fill="none" stroke-linecap="round"/>
-    <g id="dk-cap"><ellipse cx="945" cy="528" rx="22" ry="8" fill="#2e7d4f"/><path d="M950 524 q22 -26 38 -20 q-16 2 -32 24" fill="#f2b631"/></g>
+    <path d="M884 688 q0 -10 14 -10 q12 0 14 10z M978 688 q2 -10 14 -10 q14 0 14 10z" fill="#1a1a1a"/>
+    <circle cx="898" cy="682" r="2.4" fill="#f2b631"/><circle cx="992" cy="682" r="2.4" fill="#f2b631"/>
+    <ellipse cx="945" cy="630" rx="30" ry="18" fill="url(#dkGreen)"/>
+    <path d="M930 616 q-3 14 0 28 M945 613 v34 M960 616 q3 14 0 28" stroke="#174a2c" stroke-width="2" fill="none" opacity=".6"/>
+    <path d="M920 630 q25 12 50 0" stroke="#ef8a2e" stroke-width="3" fill="none"/>
+    <rect x="924" y="566" width="42" height="60" rx="8" fill="url(#dkSuit)"/><path d="M945 568 v56" stroke="#2e7d4f" stroke-width="10"/>
+    <g fill="#f2b631"><circle cx="945" cy="584" r="2.2"/><circle cx="945" cy="600" r="2.2"/></g>
+    <path d="M924 580 q-24 10 -34 -16" stroke="#ef8a2e" stroke-width="11" stroke-linecap="round" fill="none"/><circle cx="890" cy="562" r="7" fill="#e3ad88"/>
+    <path d="M966 580 q22 14 20 36" stroke="#ef8a2e" stroke-width="11" stroke-linecap="round" fill="none"/><circle cx="986" cy="618" r="7" fill="#e3ad88"/>
+    <rect x="939" y="552" width="12" height="10" fill="#d39a76"/>
+    <ellipse cx="945" cy="564" rx="25" ry="7" fill="#fff" stroke="#d9d9e0" stroke-width="1.2"/>
+    <path d="M922 565 q2.9 3.6 5.75 0 q2.9 3.6 5.75 0 q2.9 3.6 5.75 0 q2.9 3.6 5.75 0 q2.9 3.6 5.75 0 q2.9 3.6 5.75 0 q2.9 3.6 5.75 0 q2.9 3.6 5.75 0" stroke="#cfcfda" stroke-width="1" fill="none"/>
+    <ellipse cx="929" cy="545" rx="3" ry="4.4" fill="#d39a76"/><ellipse cx="961" cy="545" rx="3" ry="4.4" fill="#d39a76"/>
+    <ellipse cx="945" cy="544" rx="16" ry="17" fill="url(#dkSkin)"/>
+    <g fill="#8a4a22"><circle cx="931" cy="534" r="4.6"/><circle cx="934" cy="530" r="4.6"/><circle cx="959" cy="534" r="4.6"/><circle cx="956" cy="530" r="4.6"/><circle cx="961" cy="539" r="3.2"/><path d="M929 538 q1 -13 16 -13 q15 0 16 13 q-6 -7 -16 -7 q-10 0 -16 7z"/></g>
+    <ellipse cx="935" cy="551" rx="5" ry="2.4" fill="#3a2e2a" opacity=".38" transform="rotate(-18 935 551)"/><ellipse cx="954" cy="536" rx="4" ry="2" fill="#3a2e2a" opacity=".32" transform="rotate(20 954 536)"/><ellipse cx="947" cy="549" rx="2" ry="1.2" fill="#3a2e2a" opacity=".35"/>
+    <circle cx="955" cy="550" r="3" fill="#ee7f6e" opacity=".35"/>
+    <g fill="#fff"><ellipse cx="939.5" cy="542" rx="3" ry="3.4"/><ellipse cx="951.5" cy="542" rx="3" ry="3.4"/></g>
+    <g fill="#2c4a20"><circle cx="940.2" cy="542.4" r="1.9"/><circle cx="952.2" cy="542.4" r="1.9"/></g>
+    <g fill="#fff"><circle cx="940.8" cy="541.6" r=".6"/><circle cx="952.8" cy="541.6" r=".6"/></g>
+    <path d="M935 537 q4 -2 8 0 M947.5 534.5 q4 -3.4 8 0" stroke="#6a3618" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M936 550 q9.5 10 19 -1 q-9.5 3 -19 1z" fill="#8a2d2a"/>
+    <path d="M937.5 550.4 q8 2 16 -.4 l-.7 1.6 q-7.3 1.8 -14.6 0z" fill="#fff"/>
+    <g id="dk-cap"><ellipse cx="945" cy="528" rx="22" ry="8" fill="url(#dkGreen)" transform="rotate(8 945 528)"/><path d="M925 530 q20 7 40 3" stroke="#f2b631" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M950 524 q22 -26 38 -20 q-16 2 -32 24" fill="#f7c843"/><circle cx="952" cy="526" r="2.4" fill="#ef8a2e"/></g>
   </g>
   <!-- de jutezak met het lettersslot -->
   <g id="dk-sack">

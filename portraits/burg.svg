@@ -1,10 +1,33 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><title>De burgemeester</title>
-  <rect width="120" height="120" rx="14" fill="#2a3a5a"/>
-  <path d="M12 120 q6 -34 48 -36 q42 2 48 36z" fill="#26262e"/>
-  <path d="M34 90 Q60 124 86 90" stroke="#f2c94c" stroke-width="7" fill="none"/><circle cx="60" cy="110" r="8" fill="#f2c94c"/>
-  <circle cx="60" cy="56" r="25" fill="#f0c4a0"/>
-  <path d="M34 50 q26 -36 52 0 q-8 -14 -26 -14 q-18 0 -26 14z" fill="#8a8a8a"/>
-  <circle cx="51" cy="56" r="3.2" fill="#222"/><circle cx="69" cy="56" r="3.2" fill="#222"/>
-  <path d="M46 68 q14 6 28 0" stroke="#7a3a2a" stroke-width="3" fill="none"/>
-  <path d="M46 64 q14 -4 28 0" stroke="#8a8a8a" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <defs>
+    <radialGradient id="bg" cx=".5" cy=".3" r=".9"><stop offset="0" stop-color="#3c5280"/><stop offset="1" stop-color="#141d33"/></radialGradient>
+    <radialGradient id="skin" cx=".45" cy=".35" r=".75"><stop offset="0" stop-color="#f6d0b2"/><stop offset="1" stop-color="#dca383"/></radialGradient>
+    <linearGradient id="suit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#363a48"/><stop offset="1" stop-color="#1c1e26"/></linearGradient>
+    <linearGradient id="hair" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b4b4b0"/><stop offset="1" stop-color="#85857f"/></linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="14" fill="url(#bg)"/>
+  <path d="M10 120 q6 -34 50 -36 q44 2 50 36z" fill="url(#suit)"/>
+  <path d="M48 85 L60 120 L72 85z" fill="#f4f4f0"/>
+  <path d="M57 88 h6 l2 4 -3 22 h-4 l-3 -22z" fill="#e36c1a"/>
+  <path d="M48 85 L58 104 L46 96z M72 85 L62 104 L74 96z" fill="#2a2d38"/>
+  <rect x="53" y="74" width="14" height="12" fill="#dca383"/>
+  <path d="M30 88 Q60 126 90 88" stroke="#f2b631" stroke-width="5" fill="none" stroke-dasharray="4 1.6"/>
+  <path d="M30 88 Q60 126 90 88" stroke="#b07a12" stroke-width="1" fill="none"/>
+  <circle cx="60" cy="108" r="8.5" fill="#f2b631" stroke="#b07a12" stroke-width="1.5"/>
+  <circle cx="60" cy="108" r="4.5" fill="#e36c1a"/>
+  <ellipse cx="38.5" cy="60" rx="4" ry="6" fill="#dca383"/><ellipse cx="81.5" cy="60" rx="4" ry="6" fill="#dca383"/>
+  <ellipse cx="60" cy="57" rx="21" ry="24" fill="url(#skin)"/>
+  <path d="M38 58 q-2 -16 6 -22 q-2 8 2 14z M82 58 q2 -16 -6 -22 q2 8 -2 14z" fill="url(#hair)"/>
+  <ellipse cx="56" cy="40" rx="8" ry="3" fill="#fff" opacity=".35"/>
+  <circle cx="46" cy="66" r="4.4" fill="#ec7b74" opacity=".38"/><circle cx="74" cy="66" r="4.4" fill="#ec7b74" opacity=".38"/>
+  <g fill="#fff"><ellipse cx="51" cy="56" rx="3.4" ry="3.6"/><ellipse cx="69" cy="56" rx="3.4" ry="3.6"/></g>
+  <g fill="#4d5a6b"><circle cx="51.3" cy="56.4" r="2.2"/><circle cx="69.3" cy="56.4" r="2.2"/></g>
+  <g fill="#10141a"><circle cx="51.3" cy="56.4" r="1.1"/><circle cx="69.3" cy="56.4" r="1.1"/></g>
+  <g fill="#fff"><circle cx="52.1" cy="55.5" r=".8"/><circle cx="70.1" cy="55.5" r=".8"/></g>
+  <g fill="#fff" fill-opacity=".14" stroke="#2a2a30" stroke-width="1.8"><circle cx="51" cy="56" r="7"/><circle cx="69" cy="56" r="7"/></g>
+  <path d="M58 55 q2 -2 4 0 M44 55 l-5 -1.6 M76 55 l5 -1.6" stroke="#2a2a30" stroke-width="1.8" fill="none"/>
+  <path d="M44 46 q6 -3 12 0 M64 46 q6 -3 12 0" stroke="#8a8a85" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  <ellipse cx="60" cy="64" rx="4" ry="3.4" fill="#d69276"/>
+  <path d="M60 68 q-7 -2 -14 3 q6 2 14 -1z M60 68 q7 -2 14 3 q-6 2 -14 -1z" fill="url(#hair)"/>
+  <path d="M51 73 q9 6 18 0" stroke="#8a3a2e" stroke-width="2.4" fill="none" stroke-linecap="round"/>
 </svg>
