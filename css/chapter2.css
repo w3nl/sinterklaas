@@ -1,0 +1,76 @@
+/* Hoofdstuk 2: thuis bij de houtkachel. Wat er beweegt, en de close-ups: de voetafdruk, het schoenenrek, de plek
+   voor je schoen, de tekening, de xylofoon en de kalender. */
+@keyframes tw{0%,100%{opacity:1}50%{opacity:.25}}
+.tw{animation:tw 3s ease-in-out infinite}
+.tw.b{animation-duration:4.4s;animation-delay:-2s}
+@keyframes wkRider{0%,70%{transform:translate(1080px,250px)}100%{transform:translate(1380px,200px)}}
+.wk-rider{transform:translate(1080px,250px);animation:wkRider 14s linear infinite}
+@keyframes wkSteam{0%{transform:translateY(0);opacity:.5}100%{transform:translateY(-14px);opacity:0}}
+.wk-steam{animation:wkSteam 2.6s ease-out infinite}
+@keyframes wkBreathe{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.04)}}
+.wk-breathe{transform-box:fill-box;transform-origin:50% 100%;animation:wkBreathe 3s ease-in-out infinite}
+
+/* ---------- de voetafdruk ---------- */
+.voetpap{background:#fffaf0;color:#2b2118;padding:14px;border-radius:6px}
+.voetpap svg{width:100%;height:auto}
+.voetpap p{margin:8px 0 0}
+.vp-box{background:#e8d8b8;padding:8px 10px;border-radius:4px;font-size:14px}
+
+/* ---------- het schoenenrek ---------- */
+.rk-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.rk-shoe{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 6px;border-radius:8px;border:2px solid var(--line);background:#3a2016;text-align:center}
+.rk-shoe:hover{border-color:var(--amber)}
+.rk-shoe b{font-size:13px;font-weight:600}
+.rk-shoe small{font-family:var(--f-mono);font-size:12px;color:var(--amber)}
+.rk-pic{display:block;border-radius:40% 60% 10% 10%/60% 60% 10% 10%;height:30px}
+.rk-24{width:36px;background:#c4302b} .rk-30{width:48px;background:#4f9a4a} .rk-38{width:62px;height:44px;background:#2a2a2a} .rk-44{width:76px;background:#6b4220}
+@media (max-width:480px){.rk-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- de plek voor je schoen ---------- */
+.plek{display:flex;flex-direction:column;gap:10px}
+.plek-svg{width:100%;height:auto;max-height:180px;background:#2f4a3c;border-radius:8px}
+.pk-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.pk-spot{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-transform:none;letter-spacing:0;text-align:left}
+.pk-spot small{color:var(--paper);font-size:12px}
+.pk-q{margin:0;font-size:14px}
+@media (max-width:480px){.pk-list{grid-template-columns:1fr}}
+
+/* ---------- de tekening (spiegelsymmetrie) ---------- */
+.teken p{margin:0 0 10px;font-size:14px}
+.tk-wrap{position:relative;width:min(100%,320px);margin:0 auto}
+.tk-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:2px;background:#d9cdb4;padding:2px;border-radius:4px}
+.tk-c{aspect-ratio:1;border:0;background:#fffaf0;padding:0;border-radius:2px}
+.tk-c:disabled{cursor:default}
+.tk-c.mine{background:#fff}
+.tk-c.mine:hover{outline:2px solid var(--amber)}
+.tk-mirror{position:absolute;left:50%;top:-6px;bottom:-6px;width:3px;margin-left:-1.5px;background:var(--sky);border-radius:2px;pointer-events:none}
+.tk-pens{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center}
+.tk-pen{padding:8px 12px;border-radius:20px;border:2px solid var(--line);background:#3a2016;font-weight:600}
+.tk-pen[data-p="R"]{color:#ff8a8f} .tk-pen[data-p="Y"]{color:var(--amber)}
+.tk-pen.on{border-color:var(--amber);background:rgba(242,182,49,.2)}
+
+/* ---------- de xylofoon en het liedjesboek ---------- */
+.xylo{display:flex;flex-direction:column;gap:10px}
+.xy-staff{width:100%;max-width:560px;height:auto;background:#fffaf0;border-radius:6px}
+.xy-staff.small{max-width:330px}
+.xy-key{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
+.xy-bars{display:flex;gap:6px;align-items:center;justify-content:center;background:#6b4220;padding:10px;border-radius:8px}
+.xy-bar{width:34px;border-radius:5px;border:0;color:#fff;font-family:var(--f-mono);font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.5);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px}
+@keyframes xyHit{0%{transform:scale(.92)}100%{transform:scale(1)}}
+.xy-bar.hit-bar{animation:xyHit .2s ease-out}
+.xy-played{font-family:var(--f-mono);font-size:15px;color:var(--amber);min-height:1.4em}
+@media (max-width:420px){.xy-bar{width:28px}}
+
+/* ---------- de kalender ---------- */
+.kl-months{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.kl-m{background:#fff;color:#2b2118;border-radius:6px;padding:8px}
+.kl-m h4{margin:0 0 6px;background:#c21f2b;color:#fff;text-align:center;border-radius:4px;padding:2px 0;font-size:14px}
+.kl-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;font-family:var(--f-mono);font-size:12px;text-align:center}
+.kl-d{padding:3px 0;border-radius:50%}
+.kl-d.today{outline:2px solid #c21f2b;font-weight:700}
+.kl-d.party{background:var(--amber);font-weight:700}
+.kal p{margin:10px 0 0;font-size:14px}
+.kl-rijm{color:var(--muted)}
+.kl-in{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.kl-in input{font:inherit;font-family:var(--f-mono);font-size:18px;width:120px;max-width:100%;padding:8px 10px;border-radius:4px;border:1px solid var(--line);background:#fffaf0;color:#2b2118}
+@media (max-width:480px){.kl-months{grid-template-columns:1fr}}

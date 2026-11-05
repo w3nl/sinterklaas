@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="scene" id="sc-kamer" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-label="De woonkamer met de houtkachel">
+  <defs>
+    <pattern id="wkPaper" width="60" height="60" patternUnits="userSpaceOnUse"><rect width="60" height="60" fill="#2f4a3c"/><path d="M30 10 l6 10 -6 10 -6 -10z" fill="#3c5c4a"/><circle cx="0" cy="45" r="3" fill="#c9a24a" opacity=".5"/><circle cx="60" cy="45" r="3" fill="#c9a24a" opacity=".5"/></pattern>
+    <pattern id="wkFloor" width="160" height="40" patternUnits="userSpaceOnUse"><rect width="160" height="40" fill="#7a4a26"/><path d="M0 39.5 H160 M60 0 V40" stroke="#5a3418" stroke-width="2"/></pattern>
+    <linearGradient id="wkNight" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b1330"/><stop offset="1" stop-color="#28345e"/></linearGradient>
+    <radialGradient id="wkFireG" cx=".5" cy=".7" r=".6"><stop offset="0" stop-color="#ffe07a"/><stop offset=".45" stop-color="#ff8a2e"/><stop offset="1" stop-color="#a8240f"/></radialGradient>
+    <radialGradient id="wkGlow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ff9a3c" stop-opacity=".4"/><stop offset="1" stop-color="#ff9a3c" stop-opacity="0"/></radialGradient>
+    <radialGradient id="wkLampG" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd58a" stop-opacity=".35"/><stop offset="1" stop-color="#ffd58a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="wkVign" cx=".5" cy=".45" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".6"/></radialGradient>
+    <clipPath id="wkWinClip"><rect x="1110" y="170" width="240" height="260"/></clipPath>
+  </defs>
+
+  <!-- muur en vloer -->
+  <rect width="1600" height="660" fill="url(#wkPaper)"/>
+  <rect y="620" width="1600" height="40" fill="#3a2414"/>
+  <rect y="660" width="1600" height="240" fill="url(#wkFloor)"/>
+  <rect width="1600" height="30" fill="#24170e"/>
+  <circle cx="300" cy="150" r="300" fill="url(#wkLampG)"/>
+
+  <!-- de deur naar de gang en de trap -->
+  <rect x="50" y="220" width="210" height="430" fill="#5a3a1d"/>
+  <rect x="66" y="236" width="178" height="414" fill="#1a1410"/>
+  <g stroke="#3a2a1d" stroke-width="10"><path d="M80 640 L240 470 M100 640 H140 M120 618 H160 M140 596 H180 M160 574 H200 M180 552 H220 M200 530 H240"/></g>
+  <path d="M244 236 L262 246 V640 L244 650 Z" fill="#7a4a26"/>
+  <circle cx="254" cy="450" r="5" fill="#f2c94c"/>
+
+  <!-- het schoenenrek -->
+  <g id="wk-rack">
+    <rect x="280" y="600" width="170" height="8" fill="#6b4220"/><rect x="280" y="644" width="170" height="8" fill="#6b4220"/>
+    <rect x="280" y="600" width="8" height="58" fill="#5a3418"/><rect x="442" y="600" width="8" height="58" fill="#5a3418"/>
+    <path d="M296 600 q0 -16 14 -16 h12 q6 0 8 16z" fill="#4f9a4a"/>
+    <path d="M340 600 q0 -22 18 -22 h18 q8 0 12 22z" fill="#c4302b"/>
+    <path d="M396 600 q0 -26 20 -26 h20 q8 0 10 26z" fill="#2a2a2a"/>
+    <path d="M296 644 q0 -28 22 -28 h24 q10 0 14 28z" fill="#6b4220"/>
+    <path d="M370 644 q0 -18 16 -18 h18 q8 0 10 18z" fill="#1f4fa8"/>
+  </g>
+
+  <!-- de kalender boven de bank -->
+  <rect x="430" y="250" width="86" height="98" fill="#fff" stroke="#999" stroke-width="2"/>
+  <rect x="430" y="250" width="86" height="22" fill="#c21f2b"/>
+  <text x="473" y="266" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="13" fill="#fff">NOVEMBER</text>
+  <g fill="#bbb"><rect x="440" y="282" width="10" height="8"/><rect x="456" y="282" width="10" height="8"/><rect x="472" y="282" width="10" height="8"/><rect x="488" y="282" width="10" height="8"/><rect x="440" y="298" width="10" height="8"/><rect x="456" y="298" width="10" height="8"/><rect x="488" y="298" width="10" height="8"/><rect x="440" y="314" width="10" height="8"/><rect x="456" y="314" width="10" height="8"/><rect x="472" y="314" width="10" height="8"/><rect x="488" y="314" width="10" height="8"/><rect x="440" y="330" width="10" height="8"/></g>
+  <circle cx="477" cy="302" r="9" fill="none" stroke="#c21f2b" stroke-width="2.5"/>
+
+  <!-- de bank met mama -->
+  <rect x="360" y="470" width="300" height="60" rx="20" fill="#8a3a3a"/>
+  <rect x="350" y="520" width="320" height="90" rx="16" fill="#9e4646"/>
+  <rect x="340" y="500" width="40" height="110" rx="16" fill="#8a3a3a"/><rect x="640" y="500" width="40" height="110" rx="16" fill="#8a3a3a"/>
+  <rect x="370" y="606" width="14" height="26" fill="#3a2414"/><rect x="636" y="606" width="14" height="26" fill="#3a2414"/>
+  <g id="wk-mama">
+    <path d="M470 600 q-6 -80 40 -86 q46 6 40 86z" fill="#2f6f7a"/>
+    <rect x="520" y="560" width="60" height="30" rx="10" fill="#1f3a5a"/>
+    <circle cx="510" cy="482" r="26" fill="#d9a07a"/>
+    <path d="M482 486 q-4 -42 28 -40 q34 -2 28 40 q-4 -20 -28 -22 q-22 2 -28 22z" fill="#5a3418"/>
+    <path d="M484 482 q-8 30 4 44 M536 482 q8 30 -4 44" stroke="#5a3418" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <circle cx="501" cy="482" r="2.6" fill="#2a1d18"/><circle cx="519" cy="482" r="2.6" fill="#2a1d18"/>
+    <path d="M502 494 q8 6 16 0" stroke="#7a3a2a" stroke-width="2.5" fill="none"/>
+    <g class="wk-mug"><rect x="548" y="536" width="22" height="26" rx="4" fill="#f3efe6"/><path d="M570 542 q10 0 10 8 q0 8 -10 8" stroke="#f3efe6" stroke-width="4" fill="none"/>
+      <path class="wk-steam" d="M556 530 q-6 -10 0 -18 q6 -8 0 -16" stroke="#fff" stroke-width="2" fill="none" opacity=".5"/></g>
+  </g>
+
+  <!-- het thermometertje aan de muur -->
+  <rect x="680" y="270" width="22" height="90" rx="10" fill="#f6ead2" stroke="#7a4a1f" stroke-width="3"/>
+  <rect x="688" y="300" width="6" height="48" fill="#c4302b"/><circle cx="691" cy="350" r="7" fill="#c4302b"/>
+
+  <!-- de houtkachel met zijn pijp -->
+  <circle cx="800" cy="560" r="240" fill="url(#wkGlow)" class="pulse"/>
+  <rect x="784" y="0" width="32" height="466" fill="#1c1c1c"/>
+  <rect x="780" y="150" width="40" height="10" rx="3" fill="#2e2e2e"/>
+  <circle cx="830" cy="155" r="7" fill="#555"/><path d="M820 155 h10" stroke="#555" stroke-width="4"/>
+  <rect x="706" y="456" width="188" height="18" rx="4" fill="#2a2a2a"/>
+  <rect x="720" y="470" width="160" height="176" rx="10" fill="#1d1d1d"/>
+  <rect x="742" y="496" width="116" height="100" rx="8" fill="#0d0805" stroke="#4a4a4a" stroke-width="5"/>
+  <g id="wk-fire">
+    <rect x="760" y="572" width="80" height="14" rx="4" fill="#5a3418"/><rect x="766" y="562" width="70" height="12" rx="4" fill="#6b4220" transform="rotate(-6 800 568)"/>
+    <ellipse class="flame" cx="782" cy="562" rx="16" ry="30" fill="url(#wkFireG)"/>
+    <ellipse class="flame b" cx="806" cy="558" rx="18" ry="36" fill="url(#wkFireG)"/>
+    <ellipse class="flame" cx="828" cy="566" rx="13" ry="24" fill="url(#wkFireG)"/>
+  </g>
+  <path d="M742 496 h116 v100 h-116z" fill="#fff" opacity=".06"/>
+  <rect x="730" y="610" width="140" height="22" rx="4" fill="#2a2a2a"/>
+  <rect x="728" y="644" width="14" height="16" fill="#1d1d1d"/><rect x="858" y="644" width="14" height="16" fill="#1d1d1d"/>
+  <!-- de houtmand -->
+  <path d="M906 600 h80 l-8 56 h-64z" fill="#8a5a2a" stroke="#5a3418" stroke-width="3"/>
+  <g fill="#9a6a3a" stroke="#5a3418" stroke-width="2"><circle cx="924" cy="598" r="10"/><circle cx="946" cy="592" r="11"/><circle cx="968" cy="598" r="10"/></g>
+
+  <!-- de plank met chocoladeletters en de speculaaspop -->
+  <rect x="900" y="330" width="170" height="12" fill="#6b4220"/>
+  <path d="M900 342 l14 20 M1070 342 l-14 20" stroke="#5a3418" stroke-width="6"/>
+  <g id="wk-letters">
+    <path d="M916 330 v-44 h26 a16 16 0 0 1 0 22 a16 16 0 0 1 0 22z" fill="#c21f2b" stroke="#7a1a16" stroke-width="2"/>
+    <path d="M954 330 l14 -46 h12 l14 46 h-12 l-3 -10 h-10 l-3 10z" fill="#1f4fa8" stroke="#123370" stroke-width="2"/>
+  </g>
+  <g id="wk-koek"><path d="M1030 290 a8 8 0 0 1 8 8 a8 8 0 0 1 -2 5 l10 6 -2 4 -9 -3 2 8 5 10 -4 2 -8 -10 -8 10 -4 -2 5 -10 2 -8 -9 3 -2 -4 10 -6 a8 8 0 0 1 -2 -5 a8 8 0 0 1 8 -8z" fill="#b8742f" stroke="#7a4518" stroke-width="1.5"/></g>
+
+  <!-- het raam, met de daken in de nacht -->
+  <rect x="1094" y="154" width="272" height="292" fill="#5a3a1d"/>
+  <g clip-path="url(#wkWinClip)">
+    <rect x="1110" y="170" width="240" height="260" fill="url(#wkNight)"/>
+    <g fill="#fff"><circle class="tw" cx="1140" cy="200" r="2"/><circle class="tw b" cx="1200" cy="230" r="1.6"/><circle class="tw" cx="1320" cy="196" r="2"/><circle class="tw b" cx="1280" cy="250" r="1.4"/><circle class="tw" cx="1170" cy="270" r="1.4"/></g>
+    <circle cx="1300" cy="240" r="30" fill="#f6efd0"/>
+    <g class="wk-rider"><path d="M0 0 q10 -8 20 -2 l6 -10 l4 4 l-4 8 q8 6 0 10 l-2 10 h-3 l0 -8 h-14 l-2 8 h-3 l0 -10 q-8 -4 -2 -10z M10 -10 l0 -10 q4 -6 8 0 v6z" fill="#0b1330"/></g>
+    <path d="M1110 350 L1170 300 L1230 350 L1260 320 L1310 360 L1350 330 V430 H1110Z" fill="#0d1124"/>
+    <rect x="1150" y="290" width="14" height="30" fill="#0d1124"/><rect x="1296" y="316" width="12" height="26" fill="#0d1124"/>
+    <g fill="#f6d77a"><rect x="1130" y="380" width="12" height="14"/><rect x="1200" y="390" width="12" height="14"/><rect x="1280" y="384" width="12" height="14"/></g>
+  </g>
+  <path d="M1230 170 V430 M1110 300 H1350" stroke="#5a3a1d" stroke-width="10"/>
+  <rect x="1084" y="442" width="292" height="14" fill="#6b4220"/>
+
+  <!-- de tafel met de tekenspullen en de voetafdruk -->
+  <rect x="1080" y="560" width="330" height="16" fill="#8a5a2a"/>
+  <rect x="1094" y="576" width="12" height="84" fill="#6b4220"/><rect x="1384" y="576" width="12" height="84" fill="#6b4220"/>
+  <rect x="1110" y="536" width="120" height="26" fill="#fffaf0" transform="rotate(-3 1170 549)"/>
+  <path d="M1132 544 q8 -18 16 0 M1180 540 l8 10 l8 -10" stroke="#c21f2b" stroke-width="3" fill="none"/>
+  <g transform="rotate(8 1250 548)"><rect x="1210" y="544" width="80" height="6" fill="#4f9a4a"/><rect x="1210" y="551" width="80" height="6" fill="#f2b631"/><rect x="1210" y="537" width="80" height="6" fill="#c21f2b"/></g>
+  <rect x="1300" y="536" width="96" height="26" fill="#fffaf0" transform="rotate(4 1348 549)"/>
+  <path d="M1318 552 q-6 -14 6 -16 q16 -2 30 4 q10 6 2 12 q-14 6 -38 0z" fill="#e5cfa8" stroke="#8a6a4a" stroke-width="2" transform="rotate(4 1348 549)"/>
+  <rect x="1300" y="562" width="100" height="6" fill="#f2c94c" transform="rotate(4 1348 549)"/>
+
+  <!-- de keuken, door de open deur -->
+  <rect x="1430" y="220" width="170" height="430" fill="#5a3a1d"/>
+  <rect x="1446" y="236" width="154" height="414" fill="#cfd6d0"/>
+  <rect x="1470" y="290" width="110" height="340" rx="8" fill="#eef2f3" stroke="#9aa1a8" stroke-width="3"/>
+  <path d="M1470 420 h110" stroke="#9aa1a8" stroke-width="3"/><rect x="1564" y="320" width="6" height="60" fill="#9aa1a8"/><rect x="1564" y="440" width="6" height="60" fill="#9aa1a8"/>
+  <rect x="1486" y="320" width="30" height="22" fill="#ffd27a"/><circle cx="1540" cy="350" r="9" fill="#c4302b"/>
+
+  <!-- de xylofoon met het liedjesboek -->
+  <g id="wk-xylo">
+    <path d="M470 740 L650 730 L650 790 L470 790Z" fill="#6b4220"/>
+    <g><rect x="480" y="726" width="18" height="60" rx="3" fill="#e2483d"/><rect x="502" y="728" width="18" height="56" rx="3" fill="#ef8a2e"/><rect x="524" y="730" width="18" height="52" rx="3" fill="#f2c94c"/><rect x="546" y="732" width="18" height="48" rx="3" fill="#4f9a4a"/>
+      <rect x="568" y="734" width="18" height="44" rx="3" fill="#3aa0c8"/><rect x="590" y="736" width="18" height="40" rx="3" fill="#1f4fa8"/><rect x="612" y="738" width="18" height="36" rx="3" fill="#6a4fb0"/><rect x="632" y="740" width="16" height="32" rx="3" fill="#c73f6d"/></g>
+    <rect x="420" y="760" width="44" height="34" fill="#fffaf0" transform="rotate(-10 442 777)"/><path d="M426 770 h32 M426 776 h32 M426 782 h32" stroke="#555" stroke-width="1" transform="rotate(-10 442 777)"/>
+  </g>
+
+  <!-- het kleed en de kat -->
+  <ellipse cx="820" cy="760" rx="210" ry="56" fill="#8a2a2a" opacity=".85"/>
+  <ellipse cx="820" cy="760" rx="170" ry="40" fill="none" stroke="#c9a24a" stroke-width="4" opacity=".7"/>
+  <g id="wk-cat" class="wk-breathe">
+    <ellipse cx="760" cy="740" rx="44" ry="20" fill="#e08a3a"/>
+    <circle cx="726" cy="732" r="16" fill="#e08a3a"/><path d="M714 722 l2 -14 l8 10z M732 718 l6 -12 l4 14z" fill="#e08a3a"/>
+    <path d="M718 734 q4 3 8 0 M730 734 q4 3 8 0" stroke="#5a3418" stroke-width="2" fill="none"/>
+    <path d="M800 744 q30 4 26 -20" stroke="#e08a3a" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M748 730 q8 -4 16 0 M770 728 q8 -4 16 0" stroke="#c46a20" stroke-width="3" fill="none"/>
+  </g>
+
+  <!-- je schoen bij de kachel (als hij er staat) -->
+  <g id="wk-shoe" style="display:none">
+    <path d="M1000 720 q-4 -40 26 -42 h24 q10 0 12 18 l40 8 q16 4 14 16 z" fill="#4f9a4a" stroke="#2e6a2e" stroke-width="3"/>
+    <path d="M1030 690 l14 4 M1028 700 l16 4" stroke="#fff" stroke-width="3"/>
+    <g id="wk-carrot" style="display:none"><path d="M1050 690 l-30 -56 l12 -2z" fill="#e8902e"/><path d="M1020 634 l-8 -12 M1024 632 l2 -14 M1028 634 l10 -10" stroke="#4f9a4a" stroke-width="3"/></g>
+    <g id="wk-drawing" style="display:none"><rect x="1062" y="640" width="40" height="50" fill="#fffaf0" stroke="#ccc" transform="rotate(10 1082 665)"/><path d="M1074 676 l4 -26 q6 -6 12 0 l4 26z" fill="#c21f2b" transform="rotate(10 1082 665)"/></g>
+  </g>
+
+  <rect width="1600" height="900" fill="url(#wkVign)" pointer-events="none"/>
+
+  <!-- klikvlakken -->
+  <g>
+    <rect class="hit" data-hs="deur" data-label="Trap naar boven (naar bed)" x="50" y="220" width="216" height="372"/>
+    <rect class="hit" data-hs="rek" data-label="Schoenenrek" x="276" y="570" width="180" height="94"/>
+    <rect class="hit" data-hs="kal" data-label="Kalender" x="426" y="246" width="94" height="106"/>
+    <rect class="hit" data-hs="mama" data-label="Mama" x="460" y="440" width="124" height="166"/>
+    <rect class="hit" data-hs="thermo" data-label="Thermometer" x="672" y="262" width="38" height="104"/>
+    <rect class="hit" data-hs="kachel" data-label="Houtkachel" x="702" y="452" width="196" height="210"/>
+    <rect class="hit" data-hs="pijp" data-label="Kachelpijp naar de schoorsteen" x="772" y="30" width="62" height="420"/>
+    <rect class="hit" data-hs="letters" data-label="Chocoladeletters" x="910" y="280" width="92" height="56"/>
+    <rect class="hit" data-hs="koek" data-label="Speculaaspop" x="1016" y="286" width="44" height="50" id="hit-koek2"/>
+    <rect class="hit" data-hs="raam" data-label="Raam" x="1094" y="154" width="272" height="292"/>
+    <rect class="hit" data-hs="tekentafel" data-label="Tekenpapier en kleurpotloden" x="1104" y="520" width="190" height="50"/>
+    <rect class="hit" data-hs="voet" data-label="Papier met een voetafdruk" x="1298" y="524" width="104" height="52"/>
+    <rect class="hit" data-hs="keuken" data-label="Keuken" x="1436" y="226" width="164" height="424"/>
+    <rect class="hit" data-hs="xylo" data-label="Xylofoon met liedjesboek" x="414" y="716" width="240" height="84"/>
+    <rect class="hit" data-hs="kat" data-label="De kat" x="700" y="700" width="140" height="64"/>
+    <rect class="hit" data-hs="schoen" data-label="Je schoen" x="994" y="630" width="130" height="96" id="hit-shoe"/>
+    <rect class="hit" data-hs="hout" data-label="Houtmand" x="900" y="580" width="92" height="80"/>
+  </g>
+</svg>

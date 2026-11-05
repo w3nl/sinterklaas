@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><title>De speculaaspop</title>
+  <rect width="120" height="120" rx="14" fill="#5a3418"/>
+  <path d="M60 12a16 16 0 0 1 16 16 a16 16 0 0 1 -5 12 l22 12 -5 10 -19 -7 5 16 11 25 -10 5 -15 -22 -15 22 -10 -5 11 -25 5 -16 -19 7 -5 -10 22 -12 a16 16 0 0 1 -5 -12 a16 16 0 0 1 16 -16z" fill="#b8742f" stroke="#7a4518" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="54" cy="26" r="3" fill="#4a2a10"/><circle cx="66" cy="26" r="3" fill="#4a2a10"/>
+  <path d="M53 34 q7 6 14 0" stroke="#4a2a10" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <ellipse cx="60" cy="58" rx="4" ry="6" fill="#f3e2c4"/><ellipse cx="60" cy="72" rx="4" ry="6" fill="#f3e2c4"/>
+  <path d="M40 54 l8 4 M80 54 l-8 4" stroke="#7a4518" stroke-width="3"/>
+</svg>

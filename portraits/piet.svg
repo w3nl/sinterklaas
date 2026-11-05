@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><title>Klimpiet</title>
+  <rect width="120" height="120" rx="14" fill="#1f4a32"/>
+  <path d="M12 120 q6 -32 48 -34 q42 2 48 34z" fill="#ef8a2e"/><path d="M60 88 v32" stroke="#2e7d4f" stroke-width="14"/>
+  <path d="M28 88 q32 16 64 0 q-4 -12 -32 -12 q-28 0 -32 12z" fill="#fff" stroke="#ddd" stroke-width="2"/>
+  <circle cx="60" cy="56" r="24" fill="#e7b18e"/>
+  <ellipse cx="46" cy="64" rx="7" ry="4" fill="#3a2e2a" opacity=".5"/><ellipse cx="74" cy="46" rx="6" ry="3.4" fill="#3a2e2a" opacity=".45"/><ellipse cx="62" cy="70" rx="4" ry="2.6" fill="#3a2e2a" opacity=".4"/>
+  <circle cx="51" cy="54" r="3.2" fill="#2a1d18"/><circle cx="69" cy="54" r="3.2" fill="#2a1d18"/>
+  <path d="M48 64 q12 12 24 0" stroke="#7a3a2a" stroke-width="3" fill="#fff" stroke-linecap="round"/>
+  <path d="M38 50 q-8 -18 8 -22 M82 50 q8 -18 -8 -22" stroke="#2a1a10" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <ellipse cx="60" cy="34" rx="34" ry="11" fill="#2e7d4f"/>
+  <path d="M68 28 q32 -36 50 -26 q-22 2 -46 32z" fill="#f2b631"/>
+</svg>
