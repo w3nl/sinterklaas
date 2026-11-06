@@ -75,11 +75,21 @@ test('een uitgespeeld hoofdstuk zet het volgende open op het titelscherm', async
   await expect(page.locator('#btn-ch4')).toBeHidden();
 });
 
+test('na hoofdstuk 1 wijst een bordje op de kade de weg naar hoofdstuk 2', async ({ page }) => {
+  await seed(page, { f: { introDone: true, engine: true, lock: true, mijter: true, box: true, voer: true, plank: true, out1: true } }, ['-ch2']);
+  await expect(page.locator('#title')).not.toHaveClass(/loading/);
+  await page.evaluate(() => { $('#title').hidden = true; applyVisuals(); });
+  await expect(page.locator('#sb-exit')).toBeVisible();
+  await expect(page.locator('#hit-exit1')).toHaveAttribute('data-label', 'Naar huis: door naar hoofdstuk 2');
+  await page.locator('#hit-exit1').click();
+  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 2 · Schoen zetten');
+});
+
 test('de oude liedjes: elke melodie is goed te lezen en speelt', async ({ page }) => {
   await seed(page);
   await expect(page.locator('#title')).not.toHaveClass(/loading/);
   const songs = await page.evaluate(() => Object.fromEntries(Object.entries(SONGS).map(([id, s]) => [id, parseSong(s.noten).map(n => [n.note, noteHz(n.note), n.beats])])));
-  for (const id of ['stoomboot', 'kapoentje', 'paardenvoetjes', 'kloppen']) {
+  for (const id of Object.keys(songs)) {
     expect(songs[id].length, id).toBeGreaterThan(10);
     for (const [note, hz, beats] of songs[id]) {
       expect(note === 'R' || hz > 100, `${id}: ${note}`).toBe(true);
@@ -90,4 +100,50 @@ test('de oude liedjes: elke melodie is goed te lezen en speelt', async ({ page }
   const xylo = await page.evaluate(() => SONG2.every(n => n in NOTE_Y));
   expect(xylo).toBe(true);
   expect(await page.evaluate(() => playSong('stoomboot'))).toBeGreaterThan(5);
+});
+
+test('grapjes: ballonnen knallen, de eendjes duiken en de meeuw vliegt weg', async ({ page }) => {
+  await seed(page, { f: { introDone: true, engine: true, lock: true } });
+  await page.locator('#btn-cont').click();
+  await skip(page);
+  const click = sel => page.evaluate(sel => document.querySelector(sel).dispatchEvent(new MouseEvent('click', { bubbles: true })), sel);
+  await click('#sc-boot [data-hs="eendjes"]');
+  await expect(page.locator('#sc-boot .sb-duckdive.dive')).toHaveCount(1);
+  await expect(page.locator('#sc-boot .gag-txt', { hasText: 'KWAK!' })).toBeAttached();
+  await click('#sc-boot [data-hs="meeuw"]');
+  await expect(page.locator('#sc-boot .sb-gullbody.scared')).toHaveCount(1);
+  for (let b = 0; b < 4; b++) await click(`#sc-boot [data-hs="ballon"][data-b="${b}"]`);
+  await expect(page.locator('#sc-boot .sb-balloon.pop')).toHaveCount(4);
+  await expect(page.locator('#d-txt')).toContainText('Mijn ballon', { timeout: 5_000 });
+  expect(await page.evaluate(() => S.ach.pang)).toBe(true);
+});
+
+test('de verstopte Saab op de dijk bij de sluis', async ({ page }) => {
+  await seed(page, { f: { introDone: true, engine: true } });
+  await page.locator('#btn-cont').click();
+  await skip(page);
+  await page.evaluate(() => document.querySelector('#sc-boot [data-hs="saab1"]').dispatchEvent(new MouseEvent('click', { bubbles: true })));
+  await expect(page.locator('#sc-boot .gag-txt', { hasText: 'BROEM BROEM!' })).toBeAttached();
+  await expect(page.locator('#d-txt')).toContainText('Saab 900', { timeout: 5_000 });
+  expect(await page.evaluate(() => S.ach.saab)).toBe(true);
+});
+
+test('pakjesavond: de lamp, het spandoek en even de keuken in', async ({ page }) => {
+  await seed(page, { ch: 4, scene: 'feest', f: { introDone4: true } });
+  await page.locator('#btn-cont').click();
+  await skip(page);
+  await hs(page, 'lamp2');
+  await expect(page.locator('#sc-feest .wk-lamp')).toHaveClass(/swing/);
+  await hs(page, 'spandoek');
+  await expect(page.locator('#sc-feest .pa-banner')).toHaveClass(/droop/);
+  await skip(page);
+  await hs(page, 'keuken');
+  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 4 · In de keuken');
+  await skip(page);
+  await hs(page, 'koelkast');
+  await expect(page.locator('#d-txt')).toContainText('slagroomtaart');
+  await skip(page);
+  expect(await page.evaluate(() => S.inv.includes('wortel'))).toBe(false);
+  await hs(page, 'terugkamer');
+  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 4 · Pakjesavond');
 });

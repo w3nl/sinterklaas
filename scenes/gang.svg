@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="scene" id="sc-gang" viewBox="0 0 1600 900"
+  preserveAspectRatio="xMidYMid slice" aria-label="De gang met de trap en de voordeur">
+  <defs>
+    <pattern id="gaPaper" width="50" height="50" patternUnits="userSpaceOnUse">
+      <rect width="50" height="50" fill="#6a3a3a" />
+      <path d="M25 8 l5 9 -5 9 -5 -9z" fill="#7a4646" />
+    </pattern>
+    <pattern id="gaTiles" width="80" height="80" patternUnits="userSpaceOnUse">
+      <rect width="80" height="80" fill="#efe8da" />
+      <rect width="40" height="40" fill="#2a2a2a" />
+      <rect x="40" y="40" width="40" height="40" fill="#2a2a2a" />
+    </pattern>
+    <linearGradient id="gaGlass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c21f2b" />
+      <stop offset=".5" stop-color="#f2b631" />
+      <stop offset="1" stop-color="#1f4fa8" />
+    </linearGradient>
+    <radialGradient id="gaLamp" cx=".5" cy=".3" r=".7">
+      <stop offset="0" stop-color="#ffd58a" stop-opacity=".4" />
+      <stop offset="1" stop-color="#ffd58a" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="gaWarm" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#ffb24a" stop-opacity=".5" />
+      <stop offset="1" stop-color="#ffb24a" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="gaVign" cx=".5" cy=".45" r=".75">
+      <stop offset=".55" stop-color="#000" stop-opacity="0" />
+      <stop offset="1" stop-color="#000" stop-opacity=".6" />
+    </radialGradient>
+  </defs>
+
+  <!-- muren, plafond en de tegelvloer -->
+  <rect width="1600" height="680" fill="url(#gaPaper)" />
+  <rect y="430" width="1600" height="250" fill="#4a2a2a" />
+  <path d="M0 430 H1600" stroke="#c9a24a" stroke-width="6" />
+  <rect y="680" width="1600" height="220" fill="url(#gaTiles)" />
+  <rect y="672" width="1600" height="12" fill="#2a1a10" />
+  <rect width="1600" height="30" fill="#2a1a10" />
+  <circle cx="900" cy="140" r="460" fill="url(#gaLamp)" />
+  <path d="M900 30 V90" stroke="#333" stroke-width="3" />
+  <circle cx="900" cy="104" r="20" fill="#fff3c4" />
+  <path d="M876 96 q24 -26 48 0" fill="#c9a24a" />
+
+  <!-- de trap naar boven -->
+  <path d="M60 680 L560 180 H640 L640 260 L180 680Z" fill="#7a4a26" />
+  <g stroke="#5a3418" stroke-width="5">
+    <path
+      d="M110 680 H230 M160 630 H280 M210 580 H330 M260 530 H380 M310 480 H430 M360 430 H480 M410 380 H530 M460 330 H580 M510 280 H630 M560 230 H640" />
+  </g>
+  <path d="M40 600 L560 90" stroke="#3a2010" stroke-width="10" stroke-linecap="round" />
+  <g stroke="#3a2010" stroke-width="4">
+    <path d="M120 680 V522 M220 580 V424 M320 480 V326 M420 380 V228 M520 280 V130" />
+  </g>
+
+  <!-- de kapstok met jassen -->
+  <rect x="660" y="230" width="220" height="16" rx="4" fill="#5a3418" />
+  <g fill="#c9a24a">
+    <circle cx="690" cy="250" r="6" />
+    <circle cx="750" cy="250" r="6" />
+    <circle cx="810" cy="250" r="6" />
+    <circle cx="860" cy="250" r="6" />
+  </g>
+  <path d="M672 252 q18 -10 36 0 l16 210 h-68z" fill="#2f5a8a" />
+  <path d="M690 260 v190" stroke="#1f3a5a" stroke-width="3" />
+  <path d="M730 252 q20 -10 40 0 l10 170 h-60z" fill="#7a4fa0" />
+  <path d="M800 256 q10 70 -4 150 M812 256 q8 80 6 160" stroke="#e8902e" stroke-width="14"
+    stroke-linecap="round" fill="none" />
+  <g id="ga-mitre">
+    <path d="M836 236 l24 -50 l24 50z" fill="#f6ead2" stroke="#b9a37a" stroke-width="2" />
+    <path d="M846 220 h28 M842 230 h36" stroke="#8a7a5a" stroke-width="2" />
+  </g>
+  <g>
+    <rect x="680" y="560" width="50" height="110" rx="6" fill="#3a3f4a" />
+    <path d="M690 560 V480 M712 560 V470" stroke="#1f1f1f" stroke-width="5" />
+    <path d="M712 470 q8 -14 16 0" stroke="#1f1f1f" stroke-width="5" fill="none" />
+  </g>
+
+  <!-- de voordeur, met glas-in-lood en een brievenbus -->
+  <rect x="930" y="190" width="250" height="490" fill="#3a2010" />
+  <rect x="946" y="206" width="218" height="474" fill="#2f5a3a" />
+  <path d="M966 226 h178 v150 h-178z" fill="url(#gaGlass)" opacity=".85" />
+  <path d="M1055 226 v150 M966 300 h178 M1000 226 l-34 50 M1110 226 l34 50" stroke="#2a2a2a"
+    stroke-width="4" />
+  <rect x="966" y="400" width="178" height="120" fill="none" stroke="#1f4a2a" stroke-width="5" />
+  <rect x="966" y="540" width="178" height="120" fill="none" stroke="#1f4a2a" stroke-width="5" />
+  <g id="ga-slot">
+    <rect x="1010" y="452" width="90" height="18" rx="3" fill="#c9a24a" stroke="#7a5a1a"
+      stroke-width="2" />
+    <rect x="1018" y="458" width="74" height="6" fill="#2a1a10" />
+  </g>
+  <g id="ga-envelope" style="display:none">
+    <rect x="1030" y="640" width="70" height="44" fill="#fffaf0" stroke="#b9a37a" stroke-width="2"
+      transform="rotate(-10 1065 662)" />
+    <path d="M1032 642 l33 22 l33 -22" stroke="#b9a37a" stroke-width="2" fill="none"
+      transform="rotate(-10 1065 662)" />
+    <circle cx="1065" cy="666" r="7" fill="#c21f2b" />
+  </g>
+  <circle cx="1150" cy="450" r="7" fill="#c9a24a" />
+  <rect x="940" y="682" width="230" height="30" rx="4" fill="#8a5a2a" />
+  <text x="1055" y="704" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="16"
+    fill="#f6ead2">WELKOM</text>
+
+  <!-- het skateboard van Silvie, tegen de muur -->
+  <g>
+    <rect x="1196" y="480" width="26" height="190" rx="12" fill="#c21f2b" stroke="#7a1a16"
+      stroke-width="3" />
+    <circle cx="1192" cy="510" r="8" fill="#f2b631" />
+    <circle cx="1192" cy="640" r="8" fill="#f2b631" />
+    <path d="M1204 540 l10 20 l-10 20" stroke="#fff" stroke-width="3" fill="none" />
+  </g>
+
+  <!-- de deur terug naar de woonkamer, op een kier (op pakjesavond met slingers: daar is het feest) -->
+  <circle cx="1400" cy="440" r="230" fill="url(#gaWarm)" class="pulse" />
+  <rect x="1270" y="220" width="250" height="460" fill="#5a3a1d" />
+  <rect x="1286" y="236" width="218" height="444" fill="#f2b631" opacity=".55" />
+  <path d="M1286 236 L1440 260 V656 L1286 680Z" fill="#7a4a26" stroke="#4a2a12" stroke-width="3" />
+  <circle cx="1424" cy="460" r="6" fill="#c9a24a" />
+  <g id="ga-garland">
+    <path d="M1460 260 l14 20 l14 -20 M1460 300 l14 20 l14 -20" stroke="#c21f2b" stroke-width="4"
+      fill="none" />
+  </g>
+
+  <rect width="1600" height="900" fill="url(#gaVign)" pointer-events="none" />
+
+  <!-- klikvlakken -->
+  <g>
+    <rect class="hit" data-hs="trap4" data-label="De trap naar boven" x="40" y="90" width="600"
+      height="590" />
+    <rect class="hit" data-hs="kapstok" data-label="De kapstok" x="660" y="180" width="230"
+      height="300" />
+    <rect class="hit" data-hs="buitendeur" data-label="De voordeur" x="930" y="190" width="250"
+      height="250" />
+    <rect class="hit" data-hs="brievenbus" data-label="De brievenbus" x="930" y="440" width="250"
+      height="250" />
+    <rect class="hit" data-hs="skate" data-label="Het skateboard van Silvie" x="1180" y="470"
+      width="56" height="210" />
+    <rect class="hit" data-hs="terug4" data-label="Terug naar de woonkamer" x="1270" y="220"
+      width="250" height="460" />
+  </g>
+</svg>

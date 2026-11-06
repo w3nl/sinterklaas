@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="scene" id="sc-ruim" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-label="Het ruim van de stoomboot">
+  <defs>
+    <pattern id="rmPlank" width="200" height="56" patternUnits="userSpaceOnUse"><rect width="200" height="56" fill="#5a3a1d"/><path d="M0 55 H200 M120 0 V56" stroke="#3e2712" stroke-width="3"/><path d="M20 20 q30 -4 60 0" stroke="#6b4626" stroke-width="2" fill="none"/></pattern>
+    <pattern id="rmFloor" width="160" height="40" patternUnits="userSpaceOnUse"><rect width="160" height="40" fill="#6b4220"/><path d="M0 39 H160 M90 0 V40" stroke="#4a2c12" stroke-width="3"/></pattern>
+    <linearGradient id="rmWater" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d8fb0" stop-opacity=".75"/><stop offset="1" stop-color="#1a3e58" stop-opacity=".95"/></linearGradient>
+    <radialGradient id="rmGlow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd27a" stop-opacity=".45"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="rmHatch" cx=".5" cy="0" r="1"><stop offset="0" stop-color="#fff3c4" stop-opacity=".55"/><stop offset="1" stop-color="#fff3c4" stop-opacity="0"/></radialGradient>
+    <radialGradient id="rmRiver" cx=".5" cy=".4" r=".6"><stop offset="0" stop-color="#7fc0c8"/><stop offset="1" stop-color="#2f6f7a"/></radialGradient>
+    <radialGradient id="rmVign" cx=".5" cy=".45" r=".75"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".7"/></radialGradient>
+  </defs>
+
+  <!-- de wanden van het ruim, met de spanten -->
+  <rect width="1600" height="900" fill="url(#rmPlank)"/>
+  <g fill="#3e2712">
+    <path d="M120 0 h46 q-40 360 0 720 h-46 q-40 -360 0 -720z"/><path d="M480 0 h40 q-20 360 0 720 h-40 q-20 -360 0 -720z"/>
+    <path d="M1080 0 h40 q20 360 0 720 h-40 q20 -360 0 -720z"/><path d="M1434 0 h46 q40 360 0 720 h-46 q40 -360 0 -720z"/>
+  </g>
+  <!-- het dek boven je, met het open luik -->
+  <rect width="1600" height="56" fill="#3a2410"/>
+  <g stroke="#2a1808" stroke-width="10"><path d="M0 60 H1600"/></g>
+  <rect x="690" y="0" width="140" height="60" fill="#f6e6b0"/>
+  <path d="M640 60 L880 60 L1000 720 L520 720Z" fill="url(#rmHatch)" opacity=".7"/>
+
+  <!-- de patrijspoorten, met de Maas erachter -->
+  <g>
+    <circle cx="1250" cy="300" r="56" fill="#c9a24a"/><circle cx="1250" cy="300" r="44" fill="url(#rmRiver)"/>
+    <circle cx="1440" cy="300" r="56" fill="#c9a24a"/><circle cx="1440" cy="300" r="44" fill="url(#rmRiver)"/>
+    <g class="rm-fish"><g class="rm-fishbody"><path d="M1232 310 q12 -9 24 0 q-12 9 -24 0z M1256 310 l9 -6 v12z" fill="#e8902e"/><circle cx="1238" cy="309" r="1.6" fill="#222"/></g></g>
+    <path d="M1414 326 q10 -30 0 -50 M1426 330 q8 -24 0 -44" stroke="#4f9a4a" stroke-width="3" fill="none"/>
+    <g fill="#fff" opacity=".35"><circle cx="1232" cy="282" r="8"/><circle cx="1422" cy="282" r="8"/></g>
+  </g>
+
+  <!-- de hangmat van Klimpiet -->
+  <g id="rm-hammock">
+  <path d="M170 230 Q310 350 450 230" fill="none" stroke="#c9a467" stroke-width="5"/>
+  <path d="M180 236 Q310 330 440 236 Q310 300 180 236Z" fill="#c21f2b" opacity=".85"/>
+  <path d="M220 262 q90 30 180 0" stroke="#f2b631" stroke-width="3" fill="none"/>
+  <path d="M378 268 q10 -16 24 -10 l-4 12z" fill="#2f6f3a"/><path d="M398 256 l16 -10" stroke="#f2b631" stroke-width="3"/>
+  </g>
+
+  <!-- de lantaarn -->
+  <circle cx="600" cy="180" r="150" fill="url(#rmGlow)" class="pulse"/>
+  <path d="M600 60 V128" stroke="#222" stroke-width="3"/>
+  <g class="rm-lantern"><rect x="582" y="128" width="36" height="52" rx="6" fill="#2a2a2a"/><rect x="588" y="136" width="24" height="36" rx="3" fill="#ffd27a"/><path d="M582 128 l18 -12 l18 12z" fill="#2a2a2a"/></g>
+
+  <!-- de ladder naar het dek -->
+  <g stroke="#8a5a2a" stroke-width="12" stroke-linecap="round"><path d="M716 30 L700 724 M804 30 L820 724"/></g>
+  <g stroke="#a8743f" stroke-width="9"><path d="M712 110 H806 M710 200 H808 M708 290 H810 M706 380 H812 M704 470 H814 M702 560 H816 M700 650 H818"/></g>
+
+  <!-- de vloer -->
+  <rect y="700" width="1600" height="200" fill="url(#rmFloor)"/>
+  <rect y="696" width="1600" height="8" fill="#3a2410"/>
+
+  <!-- kisten met pepernoten -->
+  <g>
+    <rect x="70" y="560" width="170" height="140" fill="#a8743f" stroke="#5a3a1d" stroke-width="5"/><path d="M70 600 H240 M70 660 H240" stroke="#5a3a1d" stroke-width="4"/>
+    <text x="155" y="638" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="22" fill="#4a2a10">PEPERNOTEN</text>
+    <rect x="250" y="600" width="150" height="100" fill="#b8844f" stroke="#5a3a1d" stroke-width="5"/><path d="M250 650 H400" stroke="#5a3a1d" stroke-width="4"/>
+    <text x="325" y="636" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="18" fill="#4a2a10">MARSEPEIN</text>
+    <rect x="110" y="440" width="130" height="120" fill="#b8844f" stroke="#5a3a1d" stroke-width="5"/><path d="M110 500 H240" stroke="#5a3a1d" stroke-width="4"/>
+    <text x="175" y="490" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="16" fill="#4a2a10">STROOIGOED</text>
+    <text x="175" y="540" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="14" fill="#4a2a10">BREEKBAAR!</text>
+  </g>
+
+  <!-- de bladzijden van het Grote Boek, overal op de vloer (tot je ze op volgorde hebt) -->
+  <g id="rm-pages">
+    <rect x="430" y="736" width="70" height="52" fill="#f6ead2" stroke="#b9a37a" stroke-width="2" transform="rotate(-14 465 762)"/>
+    <rect x="520" y="760" width="70" height="52" fill="#f6ead2" stroke="#b9a37a" stroke-width="2" transform="rotate(9 555 786)"/>
+    <rect x="600" y="720" width="70" height="52" fill="#f6ead2" stroke="#b9a37a" stroke-width="2" transform="rotate(-4 635 746)"/>
+    <rect x="470" y="806" width="70" height="52" fill="#f6ead2" stroke="#b9a37a" stroke-width="2" transform="rotate(20 505 832)"/>
+    <rect x="610" y="800" width="70" height="52" fill="#f6ead2" stroke="#b9a37a" stroke-width="2" transform="rotate(-22 645 826)"/>
+    <g stroke="#8a7a5a" stroke-width="2"><path d="M444 752 h40 M444 760 h30 M532 776 h40 M532 784 h34 M612 734 h40 M612 742 h28 M482 822 h40 M622 816 h40"/></g>
+    <path d="M380 816 l70 -10 l6 44 l-70 10z" fill="#8a1a1a" stroke="#5a0f0f" stroke-width="3"/><path d="M392 824 l46 -6" stroke="#f2b631" stroke-width="3"/>
+  </g>
+
+  <!-- het water in het ruim (de boot lekt een beetje) -->
+  <g id="rm-sunk">
+    <rect x="1010" y="770" width="46" height="30" fill="#7b8086"/><circle cx="1020" cy="802" r="7" fill="#333"/><circle cx="1048" cy="802" r="7" fill="#333"/>
+    <g fill="#9fd1e8" opacity=".9"><circle cx="1250" cy="790" r="8"/><circle cx="1266" cy="796" r="8"/><circle cx="1258" cy="782" r="8"/></g>
+    <g fill="#f2c94c"><ellipse cx="1420" cy="798" rx="12" ry="5"/><ellipse cx="1436" cy="794" rx="12" ry="5"/></g>
+  </g>
+  <path d="M860 680 Q1000 668 1140 680 T1420 680 T1600 676 V820 Q1300 836 860 820Z" fill="url(#rmWater)"/>
+  <path class="rm-wave" d="M860 680 Q1000 668 1140 680 T1420 680 T1600 676" stroke="#bfe6f2" stroke-width="3" fill="none" opacity=".7"/>
+  <g id="rm-floaters" class="rm-bob">
+    <g><path d="M920 672 h70 l-8 -16 h-52z" fill="#c9a467"/><path d="M944 656 q4 -30 22 -34 q8 4 6 14 l-12 20z" fill="#b8844f"/><circle cx="966" cy="626" r="3" fill="#222"/></g>
+    <g><ellipse cx="1110" cy="668" rx="20" ry="12" fill="#f2c94c"/><circle cx="1124" cy="652" r="10" fill="#f2c94c"/><path d="M1132 652 l9 3 l-9 3z" fill="#e8902e"/></g>
+    <g><circle cx="1340" cy="660" r="20" fill="#fff"/><path d="M1326 648 l14 8 l14 -8 M1340 656 v20" stroke="#222" stroke-width="3" fill="none"/></g>
+  </g>
+  <!-- het schepnet met de opgeviste pakjes (als je ze eruit hebt gehaald) -->
+  <g id="rm-net" style="display:none">
+    <path d="M1500 420 L1380 600" stroke="#8a5a2a" stroke-width="8"/>
+    <path d="M1340 590 q40 60 90 0z" fill="#f6ead2" opacity=".5" stroke="#e8e2d2" stroke-width="2"/>
+    <rect x="1350" y="560" width="28" height="22" fill="#c21f2b"/><rect x="1386" y="556" width="28" height="26" fill="#1f4fa8"/><circle cx="1374" cy="590" r="10" fill="#fff"/>
+  </g>
+
+  <rect width="1600" height="900" fill="url(#rmVign)" pointer-events="none"/>
+
+  <!-- klikvlakken -->
+  <g>
+    <rect class="hit" data-hs="trapop" data-label="De ladder naar het dek" x="680" y="0" width="160" height="700"/>
+    <rect class="hit" data-hs="water" data-label="Pakjes in het water" x="860" y="600" width="700" height="230"/>
+    <rect class="hit" data-hs="bladen" data-label="Losse bladzijden van het Grote Boek" x="376" y="700" width="320" height="170" id="hit-bladen"/>
+    <rect class="hit" data-hs="kisten" data-label="Kisten met strooigoed" x="66" y="436" width="340" height="270"/>
+    <rect class="hit" data-hs="poort" data-label="Patrijspoorten" x="1186" y="236" width="320" height="128"/>
+    <rect class="hit" data-hs="visje" data-label="Een visje" x="1206" y="256" width="88" height="88"/>
+    <rect class="hit" data-hs="hangmat" data-label="Hangmat" x="170" y="220" width="290" height="110"/>
+    <rect class="hit" data-hs="ruimlamp" data-label="Lantaarn" x="570" y="100" width="60" height="90"/>
+  </g>
+</svg>

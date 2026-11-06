@@ -4,7 +4,7 @@
 Object.assign(ITEMS, {
   touw: { name:'Touw', desc:'Een lange rol stevig touw, met knopen om de meter. Om pakjes mee door de schoorsteen te laten zakken.',
     svg:'<svg viewBox="0 0 44 44"><ellipse cx="22" cy="26" rx="16" ry="9" fill="none" stroke="#c9a467" stroke-width="4"/><ellipse cx="22" cy="23" rx="11" ry="6" fill="none" stroke="#b8935a" stroke-width="4"/><path d="M36 24 q6 -10 0 -18" stroke="#c9a467" stroke-width="4" fill="none"/></svg>' },
-  pakjes: { name:'Pakjes voor Noor', desc:'De pakjes die door de schoorsteen passen. De rest brengt Sint morgen gewoon langs.',
+  pakjes: { name:'Pakjes voor Twan', desc:'De pakjes die door de schoorsteen passen. De rest brengt Sint morgen gewoon langs.',
     svg:'<svg viewBox="0 0 44 44"><rect x="6" y="18" width="16" height="18" fill="#c21f2b"/><rect x="24" y="10" width="14" height="26" fill="#1f4fa8"/><path d="M14 18v18M6 27h16M31 10v26M24 22h14" stroke="#f2b631" stroke-width="2.5"/></svg>' }
 });
 
@@ -20,6 +20,7 @@ function applyDak(){
   show('#dk-rope', !f.touwTaken); show('#hit-rope', !f.touwTaken);
   show('#dk-sacklock', !f.code); show('#dk-gifts', !!f.code && !f.past);
   show('#dk-ropein', !!f.touw);
+  show('#dk-tolotte', !!f.touw); show('#hit-tolotte', !!f.touw);
   show('#dk-cap', !f.gust || !!f.wind); show('#dk-flycap', !!f.gust && !f.wind);
   $('#sc-dak').classList.toggle('dk-gust', !!f.gust && !f.wind);
 }
@@ -30,8 +31,9 @@ Object.assign(H, {
     if(S.f.gust && !S.f.wind) return say([['piet', "Mijn muts! Mijn mooiste muts, met de gouden veer!"], ['piet', "Kijk naar de windhaan op de kerktoren, Hulppiet. Die weet waar de wind vandaan komt."]]);
     if(!S.f.code) return say([['piet', "Hé Hulppiet! Welkom op het dak. Niet naar beneden kijken, gewoon naar mij."], ['piet', "De pakjes zitten in mijn zak, maar die zit op slot. Het wachtwoord staat op het label, in Pietencode. Dan kan niemand het lezen. Ik ook niet meer, haha!"]]);
     if(!S.f.adres) return say([['piet', "Op het lijstje uit de zak staan drie kinderen. Maar welke huizen zijn het? Het is zo donker dat je de nummers niet kunt lezen."], ['piet', "Op het straatnaambord bij de lantaarnpaal staat iets over de nummers. Volgens mij."]]);
-    if(!S.f.past) return say([['piet', "We zitten op het dak van nummer 8, het huis van Noor. Kijk in de zak welke pakjes van haar door de schoorsteen passen."]]);
-    if(!S.f.touw) return say([['piet', "Pakjes erin, touw eraan, en dan zachtjes naar beneden laten zakken, tot vlak boven haar schoen. Niet gooien! Ik heb dat één keer gedaan, met een theeservies."]]);
+    if(!S.f.past) return say([['piet', "We zitten op het dak van nummer 8, het huis van Twan. Kijk in de zak welke pakjes van hem door de schoorsteen passen."]]);
+    if(!S.f.touw) return say([['piet', "Pakjes erin, touw eraan, en dan zachtjes naar beneden laten zakken, tot vlak boven zijn schoen. Niet gooien! Ik heb dat één keer gedaan, met een theeservies."]]);
+    if(!S.f.spiegel) return say([['piet', "Nu Hidde nog, op nummer 4. Dat is twee huizen terug. Over de nok, kom mee! Het bordje staat linksonder."], ['piet', "Floris woont aan de overkant. Daar gaat Sint zelf heen, op Ozosnel."]]);
     say([['piet', "Wat een nacht! Dank je, Hulppiet."]]);
   },
   zak(){
@@ -43,19 +45,44 @@ Object.assign(H, {
   bord(){ say(["Een blauw bord: PEPERNOTENSTRAAT.", "Eronder, kleiner: ← 1 – 13 (oneven) aan de linkerkant · 2 – 14 (even) aan de rechterkant →", "In Nederland staan de oneven nummers meestal aan de ene kant van de straat en de even nummers aan de andere kant."]); },
   touw(){ S.f.touwTaken = true; give('touw'); applyVisuals(); say(["Een lange rol touw. Er zit om de meter een knoop in: zo kun je zien hoe lang het is.", "Je neemt het mee."]); },
   schoorsteen(){
-    if(S.f.touw) return say("Je kijkt in de schoorsteen. Beneden is het donker en stil. Noor slaapt. Morgen vindt ze haar pakjes!");
-    if(!S.f.past) return say(["Een brede schoorsteen. Er komt warme lucht uit, maar geen rook: het vuur in de open haard van Noor is uit. Gelukkig!", ['piet', "Het gat is 32 bij 32 centimeter. Ik heb het gemeten met mijn muts."]]);
+    if(S.f.touw) return say("Je kijkt in de schoorsteen. Beneden is het donker en stil. Twan slaapt. Morgen vindt hij zijn pakjes!");
+    if(!S.f.past) return say(["Een brede schoorsteen. Er komt warme lucht uit, maar geen rook: het vuur in de open haard van Twan is uit. Gelukkig!", ['piet', "Het gat is 32 bij 32 centimeter. Ik heb het gemeten met mijn muts."]]);
     if(!has('touw')) return say("De pakjes passen erin, maar je kunt ze toch niet gewoon laten vallen? Je hebt iets nodig om ze te laten zakken.");
     openTouw();
   },
   windhaan(){ if(!S.f.gust) return say(["Een gouden windhaan op de punt van de kerktoren. Hij draait met de wind mee.", "Zijn kop wijst altijd naar de kant waar de wind vandaan komt."]); if(S.f.wind) return say("De windhaan wijst nog steeds naar het westen. De wind komt uit het westen."); openWind(); },
   kerk3(){ say("De kerktoren. De klok staat op tien voor twaalf. Bijna middernacht, en dan is het 5 december: pakjesavond!"); },
-  sint3(){ S.ach.sint3 = true; save(); say(["Daar, op een dak in het maanlicht: Sinterklaas op Ozosnel! Ozosnel stapt van nok naar nok, zo licht als een veertje.", ['sint', "Goedenavond, Hulppiet! Pas goed op, daar boven. Klimpiet, jij ook!"]]); },
-  maan(){ say("Een bijna volle maan. Handig: zo zien de Pieten waar ze lopen."); },
-  huizen(){ say(["De huizen aan de overkant. Uit twee schoorstenen komt rook: daar branden de kachels nog.", "De rook waait allemaal dezelfde kant op: naar rechts."]); },
-  uil(){ say(["Een uil zit op de rand van de kerktoren. Hij kijkt je aan met grote gele ogen.", "Oehoe. Hij doet een oog dicht, en dan het andere. Uilen houden de hele nacht de wacht."]); },
-  kat3(){ say([['piet', "Dat is Zwartje, de kat van nummer 6. Die zit hier elke nacht."], ['piet', "Ze vertelt nooit aan iemand dat ze de Pieten heeft gezien. Katten kunnen een geheim bewaren."]]); },
-  ladder(){ if(S.f.out3) return startCh4(); say([['piet', "Daar zijn we naar boven geklommen. Pas als alles klaar is gaan we weer naar beneden."]]); }
+  sint3(){ S.ach.sint3 = true; save(); say(["Daar, op een dak in het maanlicht: Sinterklaas op Ozosnel! Ozosnel stapt van nok naar nok, zo licht als een veertje.", ['sint', "Goedenavond, Hulppiet! Pas goed op, daar boven. Klimpiet, jij ook!"],
+    ['sint', "Wel, wel, wel. Hoor je dat? Ergens zingen ze nog:"], ['sys', "♪ Op de hoge, hoge daken rijdt de bisschop met zijn knecht. Wil je weten, lieve kinderen, wat hij tot zijn knechtje zegt? ♪", 'daken']]); },
+  maan(){ S.f.maanTaps = (S.f.maanTaps || 0) + 1; save();
+    if(S.f.maanTaps > 1 && gag('#dk-moonface', 'wink', 1800)){ gagText($('#dk-moonface'), 'Knipoog!'); beep(1200, .1, 'sine', .04); return; }
+    say("Een bijna volle maan. Handig: zo zien de Pieten waar ze lopen."); },
+  huizen(){ say(["De huizen aan de overkant. Uit twee schoorstenen komt rook: daar branden de kachels nog.", "De rook waait allemaal dezelfde kant op: naar rechts.",
+    "Uit een van de schoorstenen klinkt zacht gezang. Daar zitten nog kinderen bij de kachel:", ['sys', "♪ Zachtjes gaan de paardevoetjes, trippel trappel trippel trap… 't Is het paard van Sinterklaasje, stippe stappe stippe stap… ♪", 'paardenvoetjes'],
+    ['paard', "Hihihi! Dat gaat over mij!"]]); },
+  uil(){
+    if(!S.f.uilSeen){ S.f.uilSeen = true; save(); return say(["Een uil zit op de rand van de kerktoren. Hij kijkt je aan met grote gele ogen.", "Oehoe. Hij doet een oog dicht, en dan het andere. Uilen houden de hele nacht de wacht."]); }
+    const o = $('#sc-dak .dk-owlbody'); gagText(o, 'OEHOE!'); if(!gag(o, 'fly', 7000)) return; beep(420, .35, 'sine', .05); setTimeout(() => beep(380, .5, 'sine', .05), 400);
+  },
+  kat3(){ if(S.f.katSeen3){ const t = $('#sc-dak .dk-cattail'); if(gag(t, 'puff', 1800)){ gagText(t, 'PFFFT!'); beep(2600, .3, 'sawtooth', .02); } return; }
+    S.f.katSeen3 = true; save(); say([['piet', "Dat is Zwartje, de kat van nummer 6. Die zit hier elke nacht."], ['piet', "Ze vertelt nooit aan iemand dat ze de Pieten heeft gezien. Katten kunnen een geheim bewaren."]]); },
+  ladder(){ if(S.f.out3) return startCh4(); say([['piet', "Daar zijn we naar boven geklommen. Pas als alles klaar is gaan we weer naar beneden."]]); },
+  naarlotte(){ go('dak2'); if(!S.f.dak2Seen){ S.f.dak2Seen = true; save(); setTimeout(() => say(["Je loopt voorzichtig over de nok, langs de schoorsteen van nummer 6, naar het dak van Hidde. Blauwe pannen!", ['piet', "Hier is het! Ik heb de zak alvast op die oude plank gezet. Maar die hangt helemaal scheef…"]]), 400); } },
+  /* het dak van Hidde */
+  terug3(){ go('dak');
+    if(S.f.spiegel && !S.f.gust) setTimeout(() => { S.f.gust = true; save(); applyVisuals(); beep(200, .8, 'sine', .04);
+      say([['sys', "Je bent net terug op het dak van Twan, als er een harde windvlaag over de daken komt. WHOEEESH!"],
+           ['piet', "Mijn muts! Mijn mooiste muts, met de gouden veer! Hij waait weg, over de daken!"],
+           ['piet', "Als we weten waar de wind naartoe waait, weten we waar hij ligt. Kijk naar de windhaan op de kerktoren!"]]); }, 450); },
+  maan2(){ say("De maan schijnt helder. Alle daken zijn zilver en blauw."); },
+  piet2(){
+    if(!S.f.wip) return say([['piet', "De zak moet naar de schoorsteen van Hidde. Ik heb hem op die plank gezet, maar de plank hangt scheef. Als ik aan de andere kant ga zitten, wordt het een wip!"], ['piet', "Waar moet ik gaan zitten? Ik weeg 40 kilo. Met pepernoten erin."]]);
+    if(!S.f.spiegel) return say([['piet', "Welk pakje is voor Hidde? Sint zou een briefje achterlaten. Kijk eens bij het dakraam!"]]);
+    say([['piet', "Hidde heeft zijn pakje! Kom, terug naar Twan. Daar staat onze ladder."]]);
+  },
+  wip(){ if(S.f.wip) return say("De plank ligt mooi recht op de nok. Klimpiet schuift de zak zo naar de schoorsteen."); openWip(); },
+  dakraam(){ if(!S.f.wip) return say(["Een dakraam met licht erachter. Er hangt een briefje tegen het glas, aan de binnenkant.", ['piet', "Eerst die zak, Hulppiet! Anders glijdt hij zo van het dak."]]); if(S.f.spiegel) return say("Het briefje van Sint. Je kunt het nu lezen, ook al staan de letters achterstevoren."); openSpiegel(); },
+  schoorsteen2(){ if(S.f.spiegel) return say("Het touw hangt nog in de schoorsteen. Hiddes pakje staat beneden naast zijn schoen."); say(["De schoorsteen van Hidde. Er komt een beetje rook uit, maar niet veel: het vuur is bijna uit.", ['piet', "Eerst weten welk pakje het is. Sint heeft vast een briefje achtergelaten."]]); }
 });
 
 /* ---------- puzzel 1: de Pietencode (elke letter één stap opgeschoven) ---------- */
@@ -75,7 +102,7 @@ function openCode(){
       if(w === PIET_WORD){
         S.f.code = true; save(); applyVisuals();
         fb('#cd-fb', 'Q wordt P, F wordt E… PEPERNOOT! Klik, het slot springt open.', 'good');
-        return solved(() => say([['piet', "PEPERNOOT! Natuurlijk. Wat zou het anders zijn?"], "Bovenin de zak zit een lijstje: Noor, nummer 8 · Daan, nummer 11 · Lotte, nummer 4.", ['piet', "Drie kinderen in deze straat. Maar welke huizen zijn dat? Je kunt de nummers niet lezen in het donker."]]), 2200);
+        return solved(() => say([['piet', "PEPERNOOT! Natuurlijk. Wat zou het anders zijn?"], "Bovenin de zak zit een lijstje: Twan, nummer 8 · Floris, nummer 11 · Hidde, nummer 4.", ['piet', "Drie kinderen in deze straat. Maar welke huizen zijn dat? Je kunt de nummers niet lezen in het donker."]]), 2200);
       }
       nope();
       fb('#cd-fb', w === shift(PIET_WORD, 2) ? 'Je bent de verkeerde kant op geschoven! Q moet een stap terug in het alfabet: Q wordt P.' : 'Dat werkt niet. Zoek elke letter op in het alfabet en neem de letter die er net vóór staat. Q wordt P, F wordt…', 'bad');
@@ -85,7 +112,7 @@ function openCode(){
 }
 
 /* ---------- puzzel 2: de huisnummers (even en oneven) ---------- */
-const DELIVER3 = [['Noor', 8], ['Daan', 11], ['Lotte', 4]];
+const DELIVER3 = [['Twan', 8], ['Floris', 11], ['Hidde', 4]];
 function openAdres(){
   const done = S.adr || (S.adr = []);
   const house = n => `<button type="button" class="ad-h${done.includes(n) ? ' done' : ''}" data-n="${n}" aria-label="${n <= 2 ? tx('Huis nummer {n}', { n }) : 'Een huis zonder zichtbaar nummer'}"><span class="ad-roof"></span><span class="ad-num">${n <= 2 || done.includes(n) ? n : '?'}</span></button>`;
@@ -109,7 +136,7 @@ function openAdres(){
       if(who()) return fb('#ad-fb', tx('Ja! Daar woont {name}.', { name: nx[0] }), 'good');
       S.f.adres = true; save();
       fb('#ad-fb', 'Alle drie gevonden! Aan de ene kant 1, 3, 5, 7… en aan de andere kant 2, 4, 6, 8… Je telt steeds in sprongen van 2.', 'good');
-      solved(() => say([['piet', "Kijk eens aan! En wij zitten nu op het dak van nummer 8. Het huis van Noor!"], ['piet', "Pak haar pakjes maar uit de zak."]]), 2400);
+      solved(() => say([['piet', "Kijk eens aan! En wij zitten nu op het dak van nummer 8. Het huis van Twan!"], ['piet', "Pak zijn pakjes maar uit de zak."]]), 2400);
     });
   });
 }
@@ -120,7 +147,7 @@ function openPast(){
   const pick = S.pst || (S.pst = []);
   openModal('Welke pakjes passen?', 'De schoorsteen is 32 bij 32 centimeter', `
     <div class="past">
-      <p>Dit zijn de pakjes voor Noor. Welke passen door een gat van <b>32 × 32 cm</b>? Kies ze allemaal. Tip: je mag een pakje ook rechtop door het gat laten zakken.</p>
+      <p>Dit zijn de pakjes voor Twan. Welke passen door een gat van <b>32 × 32 cm</b>? Kies ze allemaal. Tip: je mag een pakje ook rechtop door het gat laten zakken.</p>
       <div class="ps-row">${GIFTS3.map(([k, n, [a, b, c]]) => `<button type="button" class="ps-gift${pick.includes(k) ? ' on' : ''}" data-k="${k}"><span class="ps-box ps-${k}"></span><b>${n}</b><small>${a} × ${b} × ${c} cm</small></button>`).join('')}</div>
       <button type="button" class="btn" id="ps-go">Deze passen!</button>
       <div class="feedback" id="ps-fb"></div>
@@ -146,7 +173,7 @@ function openTouw(){
     <div class="touw3">
       <div class="tw-pic">
         <div class="tw-grid" aria-hidden="true">${cells(8, 12)}</div>
-        <svg viewBox="0 0 160 240" class="tw-house" aria-label="Een doorsnede van het huis van Noor, op ruitjespapier">
+        <svg viewBox="0 0 160 240" class="tw-house" aria-label="Een doorsnede van het huis van Twan, op ruitjespapier">
           <path d="M10 70 L80 20 L150 70" fill="none" stroke="#c21f2b" stroke-width="3"/>
           <rect x="100" y="0" width="20" height="50" fill="#8a3e2a" opacity=".85"/>
           <path d="M10 70 V230 H150 V70" fill="none" stroke="#3a2a1a" stroke-width="3"/>
@@ -158,7 +185,7 @@ function openTouw(){
         </svg>
       </div>
       <div class="tw-side">
-        <p>Op ruitjespapier is <b>1 hokje = 1 meter</b>. Het touw moet van de bovenkant van de schoorsteen recht naar beneden, door de pijp, tot vlak boven Noors schoen in de open haard.</p>
+        <p>Op ruitjespapier is <b>1 hokje = 1 meter</b>. Het touw moet van de bovenkant van de schoorsteen recht naar beneden, door de pijp, tot vlak boven Twans schoen in de open haard.</p>
         <p>Klimpiet: <i>"Neem het kortste touw dat lang genoeg is. Anders ligt er morgen een berg touw in de kamer!"</i></p>
         <div class="tw-btns">${ROPES3.map(m => `<button type="button" class="btn ghost" data-m="${m}">${m} meter</button>`).join('')}</div>
         <div class="feedback" id="tw-fb"></div>
@@ -170,17 +197,14 @@ function openTouw(){
       if(m > 10){ nope(); return fb('#tw-fb', 'Dat is lang genoeg, maar er blijft heel veel touw over. Is er een korter touw dat óók lang genoeg is?', 'bad'); }
       S.f.touw = true; take('touw'); take('pakjes'); save(); moment('dak', 'dk-lower', 2600); applyVisuals();
       fb('#tw-fb', 'Van de schoorsteen tot de schoen zijn het 9 hokjes, dus 9 meter. Het touw van 10 meter is net lang genoeg! Zachtjes zakken de pakjes naar beneden…', 'good');
-      solved(() => { S.f.gust = true; save(); applyVisuals(); beep(200, .8, 'sine', .04);
-        say([['sys', "Plof. De pakjes staan naast Noors schoen. Je trekt het touw weer omhoog."],
-             ['sys', "Dan komt er een harde windvlaag over het dak. WHOEEESH!"],
-             ['piet', "Mijn muts! Mijn mooiste muts, met de gouden veer! Hij waait weg, over de daken!"],
-             ['piet', "Als we weten waar de wind naartoe waait, weten we waar hij ligt. Kijk naar de windhaan op de kerktoren!"]]); }, 2600);
+      solved(() => say([['sys', "Plof. De pakjes staan naast Twans schoen. Je trekt het touw weer omhoog."],
+             ['piet', "Twan: klaar! Nu Hidde nog, op nummer 4. Dat is twee huizen terug, over de nok."],
+             ['piet', "Floris woont aan de overkant, daar gaat Sint zelf heen. Volg het bordje linksonder!"]]), 2600);
     });
   });
 }
 
-/* ---------- puzzel 5: de windhaan (hij wijst naar waar de wind vandaan komt) ---------- */
-const DIRS3 = [['N', 'noorden'], ['O', 'oosten'], ['Z', 'zuiden'], ['W', 'westen']];
+/* ---------- puzzel 5: de windhaan (hij wijst naar waar de wind vandaan komt) ---------- */const DIRS3 = [['N', 'noorden'], ['O', 'oosten'], ['Z', 'zuiden'], ['W', 'westen']];
 function openWind(){
   openModal('De windhaan', 'Van bovenaf gezien, met het kompas eronder', `
     <div class="wind3">
@@ -205,6 +229,66 @@ function openWind(){
       S.f.wind = true; save();
       fb('#wd-fb', 'Naar het oosten! De wind komt uit het westen en blaast alles naar het oosten. Kijk maar: de rook uit de schoorstenen waait ook die kant op.', 'good');
       solved(win3, 2400);
+    });
+  });
+}
+
+/* ---------- begin en einde ---------- */
+function applyDak2(){
+  vis('#d2-ropein', !!S.f.spiegel);
+  $('#sc-dak2').classList.toggle('d2-level', !!S.f.wip);
+}
+
+/* ---------- extra puzzel: de wip op de nok (hefboom: gewicht × afstand is aan beide kanten even groot) ---------- */
+function openWip(){
+  let pos = S.wp || 0;
+  const tilt = p => p ? Math.max(-9, Math.min(9, (40 * p - 80) / 10)) : -9;
+  const plank = () => `<svg viewBox="0 0 340 170" class="wp-svg" aria-label="De plank als wip">
+      <path d="M155 150 L170 120 L185 150Z" fill="#5a3a1d"/><rect x="0" y="150" width="340" height="20" fill="#2f4a6a"/>
+      <g transform="rotate(${tilt(pos)} 170 116)">
+        <rect x="10" y="110" width="320" height="12" rx="3" fill="#b88449" stroke="#5a3a1d" stroke-width="2"/>
+        ${[1, 2, 3, 4].map(i => `<text x="${170 - i * 36}" y="140" text-anchor="middle" font-size="12" fill="#f6ead2" font-family="IBM Plex Mono, monospace">${i}</text><text x="${170 + i * 36}" y="140" text-anchor="middle" font-size="12" fill="#f6ead2" font-family="IBM Plex Mono, monospace">${i}</text>`).join('')}
+        <path d="M${170 - 4 * 36 - 20} 110 q-6 -40 14 -50 l6 -6 l6 6 q20 10 14 50z" fill="#b9935a" stroke="#7a5a2a" stroke-width="3"/><text x="${170 - 4 * 36}" y="94" text-anchor="middle" font-size="11" font-weight="700" fill="#4a2a10">20 kg</text>
+        ${pos ? `<g><circle cx="${170 + pos * 36}" cy="78" r="12" fill="#e8b48a"/><path d="M${170 + pos * 36 - 12} 74 q12 -24 24 0z" fill="#4f9a4a"/><path d="M${170 + pos * 36 - 14} 110 q0 -24 14 -24 q14 0 14 24z" fill="#c21f2b"/><text x="${170 + pos * 36}" y="104" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">40</text></g>` : ''}
+      </g></svg>`;
+  openModal('De wip op de nok', 'Een plank over de nok, met de zak aan het ene eind', `
+    <div class="wip3">
+      <div id="wp-pic">${plank()}</div>
+      <div class="wp-side">
+        <p>De zak weegt <b>20 kilo</b> en staat op plek <b>4</b>. Klimpiet weegt <b>40 kilo</b>. Waar moet hij gaan zitten, zodat de plank precies recht ligt?</p>
+        <div class="wp-btns">${[1, 2, 3, 4].map(i => `<button type="button" class="btn ghost${pos === i ? ' on' : ''}" data-p="${i}">Plek ${i}</button>`).join('')}</div>
+        <div class="feedback" id="wp-fb"></div>
+      </div>
+    </div>`, body => {
+    body.querySelectorAll('.wp-btns .btn').forEach(b => b.onclick = () => {
+      pos = S.wp = +b.dataset.p; save();
+      body.querySelectorAll('.wp-btns .btn').forEach(x => x.classList.toggle('on', x === b));
+      $('#wp-pic').innerHTML = plank();
+      if(pos !== 2){ nope(); return fb('#wp-fb', pos < 2 ? 'De zak is nog steeds zwaarder. Klimpiet zit te dicht bij het midden! Hoe verder weg, hoe harder je duwt.' : tx('Nu slaat de plank door naar Klimpiets kant, en de zak vliegt omhoog! Op plek {p} duwt Klimpiet te hard.', { p: pos }), 'bad'); }
+      S.f.wip = true; save(); applyVisuals();
+      fb('#wp-fb', 'Recht! De zak: 20 kilo × plek 4 = 80. Klimpiet: 40 kilo × plek 2 = 80. Twee keer zo zwaar, dus half zo ver van het midden. Zo werkt een wip, en ook een hefboom.', 'good');
+      solved(() => say([['piet', "Kijk, zo lig ik er heerlijk bij. En de zak ook."], "Klimpiet draait de plank voorzichtig rond, en de zak staat naast de schoorsteen van Hidde.", ['piet', "Maar welk pakje is nou voor Hidde? Sint zou een briefje achterlaten…"]]), 2800);
+    });
+  });
+}
+
+/* ---------- extra puzzel: spiegelschrift (een briefje dat je door het glas van de verkeerde kant leest) ---------- */
+const LOTTE3 = [['rs', 'Rood met stippen', '#c21f2b', 'dots'], ['gs', 'Groen met strepen', '#4f9a4a', 'lines'], ['gd', 'Groen met stippen', '#4f9a4a', 'dots'], ['bs', 'Blauw met stippen', '#1f4fa8', 'dots']];
+function openSpiegel(){
+  openModal('Het briefje achter het dakraam', 'Sint plakte het van binnen tegen het glas. Jij kijkt van buiten.', `
+    <div class="spiegel3">
+      <div class="sp3-glass"><div class="sp3-note">Voor Hidde: het groene pakje met de stippen.<br>Niet het groene met de strepen, dat is voor Floris!<br>— Sint</div></div>
+      <p>Het briefje zit aan de binnenkant van het raam, dus jij ziet het <b>in spiegelschrift</b>: alles staat achterstevoren. Welk pakje is voor Hidde?</p>
+      <div class="sp3-gifts">${LOTTE3.map(([k, n, c, p]) => `<button type="button" class="sp3-gift" data-k="${k}"><span class="sp3-box ${p}" style="background-color:${c}"></span><b>${n}</b></button>`).join('')}</div>
+      <div class="feedback" id="sp3-fb"></div>
+    </div>`, body => {
+    body.querySelectorAll('.sp3-gift').forEach(b => b.onclick = () => {
+      const k = b.dataset.k;
+      if(k === 'gs'){ nope(); return fb('#sp3-fb', 'Bijna! Dat is het groene pakje met de strepen. Lees het tweede regeltje: dat pakje is voor iemand anders.', 'bad'); }
+      if(k !== 'gd'){ nope(); return fb('#sp3-fb', 'Dat staat niet op het briefje. Lees het van rechts naar links, of houd er in gedachten een spiegel naast.', 'bad'); }
+      S.f.spiegel = true; save(); applyVisuals();
+      fb('#sp3-fb', 'Het groene pakje met de stippen! Door glas zie je een briefje van de achterkant, en dan staat alles in spiegelschrift. Met een spiegel kun je het weer gewoon lezen.', 'good');
+      solved(() => say(["Klimpiet knoopt het groene pakje aan het touw en laat het zachtjes zakken. Plof. Precies naast Hiddes schoen.", ['piet', "Hidde: klaar! Kom, terug naar Twan. Daar staat onze ladder."]]), 2800);
     });
   });
 }

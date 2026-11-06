@@ -1,8 +1,8 @@
 // Opstarten: zet de tekeningen van de kamers (scenes/*.svg) in het speelveld en laadt daarna de spelbestanden op volgorde.
 // De tekeningen worden opgehaald, dus het spel moet via http(s) draaien: GitHub Pages, `npm start` of een andere webserver.
-const GAME_VERSION = 5;   // staat op het titelscherm; hetzelfde getal als CACHE in sw.js
+const GAME_VERSION = 19;   // staat op het titelscherm; hetzelfde getal als CACHE in sw.js
 (async () => {
-  const scenes = ['boot', 'kamer', 'dak', 'feest'];
+  const scenes = ['boot', 'ruim', 'kamer', 'keuken', 'dak', 'dak2', 'feest', 'gang'];
   const scripts = ['core', 'liedjes', 'chapter1', 'chapter2', 'chapter3', 'chapter4', 'items', 'hints', 'ambience', 'voice', 'app'];
   const title = document.getElementById('title');
   try {
@@ -22,7 +22,9 @@ const GAME_VERSION = 5;   // staat op het titelscherm; hetzelfde getal als CACHE
     title.classList.remove('loading');
     title.querySelectorAll('.row').forEach(el => el.hidden = true);
     const p = title.querySelector('p.keep');
-    p.innerHTML = 'Hoofdpiet zegt: dit spel heeft een webserver nodig, dubbelklikken werkt niet. Typ <b>npm start</b> en open http://127.0.0.1:4173.';
+    p.innerHTML = e.message === 'file'
+      ? 'Hoofdpiet zegt: dit spel heeft een webserver nodig, dubbelklikken werkt niet. Typ <b>npm start</b> en open het adres dat erbij staat.'
+      : `Hoofdpiet zegt: <b>${String(e.message).replace(/[<&]/g, '')}</b> kon niet geladen worden. Herlaad de pagina, of kijk of de webserver nog draait.`;
     console.error('Sinterklaas kon niet starten:', e);
   }
 })();

@@ -9,6 +9,8 @@
 .wk-steam{animation:wkSteam 2.6s ease-out infinite}
 @keyframes wkBreathe{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.04)}}
 .wk-breathe{transform-box:fill-box;transform-origin:50% 100%;animation:wkBreathe 3s ease-in-out infinite}
+@keyframes wkPurr{0%,100%{transform:none}25%{transform:translateX(-1.2px) scaleY(1.03)}75%{transform:translateX(1.2px) scaleY(1.03)}}
+.wk-breathe.purr{animation:wkPurr .16s linear 14}
 
 /* ---------- de voetafdruk ---------- */
 .voetpap{background:#fffaf0;color:#2b2118;padding:14px;border-radius:6px}
@@ -104,3 +106,36 @@
 /* muzieknootjes zweven naar de kachelpijp als je het liedje speelt */
 @keyframes wkNote{0%{transform:translate(0,0);opacity:0}15%{opacity:1}100%{transform:translate(220px,-560px);opacity:0}}
 .wk-note{opacity:0;animation:wkNote 3.4s ease-in infinite}
+
+/* ---------- de keuken ---------- */
+/* pepernoten bakken */
+.bakken{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:16px;align-items:start}
+.bk-card{background:#fbf3dc;color:#3a1d12;font-family:var(--f-hand);font-size:22px;line-height:1.25;padding:12px 16px;border-radius:4px;transform:rotate(-1.5deg);display:flex;flex-direction:column;gap:2px;box-shadow:0 4px 10px rgba(0,0,0,.3)}
+.bk-card i{font-size:18px;color:#7a5a3a}
+.bk-side{display:flex;flex-direction:column;gap:8px}
+.bk-side p{margin:0}
+.bk-row{display:grid;grid-template-columns:1fr 90px 90px;gap:8px;align-items:center}
+.bk-row input{font-family:var(--f-mono);font-size:18px;padding:4px 8px;width:100%}
+.bk-row small{color:var(--muted)}
+/* de kookwekker */
+.oven2{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:16px;align-items:center}
+.ov-clock{width:100%;height:auto}
+.ov-side{display:flex;flex-direction:column;gap:8px}
+.ov-side p{margin:0}
+.ov-btns{display:flex;gap:8px;flex-wrap:wrap}
+.ov-time{font-family:var(--f-mono);font-size:28px;color:var(--amber)}
+/* de brief van Sem */
+.brief2{display:flex;flex-direction:column;gap:12px}
+.br-paper{background:#fffaf0;color:#2e6a2e;font-family:var(--f-hand);font-size:28px;line-height:1.5;padding:14px 18px;border-radius:4px;transform:rotate(-1deg);box-shadow:0 4px 10px rgba(0,0,0,.3)}
+.br-w{font:inherit;color:inherit;background:none;border:0;padding:0 2px;border-radius:4px;cursor:pointer}
+.br-w:hover,.br-w:focus-visible{background:rgba(242,182,49,.3)}
+.br-w.fixed{color:#1f4fa8;text-decoration:underline wavy #4f9a4a}
+@media (max-width:620px){.bakken,.oven2{grid-template-columns:1fr}.ov-clock{max-width:200px;justify-self:center}}
+/* grapjes: de lamp slingert, de kookwekker rammelt */
+@keyframes wkSwing{0%{transform:rotate(0)}15%{transform:rotate(28deg)}35%{transform:rotate(-22deg)}55%{transform:rotate(14deg)}75%{transform:rotate(-8deg)}100%{transform:rotate(0)}}
+.wk-lamp.swing{animation:wkSwing 2.6s ease-out}
+@keyframes kkRing{0%{transform:rotate(-12deg)}100%{transform:rotate(12deg)}}
+#kk-timer.ring{transform-box:fill-box;transform-origin:center;animation:kkRing .1s linear 14 alternate}
+/* meer grapjes: het plantje schudt */
+@keyframes wkShake{0%,100%{transform:rotate(0)}20%{transform:rotate(-14deg)}40%{transform:rotate(12deg)}60%{transform:rotate(-8deg)}80%{transform:rotate(5deg)}}
+.wk-plant.shake{animation:wkShake 1.2s ease-out}

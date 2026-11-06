@@ -131,6 +131,7 @@ This is the reusable knowledge from building *Hello, IT*: how it's put together,
 
 - `manifest.webmanifest` with icons (an SVG source, PNGs rendered from it).
 - **Service worker:** the page and the game's own files **network-first with `cache: 'no-cache'`** (GitHub Pages lets browsers reuse files for 10 minutes; without this, players got old files, or a mix of old and new ones, after an update), the cache as the offline fallback, and the offline cache filled with `cache: 'reload'`. Fonts cache-first.
+- **Several games on one origin** (all on `<user>.github.io`): each game has its own folder, so its own manifest `id`, scope and service worker, and they install side by side. But the Cache Storage and `localStorage` are shared by the whole origin: give caches and storage keys a prefix per game, and on `activate` only delete your **own** old caches (`k.startsWith('sint-') && k !== CACHE`), never "everything that isn't mine".
 - **A version number** (`GAME_VERSION` in `boot.js`, the same number as the service worker's cache name; a test checks they match), shown on the title screen. Bump it on every change.
 - **An update bar:** the service worker tells open pages its version; a page running an older one shows "A new version is ready · Reload" (saving first).
 

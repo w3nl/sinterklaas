@@ -9,8 +9,8 @@ function nextChapter(){ const f = START[S.ch + 1]; if(f) f(); }
 /* De uitgang van een kamer leidt naar het volgende hoofdstuk zodra het hoofdstuk klaar is. */
 function exitLabels(){
   const open = chapterDone() && S.ch < LAST_CH, n = S.ch + 1;
-  setLabel('#sc-boot [data-hs="loopplank"]', open && S.ch === 1 ? tx('Naar de kade: door naar hoofdstuk {n}', { n }) : 'Naar de kade');
-  setLabel('#sc-kamer [data-hs="deur"]', open && S.ch === 2 ? tx('Trap naar boven: door naar hoofdstuk {n}', { n }) : 'Trap naar boven (naar bed)');
+  setLabel('#sc-boot [data-hs="loopplank"]', open && S.ch === 1 ? tx('Naar huis: door naar hoofdstuk {n}', { n }) : 'Naar de kade');
+  setLabel('#sc-gang [data-hs="trap4"]', S.ch !== 2 ? 'De trap naar boven' : open ? tx('Trap naar boven: door naar hoofdstuk {n}', { n }) : 'Trap naar boven (naar bed)');
   setLabel('#sc-dak [data-hs="ladder"]', open && S.ch === 3 ? tx('Ladder naar beneden: door naar hoofdstuk {n}', { n }) : 'Ladder');
 }
 function refreshMenu(){
@@ -24,7 +24,7 @@ function refreshMenu(){
 const CH_END = {
   1: ['Aan wal in Grave · hoofdstuk 1 klaar', 'Hij is er', "Sinterklaas is in het land! Volgende: thuis, bij de houtkachel. Vanavond mag je voor het eerst je schoen zetten…", 'Door naar hoofdstuk 2'],
   2: ['Schoen gezet · hoofdstuk 2 klaar', 'Slaap lekker', "Er zat een chocoladeletter in je schoen, en een briefje van Klimpiet. Volgende: in de nacht van 4 december help jij de Pieten op de daken…", 'Door naar hoofdstuk 3'],
-  3: ['Middernacht · hoofdstuk 3 klaar', 'Heel goed', "De pakjes van Noor staan bij haar schoen, en Klimpiet heeft zijn muts terug. Volgende: 5 december. Pakjesavond!", 'Door naar hoofdstuk 4'],
+  3: ['Middernacht · hoofdstuk 3 klaar', 'Heel goed', "De pakjes van Twan staan bij zijn schoen, en Klimpiet heeft zijn muts terug. Volgende: 5 december. Pakjesavond!", 'Door naar hoofdstuk 4'],
   4: ['Pakjesavond · alle hoofdstukken klaar', 'Hoera', "Je bent nu een echte Hulppiet, voor altijd. Dag Sinterklaasje, dag lieve Pieten, dag Ozosnel! Tot volgend jaar, als de stoomboot weer komt.", '']
 };
 function showWin(){
@@ -96,15 +96,19 @@ setInterval(() => { if(S.started && !chapterDone() && $('#title').hidden && docu
 const ACH = [['koek', 'Raad gevraagd aan de speculaaspop'], ['toet', 'Drie keer getoeterd'], ['boek', 'Stiekem in het Grote Boek gekeken'], ['zwaai', 'Naar de kinderen gezwaaid'],
   ['paardmaan', 'Een paard voor de maan gezien'], ['kat', 'Poes laten spinnen'],
   ['sint3', 'Sint op het dak gezien'],
-  ['pepernoot', 'Veel te veel pepernoten'], ['sem', 'Meegezongen met Sem']];
+  ['pepernoot', 'Veel te veel pepernoten'], ['sem', 'Meegezongen met Anne-Lieve'], ['saab', 'Een Saab gespot'], ['pang', 'Alle ballonnen kapot']];
 
 /* ---------- spelverloop ---------- */
 function startNew(){ S = Object.assign(fresh(), { ach: S.ach || {} }); S.started = true; sel = null; $('#title').hidden = true; $('#win').hidden = true; renderInv(); applyVisuals(); $('#timer').textContent = '00:00'; save(); intro1(); }
 function contLine(){
   const f = S.f;
   if(S.scene === 'boot') return f.lock ? "Terug op de stoomboot, aan de kade van Grave. De kinderen zingen nog steeds." : f.engine ? "Terug op de stoomboot. Voor de boot ligt de sluis van Grave." : "Terug op de stoomboot. Hij ligt nog steeds stil op de Maas.";
+  if(S.scene === 'ruim') return "Terug in het ruim. Het kraakt en het klotst.";
   if(S.scene === 'kamer') return "Terug in de woonkamer. De kachel brandt nog en Poes slaapt.";
+  if(S.scene === 'keuken') return "Terug in de keuken. Het ruikt naar speculaas.";
   if(S.scene === 'dak') return f.gust && !f.wind ? "Terug op het dak. Klimpiet kijkt treurig naar de plek waar zijn muts zat." : "Terug op het dak. Klimpiet zwaait vanaf de nok.";
+  if(S.scene === 'dak2') return "Terug op het dak van Hidde, op nummer 4.";
+  if(S.scene === 'gang') return S.ch === 2 ? "Terug in de gang. De trap naar boven wacht op je." : "Terug in de gang. Uit de kamer klinkt gezang.";
   return "Terug op pakjesavond. Iedereen kijkt naar jou.";
 }
 function cont(){ $('#title').hidden = true; S.started = true; renderInv(); applyVisuals(); $('#timer').textContent = fmt(S.t); say([['sys', contLine()]]); }
@@ -115,9 +119,9 @@ $('#btn-next').onclick = nextChapter;
 for(let n = 1; n <= LAST_CH; n++) $('#btn-ch' + n).onclick = START[n];
 const STAY = {
   1: "Kijk maar rustig rond. Sinterklaas schudt handjes op de kade. Klik op de loopplank als je door wilt naar hoofdstuk {n}.",
-  2: "Kijk maar rustig rond. De kachel brandt en je schoen staat klaar. Klik op de trap als je door wilt naar hoofdstuk {n}.",
+  2: "Kijk maar rustig rond. De kachel brandt en je schoen staat klaar. Klik in de gang op de trap als je door wilt naar hoofdstuk {n}.",
   3: "Kijk maar rustig rond. De maan schijnt en Klimpiet neuriet een liedje. Klik op de ladder als je door wilt naar hoofdstuk {n}.",
-  4: "Kijk maar rustig rond. Sem speelt met zijn bal, Papa oefent met zijn hengel, en Sint en Klimpiet zwaaien vanaf het dak aan de overkant."
+  4: "Kijk maar rustig rond. Anne-Lieve speelt met haar bal, Silvie past haar kettinkje, Papa oefent met zijn hengel, en Sint en Klimpiet zwaaien vanaf het dak aan de overkant."
 };
 $('#btn-stay').onclick = () => { $('#win').hidden = true; exitLabels(); say([['sys', tx(STAY[S.ch] || STAY[1], { n: S.ch + 1 })]]); };
 $('#btn-menu').onclick = () => { closeModal(); $('#dialog').hidden = true; queue = []; stopSpeaking(); $('#title').hidden = false; $('#win').hidden = true; refreshMenu(); };

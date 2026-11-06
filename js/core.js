@@ -53,13 +53,13 @@ const nope = () => beep(140,.2,'sawtooth',.04);   // de "fout"-zoemer
 /* Wie er praat. Een nieuwe spreker heeft een naam hier, een portret in portraits/ (of geen), een kleur in de css
    en een stem in js/voice.js. */
 const WHO = { you:'Jij', sys:'Verteller', sint:'Sinterklaas', hoofd:'Hoofdpiet', piet:'Klimpiet', paard:'Ozosnel', koek:'De speculaaspop',
-  mama:'Mama', papa:'Papa', oma:'Oma', sem:'Sem', burg:'De burgemeester', sluis:'De sluiswachter', hond:'De hond' };
+  mama:'Mama', papa:'Papa', oma:'Oma', sem:'Anne-Lieve', silvie:'Silvie', burg:'De burgemeester', sluis:'De sluiswachter', hond:'De hond' };
 const FACES = ['you', 'sint', 'hoofd', 'piet', 'paard', 'koek', 'mama', 'burg'];
 /* Wat er boven de tekst van de verteller staat, per hoofdstuk. */
 const NARRATOR = { 1:'Op de stoomboot', 2:'Thuis · 14 november', 3:'Op het dak · 4 december', 4:'Pakjesavond · 5 december' };
 let queue = [], typing = null, full = '', onDone = null, curLine = null;
 function say(lines, done){
-  // say('tekst'), say(['tekst', 'nog een']) of say([['sint', 'tekst'], 'tekst van jou', …])
+  // say('tekst'), say(['tekst', 'nog een']) of say([['sint', 'tekst'], 'tekst van jou', …]); ['sys', '♪ …', 'maan'] zingt een liedje (SONGS in js/liedjes.js)
   queue = (Array.isArray(lines) ? lines : [lines]).map(l => typeof l === 'string' ? ['you', l] : l);
   onDone = done || null;
   next();
@@ -69,9 +69,9 @@ function next(){
   clearInterval(typing); typing = null;
   const box = $('#dialog');
   if(!queue.length){ box.hidden = true; if(typeof stopSpeaking === 'function') stopSpeaking(); const d = onDone; onDone = null; d && d(); return; }
-  const [who, text] = curLine = queue.shift();
+  const [who, text, song] = curLine = queue.shift();
   box.hidden = false;
-  box.className = 'dialog who-' + who;
+  box.className = 'dialog who-' + who + (song ? ' sung' : '');
   const face = faceFor(who), fe = $('#d-face');
   if(face){ box.classList.add('has-face'); fe.hidden = false;
     if(fe.getAttribute('src') !== face){ fe.src = face; fe.classList.remove('face-in'); void fe.offsetWidth; fe.classList.add('face-in'); } }
@@ -80,7 +80,8 @@ function next(){
   $('#d-more').textContent = matchMedia('(hover: none)').matches ? (queue.length ? 'tik ▸' : 'tik ✕') : (queue.length ? 'klik ▸' : 'klik ✕');
   full = text; let i = 0;
   const el = $('#d-txt'); el.textContent = '';
-  if(typeof speakLine === 'function') speakLine(who, full);   // stemmen (js/voice.js), als die aan staan
+  if(song){ if(typeof stopSpeaking === 'function') stopSpeaking(); if(typeof singSong === 'function') singSong(song); }
+  else if(typeof speakLine === 'function') speakLine(who, full);   // stemmen (js/voice.js), als die aan staan
   if(reducedMotion()){ el.textContent = full; return; }
   typing = setInterval(() => { i += 2; el.textContent = full.slice(0, i); if(i >= full.length){ clearInterval(typing); typing = null; } }, 16);
 }
@@ -156,16 +157,21 @@ function visFlush(){
 /* Elke kamer: zijn hoofdstuk, de titel bovenaan en de functie die laat zien hoe het er nu bij staat (in chapterN.js). */
 const ROOMS = {
   boot:  { ch:1, title:'Hoofdstuk 1 · De stoomboot komt', apply:() => applyBoot() },
+  ruim:  { ch:1, title:'Hoofdstuk 1 · In het ruim', apply:() => applyRuim() },
   kamer: { ch:2, title:'Hoofdstuk 2 · Schoen zetten', apply:() => applyKamer() },
+  keuken:{ ch:2, title:() => `Hoofdstuk ${S.ch} · In de keuken`, apply:() => applyKeuken() },
   dak:   { ch:3, title:'Hoofdstuk 3 · Op het dak', apply:() => applyDak() },
-  feest: { ch:4, title:'Hoofdstuk 4 · Pakjesavond', apply:() => applyFeest() }
+  dak2:  { ch:3, title:'Hoofdstuk 3 · Op het dak van Hidde', apply:() => applyDak2() },
+  feest: { ch:4, title:'Hoofdstuk 4 · Pakjesavond', apply:() => applyFeest() },
+  gang:  { ch:4, title:() => `Hoofdstuk ${S.ch} · In de gang`, apply:() => applyGang() }
 };
 function applyVisuals(){
   // een kamer waar je net binnenkomt (of een nieuw spel) wordt meteen getekend; veranderingen die je ziet gaan zacht
   const isNew = applyVisuals.scene !== S.scene || applyVisuals.state !== S; applyVisuals.scene = S.scene; applyVisuals.state = S;
   visQuiet = isNew || !$('#title').hidden;
   for(const id in ROOMS) $('#sc-' + id).classList.toggle('on', S.scene === id);
-  $('#chap').textContent = (ROOMS[S.scene] || ROOMS.boot).title;
+  const title = (ROOMS[S.scene] || ROOMS.boot).title;
+  $('#chap').textContent = typeof title === 'function' ? title() : title;
   for(const id in ROOMS) ROOMS[id].apply();
   if(typeof exitLabels === 'function') exitLabels();
   $('#hint-count').textContent = S.hints;
@@ -179,6 +185,23 @@ function moment(scene, cls, ms){
   const el = $('#sc-' + scene); if(!el || reducedMotion()) return;
   el.classList.remove(cls); void el.getBoundingClientRect(); el.classList.add(cls);
   clearTimeout(el['_m' + cls]); el['_m' + cls] = setTimeout(() => el.classList.remove(cls), ms);
+}
+/* Grapjes: iets laten schrikken, ploffen of wegvliegen (een klasse, ms lang). Geeft false als het al bezig is. */
+function gag(el, cls, ms){
+  if(typeof el === 'string') el = $(el);
+  if(!el || el.classList.contains(cls)) return false;
+  el.classList.add(cls); setTimeout(() => el.classList.remove(cls), ms);
+  return true;
+}
+/* Een woordje ("PANG!") dat even boven iets in de kamer opstijgt. */
+function gagText(el, text){
+  const svg = el && el.ownerSVGElement; if(!svg) return;
+  const r = el.getBoundingClientRect(), pt = svg.createSVGPoint();
+  pt.x = r.x + r.width / 2; pt.y = r.y;
+  const p = pt.matrixTransform(svg.getScreenCTM().inverse());
+  const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  t.setAttribute('x', p.x.toFixed(0)); t.setAttribute('y', p.y.toFixed(0)); t.setAttribute('class', 'gag-txt'); t.textContent = text;
+  svg.appendChild(t); setTimeout(() => t.remove(), 1300);
 }
 
 /* ---------- tooltip en klikken op dingen ---------- */
@@ -201,7 +224,7 @@ stage.addEventListener('click', e => {
   beep(440,.03,'sine',.03);
   const id = h.dataset.hs;
   if(sel){ const it = sel; sel = null; renderInv(); useItem(it, id); return; }
-  (H[id] || (() => say('Niets bijzonders. Hier verstopt Piet in elk geval niks.')))();
+  (H[id] || (() => say('Niets bijzonders. Hier verstopt Piet in elk geval niks.')))(h);
 });
 stage.addEventListener('contextmenu', e => { if(sel){ e.preventDefault(); sel=null; renderInv(); } });
 /* met het toetsenbord: Tab naar een klikvlak, Enter of spatie om erop te klikken */

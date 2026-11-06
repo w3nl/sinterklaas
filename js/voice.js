@@ -19,6 +19,7 @@ const VOICE_STYLE = {
   papa:  { pitch: .8,   rate: 1,    slot: 2 },
   oma:   { pitch: 1.3,  rate: .85,  slot: 5 },
   sem:   { pitch: 1.9,  rate: 1.15, slot: 4 },
+  silvie:{ pitch: 1.4,  rate: 1.05, slot: 5 },
   burg:  { pitch: .75,  rate: .95,  slot: 3 },
   sluis: { pitch: .9,   rate: .9,   slot: 0 }
 };
