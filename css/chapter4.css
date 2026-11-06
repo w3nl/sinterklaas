@@ -57,3 +57,26 @@
 .sp-kachel::after{content:"🔥"} .sp-deur::after{content:"🚪"} .sp-bank::after{content:"🛋"} .sp-raam::after{content:"🪟"} .sp-kast::after{content:"📚"}
 .sp-c.found::after{content:"🎁"}
 .sp-tip{font-size:14px;margin:10px 0 0}
+
+/* ---------- meer leven op pakjesavond ---------- */
+.pa-lamp{transform-origin:940px 30px}
+@keyframes paPendulum{0%,100%{transform:rotate(9deg)}50%{transform:rotate(-9deg)}}
+.pa-pendulum{transform-box:view-box;transform-origin:1021px 230px;animation:paPendulum 2s ease-in-out infinite}
+/* het sneeuwt op 5 december */
+@keyframes paFlake{from{transform:translate(0,-80px)}to{transform:translate(14px,200px)}}
+.pa-flake{animation:paFlake 7s linear infinite}
+.pa-flake.b{animation-duration:9s}
+/* Oma's breinaalden tikken tegen elkaar */
+@keyframes paKnit{0%,100%{transform:rotate(0)}50%{transform:rotate(-8deg)}}
+#pa-oma .knit{transform-box:fill-box;transform-origin:50% 100%;animation:paKnit .5s ease-in-out infinite}
+#pa-oma .knit.b{animation-direction:reverse}
+/* de cadeaus wiebelen een beetje, van opwinding */
+@keyframes paWiggle{0%,90%,100%{transform:rotate(0)}93%{transform:rotate(-3deg)}96%{transform:rotate(3deg)}}
+.pa-wiggle > :not([transform]){transform-box:fill-box;transform-origin:50% 100%;animation:paWiggle 4s ease-in-out infinite}
+.pa-wiggle > :not([transform]):nth-child(2n){animation-delay:-1.3s}
+/* pepernoten vliegen door de deur naar binnen als er gebonsd wordt (ze bestaan alleen als ze bewegen) */
+@keyframes paThrow{0%{transform:translate(150px,420px);opacity:1}100%{transform:translate(var(--tx),var(--ty));opacity:1}}
+.pa-throw{opacity:0}
+.pa-strooi .pa-throw{animation:paThrow .9s cubic-bezier(.2,.6,.4,1) both}
+@keyframes paConf{0%{transform:translate(0,-60px) rotate(0)}100%{transform:translate(30px,960px) rotate(540deg)}}
+.pa-conf{transform-box:fill-box;transform-origin:center;animation:paConf 5s linear infinite}

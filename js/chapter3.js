@@ -21,6 +21,7 @@ function applyDak(){
   show('#dk-sacklock', !f.code); show('#dk-gifts', !!f.code && !f.past);
   show('#dk-ropein', !!f.touw);
   show('#dk-cap', !f.gust || !!f.wind); show('#dk-flycap', !!f.gust && !f.wind);
+  $('#sc-dak').classList.toggle('dk-gust', !!f.gust && !f.wind);
 }
 KOEK_SAY[3] = ["Op het dak, tussen de dakpannen, ligt een speculaaspop. Hoe komt die hier?", ['piet', "Oeps, die is uit mijn zak gevallen. Hou jij hem maar, Hulppiet. Hij helpt je als je vastzit!"]];
 
@@ -52,6 +53,8 @@ Object.assign(H, {
   sint3(){ S.ach.sint3 = true; save(); say(["Daar, op een dak in het maanlicht: Sinterklaas op Ozosnel! Ozosnel stapt van nok naar nok, zo licht als een veertje.", ['sint', "Goedenavond, Hulppiet! Pas goed op, daar boven. Klimpiet, jij ook!"]]); },
   maan(){ say("Een bijna volle maan. Handig: zo zien de Pieten waar ze lopen."); },
   huizen(){ say(["De huizen aan de overkant. Uit twee schoorstenen komt rook: daar branden de kachels nog.", "De rook waait allemaal dezelfde kant op: naar rechts."]); },
+  uil(){ say(["Een uil zit op de rand van de kerktoren. Hij kijkt je aan met grote gele ogen.", "Oehoe. Hij doet een oog dicht, en dan het andere. Uilen houden de hele nacht de wacht."]); },
+  kat3(){ say([['piet', "Dat is Zwartje, de kat van nummer 6. Die zit hier elke nacht."], ['piet', "Ze vertelt nooit aan iemand dat ze de Pieten heeft gezien. Katten kunnen een geheim bewaren."]]); },
   ladder(){ if(S.f.out3) return startCh4(); say([['piet', "Daar zijn we naar boven geklommen. Pas als alles klaar is gaan we weer naar beneden."]]); }
 });
 
@@ -165,7 +168,7 @@ function openTouw(){
       const m = +b.dataset.m;
       if(m < 9){ nope(); return fb('#tw-fb', tx('Het pakje blijft halverwege hangen! Tel de hokjes van de bovenkant van de bovenkant van de schoorsteen tot vlak boven de schoen. {m} meter is te kort.', { m }), 'bad'); }
       if(m > 10){ nope(); return fb('#tw-fb', 'Dat is lang genoeg, maar er blijft heel veel touw over. Is er een korter touw dat óók lang genoeg is?', 'bad'); }
-      S.f.touw = true; take('touw'); take('pakjes'); save(); applyVisuals();
+      S.f.touw = true; take('touw'); take('pakjes'); save(); moment('dak', 'dk-lower', 2600); applyVisuals();
       fb('#tw-fb', 'Van de schoorsteen tot de schoen zijn het 9 hokjes, dus 9 meter. Het touw van 10 meter is net lang genoeg! Zachtjes zakken de pakjes naar beneden…', 'good');
       solved(() => { S.f.gust = true; save(); applyVisuals(); beep(200, .8, 'sine', .04);
         say([['sys', "Plof. De pakjes staan naast Noors schoen. Je trekt het touw weer omhoog."],

@@ -40,8 +40,39 @@ test('"Beweging uit" zet alles stil, in elke kamer', async ({ page }) => {
   await expect(page.locator('#btn-motion')).toHaveText('Beweging uit');
   await expect.poll(() => moving(page)).toBe(0);
 
-  for (const [ch, scene, f] of [[2, 'kamer', {}], [3, 'dak', { gust: true }], [4, 'feest', { zak: true, out4: true }]]) {
+  // ook als Sint aan wal is en de confetti valt
+  await page.evaluate(() => { S.f = { introDone: true, engine: true, lock: true, mijter: true, voer: true, plank: true, out1: true }; applyVisuals(); });
+  expect(await moving(page)).toBe(0);
+  for (const [ch, scene, f] of [[2, 'kamer', { liedje: true }], [3, 'dak', { gust: true, touw: true }], [4, 'feest', { zak: true, namen: true, out4: true }]]) {
     await page.evaluate(([ch, scene, f]) => { S.ch = ch; S.scene = scene; S.f = f; applyVisuals(); }, [ch, scene, f]);
     expect(await moving(page), scene).toBe(0);
   }
+});
+
+test('de kamers leven: wat er beweegt met Beweging aan', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await seed(page, { f: { introDone: true } });
+  await page.locator('#btn-cont').click();
+  await skip(page);
+  expect(await anim(page, '.sb-ducks')).toBe('sbDucks');
+  expect(await anim(page, '.sb-reed')).toBe('sbReed');
+  expect(await anim(page, '.sb-fish')).toBe('sbFish');
+  expect(await anim(page, '#sb-mast')).toBe('sbClimber');
+  // Sint gaat aan wal en Ozosnel loopt met zijn benen
+  await page.evaluate(() => { Object.assign(S.f, { engine: true, lock: true, mijter: true, voer: true, plank: true }); applyVisuals(); win1(); });
+  await expect(page.locator('#sc-boot')).toHaveClass(/sb-ashore/);
+  expect(await anim(page, '#sb-sint')).toBe('sbAshoreSint');
+  expect(await anim(page, '#sb-horsewalk .hleg')).toBe('hlegStep');
+  // de woonkamer, de daken en pakjesavond
+  await page.evaluate(() => { S.ch = 2; S.scene = 'kamer'; S.f = { liedje: true }; applyVisuals(); });
+  expect(await anim(page, '.wk-pendulum')).toBe('wkPendulum');
+  expect(await anim(page, '.wk-note')).toBe('wkNote');
+  await page.evaluate(() => { S.ch = 3; S.scene = 'dak'; S.f = {}; applyVisuals(); });
+  expect(await anim(page, '#dk-sint')).toBe('dkRide');
+  expect(await anim(page, '#dk-sint .hleg')).toBe('hlegStep');
+  expect(await anim(page, '.dk-blink')).toBe('dkBlink');
+  await page.evaluate(() => { S.ch = 4; S.scene = 'feest'; S.f = { introDone4: true }; applyVisuals(); H.voordeur(); });
+  await expect(page.locator('#sc-feest')).toHaveClass(/pa-strooi/);
+  expect(await anim(page, '.pa-throw')).toBe('paThrow');
+  expect(await anim(page, '.pa-flake')).toBe('paFlake');
 });
