@@ -31,7 +31,8 @@ Een point-and-click escaperoom over het Sinterklaasfeest, voor kinderen van onge
 | `js/ambience.js` | Gegenereerd achtergrondgeluid per kamer (`ambKey()`, `SOUNDSCAPES`) |
 | `js/voice.js` | Stemmen (Web Speech API, `nl-NL`); `VOICE_STYLE` per spreker |
 | `js/app.js` | `LAST_CH`, `START`, `chapterDone`, `exitLabels`, `refreshMenu`, `CH_END`, `showWin`, scores, `ACH`, knoppen, klok, titelmenu, PWA, `start()` |
-| `portraits/*.svg` | `you`, `sint`, `hoofd`, `piet`, `paard`, `koek`, `mama`, `burg` (120×120) |
+| `portraits/*.svg` | `you`, `sint`, `hoofd`, `piet`, `paard`, `koek`, `mama`, `burg` (120×120), gemaakt door `tools/personages.py` |
+| `tools/personages.py` | Tekent alle personages (Sint, Sint te paard, de Pieten, Ozosnel, de familie, de kinderen op de kade, de burgemeester, de sluiswachter) en de portretten. Zie "Personages tekenen" |
 | `sw.js`, `manifest.webmanifest`, `icons/` | De app. `icon.svg` is de bron; de PNG's zijn ervan gemaakt |
 | `tests/` | Playwright: `chapter1` … `chapter4`, `progress`, `pwa`, `phone`, `motion`; `helpers.js`; `serve.js` |
 
@@ -110,6 +111,13 @@ Alles uit "Lessons learned" in de blueprint geldt. Vooral:
 - Controleer nieuwe close-ups op 412×915 en 915×412 (`tests/phone.spec.js`).
 - **Verhoog `CACHE` in `sw.js` en `GAME_VERSION` in `js/boot.js` samen** bij elke wijziging, en zet nieuwe bestanden in `CORE` (een test controleert dat).
 - Geen `alert/confirm/prompt`. Knoppen hebben `type="button"`.
+
+## Personages tekenen
+
+- Alle mensen en Ozosnel komen uit `tools/personages.py`. Elk personage wordt één keer getekend in zijn eigen assenstelsel (voeten op 0, of het zitvlak op 0 bij wie zit) en met `place()` in een kamer gezet. Zo ziet iedereen er in elke kamer en in de portretten hetzelfde uit.
+- In de kamers staat elk personage tussen `<!-- @personage naam -->` en `<!-- @einde naam -->`, binnen de groep met het id dat het spel gebruikt (`sb-sint`, `sb-hoofd`, `sb-horse`, `wk-mama`, `dk-piet`, `dk-sint`, `pa-papa`, …). **Pas die stukken niet met de hand aan**: verander het script en draai `python3 tools/personages.py`; het herschrijft de kamers en `portraits/*.svg`.
+- Ids die het spel nodig heeft, zitten in de tekening zelf: `sb-hair`, `sb-mitre` en `sb-staff` (Sint met of zonder mijter), `sb-horsehead` (hals en hoofd van Ozosnel, die grazen als hij gegeten heeft) en `dk-cap` (de muts van Klimpiet, die wegwaait).
+- Stijl: zachte kleurverlopen, een iets donkerdere rand, ogen met een lichtpuntje, blosjes, handen (Sint en de Pieten met witte handschoenen). Pieten hebben een gewone huidskleur met een paar zachte roetvegen (`soot()`).
 
 ## Toon en schrijven
 
