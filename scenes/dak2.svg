@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="scene" id="sc-dak2" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-label="Op het dak van Hidde, nummer 4">
+  <defs>
+    <linearGradient id="d2Sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#070b22"/><stop offset=".7" stop-color="#1c2856"/><stop offset="1" stop-color="#34407a"/></linearGradient>
+    <radialGradient id="d2Moon" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fffbe6" stop-opacity=".55"/><stop offset="1" stop-color="#fffbe6" stop-opacity="0"/></radialGradient>
+    <pattern id="d2Tiles" width="40" height="24" patternUnits="userSpaceOnUse"><rect width="40" height="24" fill="#2f4a6a"/><path d="M0 23 H40 M20 0 V12 M0 12 H40 M40 12 V24 M0 12 V24" stroke="#1d3048" stroke-width="2"/><path d="M2 2 q18 6 36 0" stroke="#3d5c80" stroke-width="2" fill="none"/></pattern>
+    <pattern id="d2Brick" width="30" height="16" patternUnits="userSpaceOnUse"><rect width="30" height="16" fill="#8a3e2a"/><path d="M0 15.5 H30 M15 0 V8 M0 8 H30 M0 8 V16 M30 8 V16" stroke="#5a2618" stroke-width="2"/></pattern>
+    <radialGradient id="d2Glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffd58a" stop-opacity=".6"/><stop offset="1" stop-color="#ffd58a" stop-opacity="0"/></radialGradient>
+    <radialGradient id="d2Vign" cx=".5" cy=".45" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient>
+  </defs>
+
+  <!-- de nachtlucht -->
+  <rect width="1600" height="900" fill="url(#d2Sky)"/>
+  <g fill="#fff"><circle class="tw" cx="90" cy="80" r="2"/><circle class="tw b" cx="300" cy="40" r="1.6"/><circle class="tw" cx="560" cy="120" r="1.4"/><circle class="tw b" cx="760" cy="60" r="2"/><circle class="tw" cx="980" cy="140" r="1.6"/><circle class="tw b" cx="1180" cy="50" r="1.4"/><circle class="tw" cx="1480" cy="110" r="2"/><circle class="tw b" cx="1540" cy="260" r="1.4"/><circle class="tw" cx="660" cy="230" r="1.2"/></g>
+  <circle cx="240" cy="170" r="150" fill="url(#d2Moon)"/>
+  <circle cx="240" cy="170" r="54" fill="#fff6d2"/><circle cx="222" cy="156" r="9" fill="#efe4b8"/><circle cx="258" cy="186" r="6" fill="#efe4b8"/>
+
+  <!-- de huizen in de verte -->
+  <path d="M0 470 L80 400 L160 470 L230 420 L330 470 L400 380 L470 470 L560 430 L640 470 V900 H0Z" fill="#131a38"/>
+  <path d="M1180 460 L1260 390 L1340 460 L1420 410 L1500 460 L1600 420 V900 H1180Z" fill="#131a38"/>
+  <g fill="#f6d77a" opacity=".8"><rect x="60" y="500" width="12" height="16"/><rect x="420" y="490" width="12" height="16"/><rect x="1300" y="490" width="12" height="16"/><rect x="1460" y="500" width="12" height="16"/></g>
+
+  <!-- het dak van Hidde: blauwe pannen -->
+  <path d="M120 900 L520 430 H1180 L1560 900Z" fill="url(#d2Tiles)"/>
+  <path d="M520 430 H1180" stroke="#1d3048" stroke-width="14" stroke-linecap="round"/>
+  <path d="M120 900 L520 430 M1180 430 L1560 900" stroke="#1d3048" stroke-width="8"/>
+  <rect x="100" y="884" width="1480" height="16" fill="#5a5a5a"/>
+
+  <!-- de schoorsteen van Hidde -->
+  <rect x="640" y="280" width="110" height="170" fill="url(#d2Brick)"/>
+  <rect x="628" y="268" width="134" height="18" fill="#5a2618"/>
+  <g class="dk-smoke"><circle cx="700" cy="250" r="10" fill="#8a91b0" opacity=".45"/><circle cx="716" cy="226" r="14" fill="#8a91b0" opacity=".32"/><circle cx="734" cy="196" r="18" fill="#8a91b0" opacity=".2"/></g>
+  <g id="d2-ropein" style="display:none"><path d="M694 268 V430" stroke="#c9a467" stroke-width="4"/><rect x="684" y="250" width="22" height="18" fill="#4f9a4a"/></g>
+
+  <!-- het dakraam, met het briefje van Sint (van binnen tegen het glas geplakt) -->
+  <g>
+    <path d="M840 560 L1080 560 L1100 700 L820 700Z" fill="#c9b893" stroke="#5a4a2a" stroke-width="5"/>
+    <path d="M848 568 L1072 568 L1090 692 L830 692Z" fill="#ffd58a" opacity=".85"/>
+    <circle cx="960" cy="630" r="140" fill="url(#d2Glow)" class="pulse"/>
+    <rect x="900" y="590" width="120" height="76" fill="#fffaf0" stroke="#ccc" transform="rotate(-3 960 628)"/>
+    <g transform="translate(1920 0) scale(-1 1)" opacity=".8"><text x="960" y="616" text-anchor="middle" font-family="Caveat, cursive" font-size="16" fill="#7a1a16">Voor Hidde:</text><text x="960" y="636" text-anchor="middle" font-family="Caveat, cursive" font-size="14" fill="#7a1a16">het groene pakje</text><text x="960" y="654" text-anchor="middle" font-family="Caveat, cursive" font-size="14" fill="#7a1a16">met de stippen</text></g>
+    <path d="M960 562 V694 M836 628 H1088" stroke="#5a4a2a" stroke-width="5"/>
+  </g>
+
+  <!-- de plank over de nok: een wip, met de jutezak aan de ene kant -->
+  <g id="d2-wip" class="d2-wip">
+    <rect x="1036" y="408" width="400" height="14" rx="3" fill="#b88449" stroke="#5a3a1d" stroke-width="3"/>
+    <g fill="#5a3a1d"><circle cx="1076" cy="415" r="3"/><circle cx="1116" cy="415" r="3"/><circle cx="1156" cy="415" r="3"/><circle cx="1196" cy="415" r="3"/><circle cx="1276" cy="415" r="3"/><circle cx="1316" cy="415" r="3"/><circle cx="1356" cy="415" r="3"/><circle cx="1396" cy="415" r="3"/></g>
+    <path d="M1030 408 q-14 -60 26 -78 l20 -12 l20 12 q40 18 26 78z" fill="#b9935a" stroke="#7a5a2a" stroke-width="4"/>
+    <path d="M1056 330 q20 10 40 0" stroke="#7a5a2a" stroke-width="5" fill="none"/>
+  </g>
+  <path d="M1220 430 l16 -22 l16 22z" fill="#5a3a1d"/>
+
+  <!-- Klimpiet -->
+  <g id="d2-piet"><!-- @personage piet --><g transform="translate(900 436) scale(0.9 0.9)"><defs><linearGradient id="d2PA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2e7d4f"/><stop offset="1" stop-color="#173f28"/></linearGradient><linearGradient id="d2PB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff3c4"/><stop offset="1" stop-color="#ef8a2e"/></linearGradient></defs><path d="M-14 -2 C-22 10 -26 30 -30 52 L-20 54 C-16 34 -10 16 -4 4Z" fill="#2e7d4f"/><path d="M14 -2 C22 10 26 30 30 52 L20 54 C16 34 10 16 4 4Z" fill="#ef8a2e"/><path d="M-36 58 C-36 50 -28 48 -18 50 C-14 54 -14 58 -18 58Z" fill="#1d1d1d"/><path d="M36 58 C36 50 28 48 18 50 C14 54 14 58 18 58Z" fill="#1d1d1d"/><path d="M-28 -24 C-40 -8 -34 10 -14 8 C-6 12 6 12 14 8 C34 10 40 -8 28 -24Z" fill="url(#d2PA)"/><path d="M-18 -20 C-22 -8 -20 4 -16 8 M-6 -22 C-7 -8 -6 6 -4 10 M6 -22 C7 -8 6 6 4 10 M18 -20 C22 -8 20 4 16 8" stroke="#ef8a2e" stroke-width="3.2" fill="none"/><path d="M-21 -68 C-26 -50 -26 -34 -23 -20 L23 -20 C26 -34 26 -50 21 -68Z" fill="url(#d2PB)" stroke="#b07a10" stroke-width="1"/><path d="M0 -68 V-22" stroke="#2e7d4f" stroke-width="9"/><circle cx="0" cy="-60" r="2.2" fill="#e3b23c"/><circle cx="0" cy="-50" r="2.2" fill="#e3b23c"/><circle cx="0" cy="-40" r="2.2" fill="#e3b23c"/><circle cx="0" cy="-30" r="2.2" fill="#e3b23c"/><rect x="-24" y="-26" width="48" height="6" rx="2" fill="#3a2414"/><rect x="-4" y="-27" width="8" height="8" rx="1.5" fill="#e3b23c"/><ellipse cx="-24" cy="-58" rx="10" ry="12" fill="url(#d2PA)"/><path d="M-30 -64 v14 M-24 -68 v20 M-18 -64 v14" stroke="#ef8a2e" stroke-width="2.4"/><ellipse cx="24" cy="-58" rx="10" ry="12" fill="url(#d2PA)"/><path d="M30 -64 v14 M24 -68 v20 M18 -64 v14" stroke="#ef8a2e" stroke-width="2.4"/><path d="M-30 -52 C-44 -62 -50 -82 -48 -102" stroke="#ef8a2e" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M30 -50 C40 -36 38 -18 30 -8" stroke="#ef8a2e" stroke-width="9" fill="none" stroke-linecap="round"/><ellipse cx="-48" cy="-106" rx="6.5" ry="7.2" fill="#fbfbf7" stroke="#cfcfc8" stroke-width="0.91"/><path d="M-49.3 -111.8 q5.9 -0.7 5.9 4.5" stroke="#cfcfc8" stroke-width="0.91" fill="none" opacity=".6"/><ellipse cx="30" cy="-6" rx="6.5" ry="7.2" fill="#fbfbf7" stroke="#cfcfc8" stroke-width="0.91"/><path d="M28.7 -11.9 q5.9 -0.7 5.9 4.5" stroke="#cfcfc8" stroke-width="0.91" fill="none" opacity=".6"/><ellipse cx="0" cy="-70" rx="25" ry="7.5" fill="#fff" stroke="#d8d8d8" stroke-width="1.2"/><path d="M-25.0 -65.9 q2.8 5.2 5.6 0" fill="#fff" stroke="#d8d8d8" stroke-width="1"/><path d="M-19.4 -65.9 q2.8 5.2 5.6 0" fill="#fff" stroke="#d8d8d8" stroke-width="1"/><path d="M-13.9 -65.9 q2.8 5.2 5.6 0" fill="#fff" stroke="#d8d8d8" stroke-width="1"/><path d="M-8.3 -65.9 q2.8 5.2 5.6 0" fill="#fff" stroke="#d8d8d8" stroke-width="1"/><path d="M-2.8 -65.9 q2.8 5.2 5.6 0" fill="#fff" stroke="#d8d8d8" stroke-width="1"/><path d="M2.8 -65.9 q2.8 5.2 5.6 0" fill="#fff" stroke="#d8d8d8" stroke-width="1"/><path d="M8.3 -65.9 q2.8 5.2 5.6 0" fill="#fff" stroke="#d8d8d8" stroke-width="1"/><path d="M13.9 -65.9 q2.8 5.2 5.6 0" fill="#fff" stroke="#d8d8d8" stroke-width="1"/><path d="M19.4 -65.9 q2.8 5.2 5.6 0" fill="#fff" stroke="#d8d8d8" stroke-width="1"/><ellipse cx="0" cy="-71.1" rx="13.8" ry="3.4" fill="#efefef"/><circle cx="-16.1" cy="-90.3" r="5.4" fill="#5a3418"/><circle cx="-13.9" cy="-97.1" r="5.8" fill="#5a3418"/><circle cx="16.1" cy="-90.3" r="5.4" fill="#5a3418"/><circle cx="13.9" cy="-97.1" r="5.8" fill="#5a3418"/><circle cx="-8.5" cy="-103.9" r="6.1" fill="#5a3418"/><circle cx="8.5" cy="-103.9" r="6.1" fill="#5a3418"/><circle cx="0.0" cy="-106.5" r="6.5" fill="#5a3418"/><defs><radialGradient id="d2PHSk" cx="0.42" cy="0.35" r="0.8"><stop offset="0" stop-color="#f6cfae"/><stop offset="1" stop-color="#dca383"/></radialGradient></defs><ellipse cx="-16.1" cy="-90.6" rx="3.4" ry="4.4" fill="#f6cfae" stroke="#dca383" stroke-width="0.85"/><ellipse cx="16.1" cy="-90.6" rx="3.4" ry="4.4" fill="#f6cfae" stroke="#dca383" stroke-width="0.85"/><ellipse cx="0" cy="-92" rx="17" ry="18.0" fill="url(#d2PHSk)" stroke="#dca383" stroke-width="0.85"/><ellipse cx="-6.1" cy="-92.3" rx="1.87" ry="2.55" fill="#2a1b14"/><circle cx="-5.4" cy="-93.2" r="0.77" fill="#fff"/><path d="M-8.8 -96.9 q2.7 -1.7 5.4 0.3" stroke="#2a1b14" stroke-width="1.36" fill="none" stroke-linecap="round"/><ellipse cx="6.1" cy="-92.3" rx="1.87" ry="2.55" fill="#2a1b14"/><circle cx="6.8" cy="-93.2" r="0.77" fill="#fff"/><path d="M3.4 -96.9 q2.7 -1.7 5.4 0.3" stroke="#2a1b14" stroke-width="1.36" fill="none" stroke-linecap="round"/><ellipse cx="-9.4" cy="-86.9" rx="2.9" ry="1.9" fill="#f29b8f" opacity=".55"/><ellipse cx="9.4" cy="-86.9" rx="2.9" ry="1.9" fill="#f29b8f" opacity=".55"/><ellipse cx="0" cy="-88.6" rx="2.4" ry="1.9" fill="#dca383" opacity=".7"/><circle cx="-0.7" cy="-89.3" r="0.68" fill="#fff" opacity=".6"/><path d="M-5.1 -84.4 q5.1 0.3 10.2 0 q-0.9 5.8 -5.1 5.8 q-4.2 0 -5.1 -5.8z" fill="#8a2a24"/><path d="M-2.4 -79.8 q2.4 -1.7 4.8 0" fill="#e2706a"/><path d="M-4.1 -83.8 h8.2 v1.0 h-8.2z" fill="#fff"/><circle cx="-11.9" cy="-104.2" r="5.1" fill="#5a3418"/><circle cx="-5.1" cy="-108.2" r="5.4" fill="#5a3418"/><circle cx="2.5" cy="-109.0" r="5.4" fill="#5a3418"/><circle cx="9.9" cy="-105.9" r="5.1" fill="#5a3418"/><circle cx="14.4" cy="-100.5" r="4.4" fill="#5a3418"/><circle cx="-15.0" cy="-99.7" r="4.4" fill="#5a3418"/><g fill="#3a2e2a" opacity=".32"><ellipse cx="-9.4" cy="-85.5" rx="4.4" ry="1.7" transform="rotate(-18 -9.4 -85.5)"/><ellipse cx="7.7" cy="-100.5" rx="3.4" ry="1.4" transform="rotate(12 7.7 -100.5)"/><ellipse cx="2.0" cy="-88.6" rx="1.7" ry="1.2"/></g><g><path d="M-20.4 -102.5 C-22.1 -115.0 20.4 -118.3 22.4 -104.8 C10.2 -99.7 -8.5 -98.8 -20.4 -102.5Z" fill="#2e7d4f" stroke="#1f1530" stroke-width="0.85" stroke-opacity=".4"/><path d="M-19.5 -102.5 C-6.8 -98.5 10.2 -99.1 22.1 -104.9" stroke="#e3b23c" stroke-width="2.4" fill="none"/><path d="M11.9 -109.8 C23.8 -132.8 44.2 -127.7 45.9 -114.1 C37.4 -124.3 23.8 -120.9 16.1 -108.2Z" fill="#f2b631" stroke="#bbb" stroke-width="0.51"/><path d="M14.4 -109.0 C25.5 -124.3 37.4 -124.3 42.5 -116.7" stroke="#ffffff" stroke-width="2.0" fill="none"/><circle cx="13.6" cy="-107.6" r="2.7" fill="#e3b23c" stroke="#a8781c" stroke-width="0.68"/></g></g><!-- @einde piet --></g>
+
+  <!-- terug naar het dak van Twan -->
+  <g><path d="M30 760 h200 v50 h-200 l-24 -25z" fill="#c9a467" stroke="#5a3a1d" stroke-width="4"/>
+    <text x="128" y="794" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="600" font-size="22" fill="#4a2a10">Naar Twan</text>
+    <path d="M120 810 V880" stroke="#5a3a1d" stroke-width="8"/></g>
+
+  <rect width="1600" height="900" fill="url(#d2Vign)" pointer-events="none"/>
+
+  <!-- klikvlakken -->
+  <g>
+    <rect class="hit" data-hs="terug3" data-label="Terug naar het dak van Twan (nummer 8)" x="0" y="740" width="250" height="150"/>
+    <rect class="hit" data-hs="maan2" data-label="Maan" x="180" y="110" width="120" height="120"/>
+    <rect class="hit" data-hs="schoorsteen2" data-label="De schoorsteen van Hidde" x="626" y="230" width="140" height="220"/>
+    <rect class="hit" data-hs="dakraam" data-label="Dakraam met een briefje" x="820" y="556" width="284" height="148"/>
+    <rect class="hit" data-hs="wip" data-label="Plank over de nok, met de jutezak" x="1030" y="310" width="410" height="130"/>
+    <rect class="hit" data-hs="piet2" data-label="Klimpiet" x="830" y="300" width="140" height="140"/>
+  </g>
+</svg>

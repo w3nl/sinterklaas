@@ -50,8 +50,17 @@
 .sb-fed .sb-restless{animation:none}
 @keyframes sbEat{0%,100%{transform:rotate(18deg)}50%{transform:rotate(24deg)}}
 .sb-fed .sb-restless #sb-horsehead{animation:sbEat 1.4s ease-in-out infinite}
-@keyframes sbArrive{0%{transform:translateX(-30px)}100%{transform:translateX(0)}}
-.sb-arrive #sb-bg-lock,.sb-arrive #sb-bg-quay{animation:sbArrive 4s ease-out}
+/* de boot vaart: de oever schuift weg naar rechts en de sluis (en daarna de kade) schuift van links het beeld in */
+@keyframes sbOutRight{from{transform:none}to{transform:translateX(1700px)}}
+@keyframes sbInLeft{from{transform:translateX(-1000px)}to{transform:none}}
+.sb-depart #sb-bg-river,.sb-arrive #sb-bg-lock{display:inline!important;animation:sbOutRight 4.5s ease-in-out forwards}
+.sb-depart #sb-bg-lock,.sb-arrive #sb-bg-quay{animation:sbInLeft 4.5s ease-in-out}
+.sb-depart .sb-waves path,.sb-arrive .sb-waves path{animation-duration:.8s}
+/* de verstopte Saab rijdt over de dijk en verdwijnt achter de boot */
+@keyframes sbSaab{0%{transform:translate(-120px,537px)}40%,100%{transform:translate(460px,537px)}}
+.sb-saab{transform:translate(340px,537px);animation:sbSaab 16s linear infinite}
+@keyframes sbBroem{0%,100%{transform:none}50%{transform:translateY(-3px) rotate(-3deg)}}
+.sb-saabbody.broem{animation:sbBroem .2s ease-in-out 8}
 
 /* ---------- de stoomketel ---------- */
 .ketel{display:flex;flex-direction:column;gap:12px}
@@ -143,8 +152,57 @@
 .sb-ashore #sb-sint{animation:sbAshoreSint 6s ease-in-out}
 .sb-ashore #sb-horsewalk{animation:sbAshoreHorse 6s ease-in-out}
 .sb-ashore #sb-horsewalk .hleg{transform-box:fill-box;transform-origin:50% 4%;animation:hlegStep .9s ease-in-out infinite}
+/* het bordje naar huis (hoofdstuk 2) klopt zachtjes, zodat je het ziet */
+@keyframes sbExit{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+.sb-exit-sign{transform-box:fill-box;transform-origin:center;animation:sbExit 1.6s ease-in-out infinite}
 .sb-ashore #sb-horsewalk .hleg.b{animation-delay:-.45s}
 .sb-ashore #sb-horsehead{animation:none!important}
 /* confetti dwarrelt omlaag: hij begint boven het beeld */
 @keyframes sbConf{0%{transform:translate(0,-60px) rotate(0)}100%{transform:translate(30px,960px) rotate(540deg)}}
 .sb-conf{transform-box:fill-box;transform-origin:center;animation:sbConf 5s linear infinite}
+
+/* ---------- het ruim ---------- */
+@keyframes rmBob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.rm-bob{animation:rmBob 2.6s ease-in-out infinite}
+@keyframes rmWave{0%,100%{transform:translateX(0)}50%{transform:translateX(-16px)}}
+.rm-wave{animation:rmWave 3.2s ease-in-out infinite}
+@keyframes rmLantern{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+.rm-lantern{transform-box:view-box;transform-origin:600px 60px;animation:rmLantern 3.6s ease-in-out infinite}
+@keyframes rmFish{0%{transform:translateX(30px)}100%{transform:translateX(-40px)}}
+.rm-fish{animation:rmFish 6s ease-in-out infinite alternate}
+/* drijven of zinken */
+.drijf{display:flex;flex-direction:column;gap:12px}
+.dr-list{display:flex;flex-direction:column;gap:6px}
+.dr-row{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;background:rgba(255,255,255,.04);padding:6px 10px;border-radius:6px}
+.dr-row span{display:flex;flex-direction:column}
+.dr-row small{color:var(--muted)}
+.dr-opt.on{background:var(--amber);color:var(--ink)}
+.dr-tip{font-size:14px;color:var(--muted);margin:0}
+/* het Grote Boek op volgorde */
+.bladen{display:flex;flex-direction:column;gap:12px}
+.bl-pages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.bl-page{background:#f6ead2;color:#3a1d12;border:2px solid #b9a37a;border-radius:4px;padding:10px 6px;display:flex;flex-direction:column;align-items:center;font-family:var(--f-hand);font-size:22px;cursor:pointer}
+.bl-page small{font-size:13px;color:#7a5a3a}
+.bl-page:nth-child(odd){transform:rotate(-2deg)}.bl-page:nth-child(even){transform:rotate(2deg)}
+.bl-page.in{opacity:.3}
+.bl-book{font-family:var(--f-mono);font-size:14px;color:var(--amber);min-height:1.4em}
+@media (max-width:520px){.bl-pages{grid-template-columns:repeat(2,minmax(0,1fr))}.dr-row{grid-template-columns:1fr}}
+/* grapjes: ballonnen knallen, de meeuw schrikt, de eendjes duiken, het visje schiet weg */
+@keyframes sbPop{0%{transform:scale(1);opacity:1}100%{transform:scale(1.6);opacity:0}}
+.sb-balloon.pop{opacity:0;animation:sbPop .22s ease-out}
+@keyframes sbGrow{0%{transform:scale(0)}100%{transform:scale(1)}}
+.sb-balloon.grow{animation:sbGrow .9s ease-out}
+@keyframes sbScared{0%{transform:none;opacity:1}15%{transform:translate(220px,-260px) rotate(-25deg);opacity:1}16%,90%{transform:translate(220px,-260px);opacity:0}100%{transform:none;opacity:1}}
+.sb-gullbody.scared{animation:sbScared 9s ease-in forwards}
+@keyframes sbDive{0%,100%{transform:none;opacity:1}20%,70%{transform:translateY(14px);opacity:.15}}
+.sb-duckdive.dive{animation:sbDive 2.6s ease-in-out}
+@keyframes rmFlee{0%{transform:none;opacity:1}12%{transform:translate(-90px,20px);opacity:0}90%{transform:translate(-90px,20px);opacity:0}100%{transform:none;opacity:1}}
+.rm-fishbody.flee{animation:rmFlee 6s ease-in forwards}
+/* meer grapjes: de molen draait door, de reiger schrikt, de hangmat schommelt */
+.sb-mill.fast{animation-duration:.5s}
+@keyframes sbHop{0%,40%,80%,100%{transform:none}20%,60%{transform:translateY(-10px)}}
+.sb-sheep.hop{animation:sbHop 1.2s ease-out}
+@keyframes sbShock{0%,100%{transform:none}20%,70%{transform:translateY(-18px) rotate(-12deg)}}
+.sb-heronhead.shock{animation:sbShock 1.8s ease-out}
+@keyframes rmHammock{0%,100%{transform:rotate(0)}25%{transform:rotate(4deg)}75%{transform:rotate(-4deg)}}
+#rm-hammock.swing{transform-box:view-box;transform-origin:310px 230px;animation:rmHammock 1s ease-in-out 3}

@@ -58,6 +58,33 @@ test('Hoofdstuk 1: de stoomboot naar Grave', async ({ page }) => {
   await skip(page);
   await expect(page.locator('#sb-mitre')).toBeVisible();
 
+  // het ruim: drijven of zinken, en het Grote Boek op alfabet
+  await hs(page, 'boek'); await skip(page);
+  await hs(page, 'luik');
+  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 1 · In het ruim');
+  await page.waitForTimeout(600); await skip(page);
+  await hs(page, 'water');
+  const drijf = { paard: 'down', auto: 'down', eend: 'up', knikker: 'down', bal: 'up', munt: 'down' };
+  for (const [k, v] of Object.entries(drijf)) await page.locator(`.dr-row[data-k="${k}"] .dr-opt[data-v="${v}"]`).click();
+  await page.locator('#dr-go').click();
+  await expect(page.locator('#dr-fb')).toContainText('hobbelpaard');
+  await page.locator('.dr-row[data-k="paard"] .dr-opt[data-v="up"]').click();
+  await page.locator('#dr-go').click();
+  await expect(page.locator('#dr-fb')).toHaveClass(/good/);
+  await waitModalClosed(page);
+  await expect(page.locator('#rm-net')).toBeVisible();
+  await hs(page, 'bladen');
+  await page.locator('.bl-page[data-n="Daan"]').click();
+  await expect(page.locator('#bl-fb')).toContainText('eerder in het alfabet');
+  for (const n of ['Anne-Lieve', 'Daan', 'Floris', 'Hidde', 'Rosa']) await page.locator(`.bl-page[data-n="${n}"]`).click();
+  await page.locator('.bl-page[data-n="Silvie"]').click();
+  await expect(page.locator('#bl-fb')).toContainText('letter die verschilt');
+  for (const n of ['Sem', 'Silvie', 'Twan']) await page.locator(`.bl-page[data-n="${n}"]`).click();
+  await expect(page.locator('#bl-fb')).toHaveClass(/good/);
+  await waitModalClosed(page);
+  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 1 · De stoomboot komt');
+  await page.waitForTimeout(600); await skip(page);
+
   // de sluis: deur open, erin, deur dicht, water erin, deur open, eruit
   await hs(page, 'sluis');
   await page.locator('#sl-up').click();

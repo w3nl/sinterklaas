@@ -55,6 +55,7 @@ button.chip:hover{border-color:var(--amber);color:var(--amber)}
 .dialog .who em{font-style:normal;color:var(--muted);letter-spacing:.08em}
 .dialog .txt{font-size:16px;max-width:75ch;text-wrap:pretty}
 .dialog.who-sys{border-left-color:var(--muted)} .dialog.who-sys .who{color:var(--muted)}
+.dialog.sung .txt{font-style:italic}
 @media (min-width:760px){
   .dialog{position:absolute;left:3%;right:3%;bottom:3.5%;z-index:4;backdrop-filter:blur(3px)}
 }
@@ -166,3 +167,6 @@ button.chip:hover{border-color:var(--amber);color:var(--amber)}
 @keyframes hlegStep{0%,100%{transform:rotate(13deg)}50%{transform:rotate(-13deg)}}
 .walking .hleg{transform-box:fill-box;transform-origin:50% 4%;animation:hlegStep .9s ease-in-out infinite}
 .walking .hleg.b{animation-delay:-.45s}
+/* grapjes: een woordje dat even boven iets opstijgt (gagText in core.js) */
+@keyframes gagUp{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(-50px);opacity:0}}
+.gag-txt{font-family:Fredoka,sans-serif;font-weight:700;font-size:34px;fill:#fff7d6;stroke:#3a1d12;stroke-width:5px;paint-order:stroke;text-anchor:middle;pointer-events:none;animation:gagUp 1.3s ease-out forwards}

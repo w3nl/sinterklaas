@@ -86,3 +86,31 @@
 @keyframes dkParcel{0%{transform:translateY(-40px)}100%{transform:translateY(60px)}}
 .dk-parcel{transform:translateY(60px)}
 .dk-lower .dk-parcel{animation:dkParcel 2.4s ease-in}
+
+/* ---------- het dak van Anne-Lieve ---------- */
+#d2-wip{transform-box:view-box;transform-origin:1236px 415px;transform:rotate(-7deg);transition:transform 1.2s ease-in-out}
+.d2-level #d2-wip{transform:none}
+/* de wip */
+.wip3{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px;align-items:center}
+.wp-svg{width:100%;height:auto;background:#1c2856;border-radius:8px}
+.wp-side{display:flex;flex-direction:column;gap:10px}
+.wp-side p{margin:0}
+.wp-btns{display:flex;gap:6px;flex-wrap:wrap}
+.wp-btns .btn.on{background:var(--amber);color:var(--ink)}
+/* spiegelschrift */
+.spiegel3{display:flex;flex-direction:column;gap:12px}
+.sp3-glass{background:linear-gradient(135deg,#ffd58a,#f2b631);padding:14px;border-radius:6px;border:6px solid #c9b893}
+.sp3-note{transform:scaleX(-1);background:#fffaf0;color:#7a1a16;font-family:var(--f-hand);font-size:26px;line-height:1.25;padding:10px 14px;border-radius:3px;text-align:center}
+.sp3-gifts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.sp3-gift{display:flex;flex-direction:column;align-items:center;gap:6px;background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:6px;padding:8px;color:var(--paper);cursor:pointer}
+.sp3-box{width:54px;height:44px;border-radius:4px;border:3px solid #f2b631}
+.sp3-box.dots{background-image:radial-gradient(#fff 22%,transparent 24%);background-size:12px 12px}
+.sp3-box.lines{background-image:repeating-linear-gradient(90deg,#fff 0 4px,transparent 4px 12px)}
+@media (max-width:620px){.wip3{grid-template-columns:1fr}.sp3-gifts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* grapje: de uil vliegt weg en komt terug */
+@keyframes dkOwlFly{0%{transform:none;opacity:1}15%{transform:translate(-160px,-120px) scale(.6);opacity:1}20%,85%{transform:translate(-160px,-120px) scale(.6);opacity:0}100%{transform:none;opacity:1}}
+.dk-owlbody.fly{animation:dkOwlFly 7s ease-in-out}
+/* meer grapjes: de maan knipoogt, Zwartje blaast */
+#dk-moonface{opacity:0;transition:opacity .3s}
+#dk-moonface.wink{opacity:1}
+.dk-cattail.puff{animation:none;stroke-width:14}

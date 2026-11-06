@@ -45,7 +45,7 @@ function useItem(item, hs){
       return openTouw();
     }
     if(hs === 'piet') return say([['piet', "Niet aan mij geven, aan de schoorsteen!"]]);
-    return say(item === 'touw' ? "Een touw om pakjes door de schoorsteen te laten zakken." : "Deze pakjes moeten door de schoorsteen van Noor.");
+    return say(item === 'touw' ? "Een touw om pakjes door de schoorsteen te laten zakken." : "Deze pakjes moeten door de schoorsteen van Twan.");
   }
   say(hs === 'paard' ? "Ozosnel snuffelt eraan en schudt zijn hoofd. Nee, dank je." : "Dat werkt hier niet. Probeer het ergens anders.");
 }

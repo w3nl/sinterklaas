@@ -375,35 +375,35 @@ def seated(p, skin, top, legs, hair_draw, extra_front='', extra_back='', mouth='
 
 
 def mama(p, mug=True):
-    hair = '#5a3418'
+    hair = '#d9a04a'   # blond met een gouden, rossige gloed
     back = f'<path d="M-24 -104 C-32 -80 -34 -62 -30 -50 L30 -50 C34 -62 32 -80 24 -104Z" fill="{hair}"/>'
     front = (f'<path d="M-21 -100 C-24 -126 -6 -128 2 -124 C14 -130 26 -120 21 -98 C14 -114 6 -112 -2 -116 C-10 -110 -16 -110 -21 -100Z" fill="{hair}"/>'
-             f'<path d="M-20 -102 C-26 -84 -24 -66 -18 -56 M20 -102 C26 -84 24 -66 18 -56" stroke="{hair}" stroke-width="7" fill="none" stroke-linecap="round"/>')
+             f'<path d="M-20 -102 C-26 -84 -24 -66 -18 -56 M20 -102 C26 -84 24 -66 18 -56" stroke="{hair}" stroke-width="7" fill="none" stroke-linecap="round"/>'
+             f'<path d="M-6 -122 C2 -126 10 -122 14 -114" stroke="#f2cf7a" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".8"/>')
     s, sd, _ = SKIN['roze']
+    top = '#9b7fd0'
     if mug:
-        arms = (f'<path d="M-24 -62 C-34 -44 -24 -30 -6 -34" stroke="#2f6f7a" stroke-width="12" fill="none" stroke-linecap="round"/>'
-                f'<path d="M24 -62 C34 -44 26 -32 10 -36" stroke="#2f6f7a" stroke-width="12" fill="none" stroke-linecap="round"/>'
+        arms = (f'<path d="M-24 -62 C-34 -44 -24 -30 -6 -34" stroke="{top}" stroke-width="12" fill="none" stroke-linecap="round"/>'
+                f'<path d="M24 -62 C34 -44 26 -32 10 -36" stroke="{top}" stroke-width="12" fill="none" stroke-linecap="round"/>'
                 f'<g class="wk-mug"><rect x="-6" y="-50" width="18" height="20" rx="3" fill="#f3efe6" stroke="#cfc6b2"/><path d="M12 -45 q8 0 8 6 q0 6 -8 6" stroke="#f3efe6" stroke-width="3" fill="none"/>'
                 f'<path d="M-2 -52 h10" stroke="#8a5a3a" stroke-width="2"/><path class="wk-steam" d="M2 -56 q-5 -8 0 -14 q5 -6 0 -12" stroke="#fff" stroke-width="2" fill="none" opacity=".5"/></g>'
                 + hand(-6, -36, 6, s, sd) + hand(12, -36, 6, s, sd))
     else:
         arms = None
-    return seated(p, 'roze', '#2f6f7a', '#2b3f66', (back, front), arms=arms,
+    return seated(p, 'roze', top, '#2b3f66', (back, front), arms=arms,
                   extra_front=f'<path d="M-18 -44 q18 8 36 0" stroke="#ffffff55" stroke-width="2" fill="none"/>')
 
 
 def papa(p):
-    hair = '#2a1a10'
+    hair = '#d8b56a'   # kort en blond
     front = (f'<path d="M-20 -104 C-22 -124 -4 -128 4 -124 C16 -128 24 -118 20 -104 C14 -114 6 -114 0 -116 C-8 -112 -14 -112 -20 -104Z" fill="{hair}"/>'
-             f'<path d="M-20 -98 C-22 -78 -10 -70 0 -70 C10 -70 22 -78 20 -98 C14 -88 8 -84 0 -84 C-8 -84 -14 -88 -20 -98Z" fill="{hair}"/>'
-             f'<path d="M-8 -86 q8 6 16 0" stroke="#8a3a2a" stroke-width="2" fill="none"/>'
              # een mijter van krantenpapier
              f'<path d="M-18 -116 L-12 -150 Q0 -162 12 -150 L18 -116Z" fill="#efeadf" stroke="#9a9488" stroke-width="1.2"/>'
              + ''.join(f'<path d="M-12 {y} h{20 - (y + 150) * .1:.0f}" stroke="#8a8478" stroke-width="1.2"/>' for y in (-142, -136, -130, -124))
              + f'<rect x="-10" y="-148" width="8" height="5" fill="#8a8478"/>')
-    sweater = '#2f5a8a'
-    return seated(p, 'midden', sweater, '#3a3f4a', ('', front),
-                  extra_front=f'<path d="M-24 -44 h48" stroke="#f2b631" stroke-width="3"/><path d="M-24 -38 h48" stroke="#fff" stroke-width="2" opacity=".7"/>')
+    sweater = '#f2f2ee'   # een wit overhemd
+    return seated(p, 'licht', sweater, '#8a8478', ('', front),
+                  extra_front=f'<path d="M0 -76 V-10" stroke="#c9c9c2" stroke-width="1.5"/><g fill="#5a5a5a"><circle cx="0" cy="-60" r="1.6"/><circle cx="0" cy="-46" r="1.6"/><circle cx="0" cy="-32" r="1.6"/></g><path d="M-8 -76 L0 -68 L8 -76" stroke="#c9c9c2" stroke-width="2" fill="none"/>')
 
 
 def oma(p):
@@ -424,18 +424,45 @@ def oma(p):
 
 
 def sem(p):
-    """Sem, het kleine broertje, staand (oorsprong tussen de voeten), met een blauwe Pietenmuts van papier."""
+    """Anne-Lieve, het kleine zusje, staand (oorsprong tussen de voeten), blond met een staartje boven op haar hoofd."""
     s, sd, _ = SKIN['licht']
-    g = [f'<path d="M-12 -30 L-12 -4 M12 -30 L12 -4" stroke="#1f4fa8" stroke-width="10" stroke-linecap="round"/>'
-         f'<ellipse cx="-13" cy="-2" rx="8" ry="4" fill="#c4302b"/><ellipse cx="13" cy="-2" rx="8" ry="4" fill="#c4302b"/>'
-         f'<path d="M-20 -30 C-22 -56 -14 -70 0 -70 C14 -70 22 -56 20 -30Z" fill="#f2b631" stroke="#c48a10" stroke-width="1"/>'
-         f'<circle cx="0" cy="-48" r="7" fill="#c4302b"/><path d="M-7 -48 h14 M0 -55 v14" stroke="#fff" stroke-width="1.6"/>'
-         f'<path d="M-16 -62 C-28 -70 -30 -84 -26 -92" stroke="#f2b631" stroke-width="9" fill="none" stroke-linecap="round"/>'
-         f'<path d="M16 -62 C28 -70 30 -84 26 -92" stroke="#f2b631" stroke-width="9" fill="none" stroke-linecap="round"/>'
+    hair = '#ecd08a'
+    g = [f'<path d="M-10 -30 L-10 -4 M10 -30 L10 -4" stroke="#c73f6d" stroke-width="8" stroke-linecap="round"/>'
+         f'<ellipse cx="-11" cy="-2" rx="8" ry="4" fill="#c4302b"/><ellipse cx="11" cy="-2" rx="8" ry="4" fill="#c4302b"/>'
+         f'<path d="M-25 -24 L-15 -66 C-8 -71 8 -71 15 -66 L25 -24Z" fill="#f2b631" stroke="#c48a10" stroke-width="1"/>'
+         f'<path d="M-25 -24 h50" stroke="#c4302b" stroke-width="3"/>'
+         f'<circle cx="0" cy="-50" r="7" fill="#c4302b"/><path d="M-7 -50 h14 M0 -57 v14" stroke="#fff" stroke-width="1.6"/>'
+         f'<path d="M-14 -62 C-26 -70 -30 -84 -26 -92" stroke="#f2b631" stroke-width="8" fill="none" stroke-linecap="round"/>'
+         f'<path d="M14 -62 C26 -70 30 -84 26 -92" stroke="#f2b631" stroke-width="8" fill="none" stroke-linecap="round"/>'
          + hand(-26, -95, 5.5, s, sd) + hand(26, -95, 5.5, s, sd)]
+    # halflang haar, en een staartje boven op het hoofd
+    g.append(f'<path d="M-17 -94 C-22 -80 -21 -70 -16 -64 M17 -94 C22 -80 21 -70 16 -64" stroke="{hair}" stroke-width="7" fill="none" stroke-linecap="round"/>')
     g.append(face(p, 0, -88, 17, 'licht', mouth='open'))
-    g.append(''.join(f'<circle cx="{x}" cy="{y}" r="5" fill="#e0b04a"/>' for x, y in [(-14, -96), (-9, -102), (-2, -104), (6, -103), (12, -98), (15, -91)]))
-    g.append(f'<path d="M-12 -100 L0 -132 L12 -100Z" fill="#1f4fa8" stroke="{GOLD}" stroke-width="2"/><circle cx="0" cy="-132" r="3" fill="{GOLD}"/>')
+    g.append(f'<path d="M-17 -90 C-18 -108 -6 -108 0 -106 C6 -108 18 -108 17 -90 C12 -100 6 -98 0 -100 C-6 -98 -12 -100 -17 -90Z" fill="{hair}"/>')
+    g.append(f'<circle cx="0" cy="-107" r="3" fill="#c73f6d"/><path d="M0 -108 C-4 -120 -12 -124 -8 -130 C-2 -126 2 -120 0 -108 C4 -120 12 -126 10 -132 C14 -124 6 -116 0 -108Z" fill="{hair}"/>')
+    return ''.join(g)
+
+
+def silvie(p):
+    """Silvie, de grote zus, staand (oorsprong tussen de voeten), met lang goudblond haar en een wit jasje."""
+    s, sd, _ = SKIN['licht']
+    hair = '#dca24c'   # blond met een gouden, rossige gloed
+    jacket, inner = '#f3ecdc', '#8a3fa0'
+    g = [f'<path d="M-12 -4 C-13 -30 -12 -50 -10 -72 L-2 -72 C-2 -50 -3 -30 -4 -4Z M12 -4 C13 -30 12 -50 10 -72 L2 -72 C2 -50 3 -30 4 -4Z" fill="#2b3f66"/>'
+         f'<ellipse cx="-9" cy="-2" rx="9" ry="4.5" fill="#f3efe6" stroke="#bdb6a6"/><ellipse cx="9" cy="-2" rx="9" ry="4.5" fill="#f3efe6" stroke="#bdb6a6"/>',
+         # lang haar achter de schouders
+         f'<path d="M-20 -150 C-28 -126 -28 -104 -22 -96 L22 -96 C28 -104 28 -126 20 -150Z" fill="{hair}"/>',
+         f'<path d="M-18 -70 C-22 -96 -20 -118 -12 -124 C-6 -128 6 -128 12 -124 C20 -118 22 -96 18 -70Z" fill="{jacket}" stroke="#00000026" stroke-width="1.2"/>'
+         f'<path d="M-7 -124 L0 -100 L7 -124Z M-6 -100 h12 v28 h-12z" fill="{inner}"/>'
+         f'<path d="M-15 -118 C-24 -100 -24 -84 -20 -72" stroke="{jacket}" stroke-width="9" fill="none" stroke-linecap="round"/>'
+         f'<path d="M15 -118 C24 -100 24 -84 20 -72" stroke="{jacket}" stroke-width="9" fill="none" stroke-linecap="round"/>'
+         + hand(-20, -69, 5, s, sd) + hand(20, -69, 5, s, sd),
+         f'<rect x="-5" y="-134" width="10" height="9" fill="{sd}"/>',
+         face(p, 0, -148, 17, 'licht'),
+         f'<path d="M-18 -146 C-20 -168 -6 -170 0 -167 C8 -170 20 -166 18 -146 C12 -158 4 -156 -2 -160 C-8 -156 -14 -156 -18 -146Z" fill="{hair}"/>'
+         f'<path d="M-17 -148 C-21 -132 -20 -118 -16 -108 M17 -148 C21 -132 20 -118 16 -108" stroke="{hair}" stroke-width="6" fill="none" stroke-linecap="round"/>',
+         # het kettinkje met de S
+         f'<path d="M-6 -124 Q0 -114 6 -124" stroke="{GOLD}" stroke-width="1.4" fill="none"/><text x="0" y="-112" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="8" font-weight="700" fill="{GOLD}">S</text>']
     return ''.join(g)
 
 
@@ -531,11 +558,15 @@ SCENES = {
         'piet': lambda: place(piet('dkP', 'klim', pose='sit', cap_id='dk-cap'), 945, 636, 1.3),
         'sint': lambda: place(rider('dkR'), 1180, 381, .42),
     },
+    'dak2': {
+        'piet': lambda: place(piet('d2P', 'klim', pose='sit'), 900, 436, .9),
+    },
     'feest': {
-        'papa': lambda: place(papa('paD'), 372, 560, 1.0),
-        'oma': lambda: place(oma('paO'), 470, 560, .96),
-        'mama': lambda: place(mama('paM', mug=False), 568, 560, 1.0),
+        'papa': lambda: place(papa('paD'), 432, 560, 1.0),
+        'oma': lambda: place(oma('paO'), 530, 560, .96),
+        'mama': lambda: place(mama('paM', mug=False), 628, 560, 1.0),
         'sem': lambda: place(sem('paS'), 666, 724, .9),
+        'silvie': lambda: place(silvie('paV'), 214, 812, 1.3),
         'zwaai': lambda: place(sint('paW', staff=True), 1296, 356, .15) + place(piet('paWP', 'klim', 'sit'), 1334, 343, .17),
     },
 }
@@ -546,7 +577,7 @@ def main():
         path = os.path.join(ROOT, 'scenes', scene + '.svg')
         src = open(path, encoding='utf-8').read()
         for name, fn in parts.items():
-            pat = re.compile(r'(<!-- @personage ' + re.escape(name) + r' -->)(.*?)(<!-- @einde ' + re.escape(name) + r' -->)', re.S)
+            pat = re.compile(r'(<!--\s*@personage\s+' + re.escape(name) + r'\s*-->)(.*?)(<!--\s*@einde\s+' + re.escape(name) + r'\s*-->)', re.S)
             if not pat.search(src):
                 raise SystemExit(f'{scene}.svg: geen plek voor personage "{name}"')
             src = pat.sub(lambda m: m.group(1) + fn() + m.group(3), src)

@@ -1,7 +1,7 @@
 // Service worker: maakt het spel installeerbaar en offline speelbaar.
 // Verhoog CACHE bij elke wijziging, zodat telefoons de nieuwe versie krijgen, en houd GAME_VERSION in js/boot.js
 // hetzelfde getal (tests/pwa.spec.js controleert dat). De pagina toont dat getal en biedt herladen aan bij een nieuwere versie.
-const CACHE = 'sint-v5';
+const CACHE = 'sint-v19';
 const CORE = [
   './',
   './index.html',
@@ -30,9 +30,13 @@ const CORE = [
   './js/voice.js',
   './js/app.js',
   './scenes/boot.svg',
+  './scenes/ruim.svg',
   './scenes/kamer.svg',
+  './scenes/keuken.svg',
   './scenes/dak.svg',
+  './scenes/dak2.svg',
   './scenes/feest.svg',
+  './scenes/gang.svg',
   './portraits/you.svg',
   './portraits/sint.svg',
   './portraits/hoofd.svg',
@@ -48,7 +52,8 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('activate', event => {
-  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())
+  // only our own old caches: other games on the same github.io origin keep theirs
+  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k.startsWith('sint-') && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())
     .then(() => self.clients.matchAll({ type: 'window' })).then(pages => pages.forEach(p => p.postMessage({ type: 'version', cache: CACHE }))));
 });
 

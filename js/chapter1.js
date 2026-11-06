@@ -34,6 +34,7 @@ function applyBoot(){
   show('#sb-confetti', !!f.out1);
   $('#sc-boot').classList.toggle('sb-out', !!f.out1);
   show('#hit-gangway', !!f.plank);
+  show('#sb-exit', !!f.out1); show('#hit-exit1', !!f.out1);
   $('#sc-boot').classList.toggle('sb-fed', !!f.voer);
   $('#sb-lockred').setAttribute('fill', f.lock ? '#4a1a16' : '#e2483d');
   $('#sb-lockgreen').setAttribute('fill', f.lock ? '#5fd36a' : '#244a2a');
@@ -42,7 +43,7 @@ function applyBoot(){
   $('#sb-gaugewater').setAttribute('y', 692 - k.w * 7); $('#sb-gaugewater').setAttribute('height', Math.max(1, k.w * 7));
 }
 /* Wat er nog moet gebeuren voordat Sint aan wal kan. */
-const TODO1 = [['engine', 'De stoommachine weer aan de praat'], ['lock', 'Door de sluis bij Grave'], ['mijter', 'De mijter op het hoofd van Sint'], ['voer', 'Ozosnel rustig'], ['plank', 'Een veilige loopplank naar de kade']];
+const TODO1 = [['engine', 'De stoommachine weer aan de praat'], ['drijf', 'De pakjes uit het water in het ruim'], ['bladen', 'Het Grote Boek weer op volgorde'], ['lock', 'Door de sluis bij Grave'], ['mijter', 'De mijter op het hoofd van Sint'], ['voer', 'Ozosnel rustig'], ['plank', 'Een veilige loopplank naar de kade']];
 const ready1 = () => TODO1.every(([k]) => S.f[k]);
 
 /* Elk hoofdstuk heeft zijn eigen speculaaspop om te vinden (klikvlak "koek"); dit zeg je als je hem pakt. */
@@ -64,12 +65,13 @@ const H = {
     say("TOEEET! Het geluid rolt over de Maas.");
   },
   sint(){
-    if(S.f.out1) return say([['sint', "Wat een welkom, beste Hulppiet! Kijk eens hoeveel kinderen er zijn. Ik zwaai nog even, en dan gaan we naar het kasteel."]]);
+    if(S.f.out1) return say([['sint', "Wat een welkom, beste Hulppiet! Kijk eens hoeveel kinderen er zijn. Ik zwaai nog even, en dan gaan we naar het kasteel."], ['sint', "En jij gaat naar huis: volg het bordje op de kade. Vanavond mag je je schoen zetten!"]]);
     if(ready1()) return win1();
     if(!S.f.engine) return say([['sint', "Ach, beste Hulppiet. Daar liggen we, stil op de Maas, en heel Grave staat op ons te wachten."], ['sint', "Wil jij eens in de machinekamer kijken? Ik ben goed in heel veel dingen, maar niet in stoommachines."]]);
     if(!S.f.mijter) return say([['sint', "Weet jij waar mijn mijter is? Ik heb hem gisteravond in de hoedendoos gelegd, op slot, zodat Klimpiet er niet mee gaat voetballen."], ['sint', "Alleen weet ik de code niet meer. Iets met mijn leeftijd. Hoe oud word ik ook alweer?"]]);
     if(!S.f.lock) return say([['sint', "Mijn mijter zit weer waar hij hoort. Nu de sluis nog, dan zijn we er bijna."]]);
     if(!S.f.voer) return say([['sint', "Hoor je Ozosnel stampen? Hij houdt van de kinderen, maar al die muziek maakt hem onrustig. Een lekker hapje helpt altijd."]]);
+    if(!S.f.drijf || !S.f.bladen) return say([['sint', "Hoofdpiet zegt dat er in het ruim nog van alles rondslingert. Wil jij even kijken, beste Hulppiet? Het luik zit in de vloer van mijn hut."]]);
     say([['sint', "Ik ben er klaar voor. Maar hoe kom ik van dit hoge dek af, op mijn leeftijd? En Ozosnel moet er ook af."]]);
   },
   hoofd(){
@@ -80,7 +82,9 @@ const H = {
   zakken(){ S.f.zakTaps = (S.f.zakTaps || 0) + 1; save();
     say(S.f.zakTaps > 2 ? ["Je knijpt nog eens in een zak. Er piept iets. Een piepend pakje? Je krijgt het niet te zien."] : ["Jutezakken vol pakjes, en een paar losse pakjes in glanzend papier. Op één label staat: NIET SCHUDDEN.", ['hoofd', "Handen thuis, Hulppiet! Die zijn voor 5 december."]]); },
   doos(){ if(S.f.box) return say("De hoedendoos is leeg. De mijter heb je al gevonden."); openHatbox(); },
-  boek(){ S.ach.boek = true; save();
+  boek(){
+    if(!S.f.bladen) return say(["Het Grote Boek van Sinterklaas. Maar… er zit alleen nog een kaft om! Alle bladzijden zijn weg.", ['piet', "(vanuit de mast) Oeps. Ik heb erin gebladerd en toen woei alles door het luik naar beneden. Het ruim in."], ['hoofd', "KLIMPIET! Hulppiet, wil jij ze gaan zoeken? Via het luik in de vloer van de hut."]]);
+    S.ach.boek = true; save();
     say(["Het Grote Boek van Sinterklaas. Er staan duizenden namen in, met kleine aantekeningen ernaast.",
          "Je bladert stiekem naar de letter van je eigen naam. Er staat: \"Heel behulpzaam. Wil graag Hulppiet zijn.\"",
          ['sint', "Ahum. Het Grote Boek is van mij, beste Hulppiet. Maar ja, dat klopt wel, hè?"]]); },
@@ -98,11 +102,42 @@ const H = {
   rad(){ say(S.f.engine && !S.f.lock ? "Het schoepenrad draait en spat het water van de Maas in het rond." : ["Het grote schoepenrad aan de zijkant. Als de stoommachine draait, draait het rad, en de schoepen duwen het water naar achteren.", "Zo duwt de boot zichzelf vooruit."]); },
   oever(){ say(["Knotwilgen, koeien en in de verte een molen. Het is stil op de Maas.", "Te stil: de stoomboot ligt stil. Er komt geen rook meer uit de schoorsteen."]); },
   sluis(){ if(S.f.lock) return; openSluis(); },
-  kade(){ S.ach.zwaai = true; save(); say(["Honderden kinderen op de kade! Ze zwaaien met vlaggetjes en dragen papieren mijters en Pietenmutsen.", "Je zwaait terug. Een klein meisje gilt: \"Kijk, een Hulppiet!\""]); },
+  kade(){ S.ach.zwaai = true; save(); say(["Honderden kinderen op de kade! Ze zwaaien met vlaggetjes en dragen papieren mijters en Pietenmutsen.", "Je zwaait terug. Een jongetje met een Pietenmuts, Hidde, gilt: \"Kijk, een Hulppiet!\" Zijn grote zus zwaait met twee handen.",
+    ['sys', "En de hele kade zingt: ♪ Zie, ginds komt de stoomboot uit Spanje weer aan, hij brengt ons Sint Nicolaas, ik zie hem al staan! ♪", 'stoomboot']]); },
   burg(){ say([['burg', "Welkom in Grave! Ik heb een hele toespraak geschreven. Vier kantjes."], ['burg', "Maar ik zie dat Sinterklaas nog niet van de boot af kan. Ik oefen nog even."]]); },
   kerk(){ say("De toren van de Sint-Elisabethkerk in Grave. Het is bijna elf uur."); },
   mast(){ say([['piet', "Hoi Hulppiet! Ik ben Klimpiet. Vanaf hier zie ik heel Grave al liggen!"], ['piet', "Ik klim overal op: masten, daken, schoorstenen. Behalve op Ozosnel. Die vindt dat niet leuk."]]); },
-  loopplank(){ if(S.f.out1) return startCh2(); if(ready1()) return win1(); say("De loopplank ligt klaar. Maar is alles op het lijstje van Hoofdpiet al gedaan?"); }
+  loopplank(){ if(S.f.out1) return startCh2(); if(ready1()) return win1(); say("De loopplank ligt klaar. Maar is alles op het lijstje van Hoofdpiet al gedaan?"); },
+  luik(){ go('ruim'); if(!S.f.ruimSeen){ S.f.ruimSeen = true; save(); setTimeout(() => say(["Je klimt het laddertje af, het ruim in. Het ruikt naar touw, pepernoten en natte sokken.", "Het kraakt en het klotst. Er staat water op de bodem! En daar drijven… pakjes?"]), 400); } },
+  /* het ruim */
+  trapop(){ go('boot'); },
+  water(){ if(S.f.drijf) return say("Het water klotst nog wat na. De drijvende pakjes zitten veilig in het schepnet."); openDrijf(); },
+  bladen(){ if(S.f.bladen) return; openBladen(); },
+  kisten(){ say(["Kisten vol strooigoed: pepernoten, marsepein, chocolademunten. Op een kist staat BREEKBAAR.", ['hoofd', "(van boven) Ik heb ze geteld, Hulppiet. 4218 pepernoten. Floris-piet en Twan-piet hebben ze gisteren gesjouwd. Niet aankomen, ik tel ze straks nog een keer!"]]); },
+  poort(){ say(["Door de ronde raampjes zie je het water van de Maas. Een visje zwemt voorbij en kijkt je aan.", "Het water buiten staat hoger dan het water hier binnen. Gelukkig zitten de raampjes goed dicht."]); },
+  hangmat(){ const h = $('#rm-hammock'); if(gag(h, 'swing', 3000)) gagText(h, 'Zzzz…');
+    say(["Een rode hangmat tussen twee balken. Hier slaapt Klimpiet, als hij niet in de mast hangt.", "Er ligt een half opgegeten chocoladeletter in. Een K. Of was het een P?"]); },
+  saab1(h){ const c = h.closest('.sb-saabbody');
+    if(gag(c, 'broem', 1600)){ gagText(c, 'BROEM BROEM!'); [90, 120, 150, 190].forEach((f, i) => setTimeout(() => beep(f, .14, 'sawtooth', .05), i * 130)); }
+    if(S.ach.saab) return;
+    S.ach.saab = true; save();
+    setTimeout(() => say(["Over de dijk rijdt een klein rood autootje met een lange neus. Een Saab 900!", ['hoofd', "Dat is de burgemeester. Hij is laat, en hij heeft zijn kofferbak vol ballonnen."], ['sint', "Wel, wel, wel. Toet toet, beste burgemeester!"]]), 900); },
+  molen(){ const m = $('#sc-boot .sb-mill'); if(!gag(m, 'fast', 3000)) return; gagText(m, 'WIEEE!'); for(let i = 0; i < 8; i++) setTimeout(() => beep(300 + i * 60, .05, 'triangle', .03), i * 70); },
+  schaap(h){ const s = $('#sb-sheep' + h.dataset.s); if(!gag(s, 'hop', 1200)) return; gagText(s, 'Bèèèh!'); [0, 1, 2, 3].forEach(i => setTimeout(() => beep(i % 2 ? 330 : 360, .09, 'sawtooth', .035), i * 90)); },
+  reiger(){ const r = $('#sc-boot .sb-heronhead'); if(!gag(r, 'shock', 1800)) return; gagText(r, 'GRAK!'); beep(180, .25, 'sawtooth', .05); },
+  ruimlamp(){ say("Een olielampje. Het zwaait zachtjes heen en weer met de boot mee."); },
+  /* grapjes */
+  ballon(h){
+    const b = document.querySelectorAll('#sc-boot .sb-balloon')[+h.dataset.b];
+    if(!b || b.classList.contains('pop')) return;
+    gagText(b, 'PANG!'); b.classList.add('pop'); beep(1500, .03, 'square', .1); setTimeout(() => beep(140, .18, 'sawtooth', .06), 30);
+    setTimeout(() => { b.classList.remove('pop'); b.classList.add('grow'); setTimeout(() => b.classList.remove('grow'), 900); }, 12000);
+    if(document.querySelectorAll('#sc-boot .sb-balloon.pop').length === 4){ S.ach.pang = true; save();
+      say(["Een klein jongetje op de kade kijkt naar zijn lege touwtje. \"Mijn ballon…\"", ['hoofd', "HULPPIET! Die waren voor de intocht!"], ['burg', "Geeft niks, hoor. Ik heb er nog driehonderd in de kofferbak."]]); }
+  },
+  meeuw(h){ const g = h.closest('.sb-gullbody'); if(!gag(g, 'scared', 9000)) return; gagText(g, 'KRIJS!'); [1500, 1250, 1450].forEach((f, i) => setTimeout(() => beep(f, .09, 'triangle', .05), i * 110)); },
+  eendjes(h){ const d = h.parentNode.querySelector('.sb-duckdive'); gagText(d, 'KWAK!'); if(!gag(d, 'dive', 2600)) return; [0, 180].forEach(t => setTimeout(() => beep(280, .12, 'sawtooth', .05), t)); },
+  visje(){ const f = $('#sc-ruim .rm-fishbody'); if(!gag(f, 'flee', 6000)) return; gagText(f, 'Blub!'); beep(600, .06, 'sine', .06); setTimeout(() => beep(400, .08, 'sine', .05), 90); }
 };
 
 /* ---------- puzzel 1: de stoomketel (water kookt bij 100 °C en wordt stoom) ---------- */
@@ -153,7 +188,7 @@ function openKetel(){
       if(k.t < 100){ nope(); return fb('#ket-fb', tx('Er komt alleen een zuchtje warme lucht. Het water is {t} °C: warm, maar het kookt nog niet. Water wordt pas stoom bij 100 °C.', { t: k.t }), 'bad'); }
       S.f.engine = true; save();
       fb('#ket-fb', 'Psssssst! De stoom duwt de zuiger heen en weer, en het schoepenrad gaat draaien. Stoom neemt wel 1700 keer zoveel ruimte in als het water waar het van gemaakt is: daarom duwt het zo hard!', 'good');
-      solved(() => { applyVisuals(); moment('boot', 'sb-arrive', 4000);
+      solved(() => { moment('boot', 'sb-depart', 5000); applyVisuals();
         say([['sys', "Puf, puf, puf. Er komt weer rook uit de schoorsteen en de stoomboot vaart verder over de Maas."],
              ['hoofd', "Hoera! Maar kijk: de sluis bij Grave. Het water achter die deuren staat veel hoger dan hier. Hoe komen we daar ooit?"],
              ['hoofd', "Vraag het de sluiswachter, in het huisje op de kant."]]); }, 2200);
@@ -215,7 +250,7 @@ function openSluis(){
         if(!L.up){ nope(); return fb('#sl-fb', L.high ? 'De boot ligt nu hoog, maar de bovendeuren zijn nog dicht.' : 'Daar zit een hoge, dichte deur, en daarachter staat het water veel hoger. Zo kom je er niet door.', 'bad'); }
         L.pos = 2; redraw(); S.f.lock = true; save();
         fb('#sl-fb', 'De stoomboot vaart de sluis uit, het hoge water op. Zo werkt een sluis: deur dicht, water erin, deur open. Het water tilt de boot omhoog!', 'good');
-        solved(() => { applyVisuals();
+        solved(() => { moment('boot', 'sb-arrive', 5000); applyVisuals();
           say([['sys', "Achter de sluis ligt Grave. De kade staat vol kinderen, de muziek speelt en de klokken luiden."],
                ['sluis', "Bedankt, Hulppiet! Hatsjoe!"],
                ['hoofd', "We liggen aan de kade! Nu moet Sinterklaas nog van boord. En Ozosnel ook."]]); }, 2200);
@@ -278,12 +313,12 @@ function openRomeins(){
 
 /* ---------- puzzel 4: de voerkist (wat een paard wel en niet mag eten) ---------- */
 const FEED = [
-  ['wortel', 'Wortels', true, 'Wortels: knapperig en gezond. Ozosnel is er dol op.'],
-  ['hooi', 'Hooi', true, 'Hooi: gedroogd gras. Daar zitten veel vezels in, en die heeft een paard het meest nodig.'],
-  ['appel', 'Een appel', true, 'Een appel: lekker en gezond, als je hem in stukjes geeft.'],
-  ['choco', 'Chocoladeletter', false, 'Nee! Chocolade is giftig voor paarden, en ook voor honden en katten. Er zit een stofje in, theobromine, dat hun hart van slag brengt. Chocolade is alleen voor mensen.'],
   ['pepernoot', 'Pepernoten', false, 'Een paar pepernoten als snoepje kan echt geen kwaad, maar een hele zak? Een paard heeft vooral vezels nodig, zoals hooi en gras. Bewaar ze voor de kinderen!'],
-  ['chips', 'Een zak chips', false, 'Chips zijn zout en vet. Niks voor een paard (en eigenlijk ook niet zo goed voor jou).']
+  ['hooi', 'Hooi', true, 'Hooi: gedroogd gras. Daar zitten veel vezels in, en die heeft een paard het meest nodig.'],
+  ['wortel', 'Wortels', true, 'Wortels: knapperig en gezond. Ozosnel is er dol op.'],
+  ['chips', 'Een zak chips', false, 'Chips zijn zout en vet. Niks voor een paard (en eigenlijk ook niet zo goed voor jou).'],
+  ['choco', 'Chocoladeletter', false, 'Nee! Chocolade is giftig voor paarden, en ook voor honden en katten. Er zit een stofje in, theobromine, dat hun hart van slag brengt. Chocolade is alleen voor mensen.'],
+  ['appel', 'Een appel', true, 'Een appel: lekker en gezond, als je hem in stukjes geeft.']
 ];
 function openVoer(){
   const pick = S.vr || (S.vr = []);
@@ -336,8 +371,80 @@ function openPlank(){
       if(P.m < 8){ nope(); return fb('#pl-fb', P.m === 2 ? 'Een plank van 2 meter voor 2 meter hoogte? Dan staat hij recht omhoog: dat is een ladder! Paarden kunnen niet op een ladder klimmen.' : tx('Te steil! Deze plank is maar {per} meter lang voor elke meter omhoog. Ozosnel zet één hoef erop en doet een stap terug.', { per }), 'bad'); }
       S.f.plank = true; save(); applyVisuals();
       fb('#pl-fb', '8 meter voor 2 meter hoogte: dat is 4 meter plank voor elke meter omhoog. Precies goed! Hoe langer de plank, hoe minder steil hij is.', 'good');
-      solved(() => say([['hoofd', "De loopplank ligt er! Alles van mijn lijstje is klaar."], ['hoofd', "Klik op Sinterklaas, dan gaat hij aan wal."]]), 2400);
+      solved(() => say(ready1() ? [['hoofd', "De loopplank ligt er! Alles van mijn lijstje is klaar."], ['hoofd', "Klik op Sinterklaas, dan gaat hij aan wal."]]
+        : [['hoofd', "De loopplank ligt er!"], ['hoofd', tx('Maar op mijn lijstje staat nog: {list}.', { list: TODO1.filter(([k]) => !S.f[k]).map(([, t]) => t).join(', ').toLowerCase() })]]), 2400);
     };
+  });
+}
+
+/* ---------- begin en einde ---------- */
+function applyRuim(){
+  const f = S.f, show = vis;
+  show('#rm-floaters', !f.drijf); show('#rm-net', !!f.drijf);
+  show('#rm-pages', !f.bladen); show('#hit-bladen', !f.bladen);
+}
+
+/* ---------- extra puzzel: drijven of zinken (het hangt af van hoe zwaar iets is voor zijn grootte) ---------- */
+const FLOAT = [
+  ['auto', 'Een ijzeren speelgoedauto', 'ijzer', false, 'IJzer is veel zwaarder dan evenveel water. Zo\'n autootje zinkt als een baksteen, hoe klein hij ook is.'],
+  ['paard', 'Een groot houten hobbelpaard', 'hout', true, 'Het hobbelpaard is het zwaarste pakje van allemaal, en tóch drijft het: hout is lichter dan evenveel water.'],
+  ['knikker', 'Een zakje glazen knikkers', 'glas', false, 'Knikkers zijn klein en licht, maar glas is zwaarder dan evenveel water. Klein is niet hetzelfde als drijven!'],
+  ['munt', 'Chocolademunten in goudpapier', 'chocolade', false, 'Chocolade is een beetje zwaarder dan evenveel water. De munten zinken naar de bodem.'],
+  ['eend', 'Een rubberen eendje', 'rubber, met lucht erin', true, 'Een eendje zit vol lucht. Lucht is heel licht, dus het eendje dobbert gewoon bovenop.'],
+  ['bal', 'Een voetbal', 'leer, met lucht erin', true, 'Een voetbal is groot, maar er zit bijna alleen lucht in. Hij drijft.']
+];
+function openDrijf(){
+  const pick = S.drj || (S.drj = {});
+  openModal('Pakjes in het water', 'Het ruim lekt een beetje, en er zijn pakjes in het water gevallen', `
+    <div class="drijf">
+      <p>Op elk label staat wat erin zit. De pakjes die <b>drijven</b> vis je zo op met het schepnet. Voor de pakjes die <b>zinken</b> moet Klimpiet straks duiken. Welke drijven en welke zinken?</p>
+      <div class="dr-list">${FLOAT.map(([k, n, m]) => `<div class="dr-row" data-k="${k}"><span><b>${n}</b><small>${m}</small></span>
+        <button type="button" class="btn ghost dr-opt${pick[k] === 'up' ? ' on' : ''}" data-v="up">Drijft</button><button type="button" class="btn ghost dr-opt${pick[k] === 'down' ? ' on' : ''}" data-v="down">Zinkt</button></div>`).join('')}</div>
+      <p class="dr-tip">Hoofdpiet: <i>"Of iets drijft, hangt er niet van af hoe zwaar het is. Het hangt ervan af of het zwaarder of lichter is dan <b>evenveel water</b>."</i></p>
+      <button type="button" class="btn" id="dr-go">Opvissen!</button>
+      <div class="feedback" id="dr-fb"></div>
+    </div>`, body => {
+    body.querySelectorAll('.dr-row').forEach(r => r.querySelectorAll('.dr-opt').forEach(b => b.onclick = () => {
+      pick[r.dataset.k] = b.dataset.v; save(); beep(b.dataset.v === 'up' ? 760 : 380, .05);
+      r.querySelectorAll('.dr-opt').forEach(x => x.classList.toggle('on', x === b));
+    }));
+    $('#dr-go').onclick = () => {
+      if(FLOAT.some(([k]) => !pick[k])) return fb('#dr-fb', 'Kies bij elk pakje: drijft het of zinkt het?', 'bad');
+      const wrong = FLOAT.find(([k, , , up]) => (pick[k] === 'up') !== up);
+      if(wrong){ nope(); return fb('#dr-fb', (wrong[3] ? 'Je zwaait met het net, maar je vist niks op: ' : 'Je zoekt en zoekt aan de oppervlakte, maar hij is al naar de bodem gezakt. ') + wrong[4], 'bad'); }
+      S.f.drijf = true; save(); applyVisuals();
+      fb('#dr-fb', 'Precies goed! Het hobbelpaard, het eendje en de voetbal dobberen bovenop. Je vist ze er zo uit. De auto, de knikkers en de munten liggen op de bodem.', 'good');
+      solved(() => say([['piet', "(van boven) Duiken? Ik? Nou, vooruit. Voor chocolademunten doe ik alles."], "PLONS. Even later komt Klimpiet proestend boven, met de auto, de knikkers en de munten. En een sok."]), 2600);
+    };
+  });
+}
+
+/* ---------- extra puzzel: het Grote Boek op volgorde (alfabetisch: eerst de eerste letter, dan de tweede) ---------- */
+const PAGES1 = ['Rosa', 'Daan', 'Silvie', 'Anne-Lieve', 'Hidde', 'Twan', 'Floris', 'Sem'];
+const PAGES1_OK = [...PAGES1].sort((a, b) => a.localeCompare(b, 'nl'));
+function openBladen(){
+  let done = 0;
+  openModal('Het Grote Boek', 'Alle bladzijden liggen door elkaar', `
+    <div class="bladen">
+      <p>In het Grote Boek staan de kinderen <b>op alfabet</b>. Klik de bladzijden aan in de goede volgorde: eerst de naam die vooraan in het alfabet hoort.</p>
+      <div class="bl-pages">${PAGES1.map(n => `<button type="button" class="bl-page" data-n="${n}"><b>${n}</b><small>Heel lief geweest.</small></button>`).join('')}</div>
+      <div class="bl-book" id="bl-book">📖</div>
+      <div class="feedback" id="bl-fb"></div>
+    </div>`, body => {
+    body.querySelectorAll('.bl-page').forEach(b => b.onclick = () => {
+      const n = b.dataset.n, want = PAGES1_OK[done];
+      if(n !== want){ nope();
+        return fb('#bl-fb', n.slice(0, 2) === want.slice(0, 2) || n[0] === want[0] ? tx('{n} en {w} beginnen hetzelfde. Kijk dan naar de eerste letter die verschilt!', { n, w: want })
+          : tx('{n}? Er is nog een naam die eerder in het alfabet komt. A, B, C, D…', { n }), 'bad'); }
+      done++; b.disabled = true; b.classList.add('in'); beep(500 + done * 60, .05);
+      $('#bl-book').textContent = '📖 ' + PAGES1_OK.slice(0, done).join(', ');
+      fb('#bl-fb', '');
+      if(done === PAGES1_OK.length){
+        S.f.bladen = true; save(); applyVisuals();
+        fb('#bl-fb', 'Anne-Lieve, Daan, Floris, Hidde, Rosa, Sem, Silvie, Twan. Beginnen twee namen hetzelfde, kijk dan naar de eerste letter die verschilt: Sem voor Silvie (e voor i).', 'good');
+        solved(() => { go('boot'); setTimeout(() => say(["Je klimt met de bladzijden naar boven en legt het Grote Boek weer netjes op de tafel van Sint.", ['sint', "Wel, wel, wel. Allemaal op alfabet! Nu kan ik iedereen weer vinden. Dank je, beste Hulppiet."]]), 450); }, 2800);
+      }
+    });
   });
 }
 
@@ -355,6 +462,8 @@ function win1(){
   say([['sint', "Dank je wel, beste Hulppiet. Wat een hulp ben jij!"],
        ['sys', "Sinterklaas loopt over de loopplank, met zijn staf en zijn mijter. Ozosnel loopt rustig achter hem aan."],
        ['burg', "Welkom in Grave, Sinterklaas!"],
-       ['sys', "Duizend kinderen zingen: \"Zie ginds komt de stoomboot!\" En ze zwaaien naar Sint. En naar jou."],
+       ['sys', "Duizend kinderen zingen: ♪ Hoe huppelt zijn paardje het dek op en neer, hoe waaien de wimpels al heen en al weer! ♪", 'stoomboot'],
+       ['hoofd', "♪ Zijn knecht staat te lachen en roept ons reeds toe… ♪ Hoor je dat, Hulppiet? Dat gaat over ons!"],
+       ['sys', "Iedereen zwaait naar Sint. En naar jou."],
        ['sint', "En nu, Hulppiet, ga jij naar huis. Vanavond mag je je schoen zetten…"]], showWin);
 }

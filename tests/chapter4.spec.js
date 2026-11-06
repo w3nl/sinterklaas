@@ -7,22 +7,42 @@ test('Hoofdstuk 4: pakjesavond', async ({ page }) => {
   await expect(page.locator('#d-who')).toHaveText('Pakjesavond · 5 december');
   await skip(page);
 
-  // de zware zak: wielen geven minder wrijving
+  // de zware zak: door de gang naar de voordeur; wielen geven minder wrijving
   await hs(page, 'voordeur');
+  await skip(page);
+  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 4 · In de gang');
+  await hs(page, 'buitendeur');
   await skip(page);
   await page.locator('.zk-btns .btn[data-k="sleep"]').click();
   await expect(page.locator('#zk-fb')).toContainText('wrijving');
   await page.locator('.zk-btns .btn[data-k="skate"]').click();
   await expect(page.locator('#zk-fb')).toHaveClass(/good/);
   await waitModalClosed(page);
+  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 4 · Pakjesavond');
+  await page.waitForTimeout(600); await skip(page);
   await expect(page.locator('#pa-sack')).toBeVisible();
+  await hs(page, 'saab4');
+  await expect(page.locator('#sc-feest .gag-txt', { hasText: 'BROEM BROEM!' })).toBeAttached();
+  await expect(page.locator('#d-txt')).toContainText('Saab 900', { timeout: 5_000 });
+  await skip(page);
+
+  // eerlijk delen: 27 pepernoten over 6 mensen
+  await hs(page, 'strooigoed');
+  await page.locator('#dl-each').fill('5'); await page.locator('#dl-rest').fill('0');
+  await page.locator('#dl-go').click();
+  await expect(page.locator('#dl-fb')).toContainText('maar 27');
+  await page.locator('#dl-each').fill('4'); await page.locator('#dl-rest').fill('3');
+  await page.locator('#dl-go').click();
+  await expect(page.locator('#dl-fb')).toHaveClass(/good/);
+  await waitModalClosed(page);
+  await expect(page.locator('#pa-pepers')).toBeHidden();
 
   // van wie is welk pakje? logisch redeneren
   await hs(page, 'pakjes');
-  for (const k of ['rond', 'plat', 'lang', 'zacht']) await page.locator(`select[data-k="${k}"]`).selectOption('Papa');
+  for (const k of ['rond', 'plat', 'klein', 'lang', 'zacht']) await page.locator(`select[data-k="${k}"]`).selectOption('Papa');
   await page.locator('#nm-go').click();
   await expect(page.locator('#nm-fb')).toContainText('twee pakjes');
-  const right = { rond: 'Sem', plat: 'Oma', lang: 'Papa', zacht: 'Mama' };
+  const right = { rond: 'Anne-Lieve', plat: 'Oma', klein: 'Silvie', lang: 'Papa', zacht: 'Mama' };
   for (const k in right) await page.locator(`select[data-k="${k}"]`).selectOption(right[k]);
   await page.locator('#nm-go').click();
   await expect(page.locator('#nm-fb')).toHaveClass(/good/);
@@ -39,13 +59,29 @@ test('Hoofdstuk 4: pakjesavond', async ({ page }) => {
   await expect(page.locator('#gd-fb')).toHaveClass(/good/);
   await waitModalClosed(page);
 
+  // de lootjes: niemand heeft zichzelf
+  await hs(page, 'voordeur');
+  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 4 · In de gang');
+  await expect(page.locator('#ga-envelope')).toBeVisible();
+  await hs(page, 'brievenbus');
+  const lot = { Papa: 'Papa', Mama: 'Silvie', Oma: 'Papa', Silvie: 'Anne-Lieve', 'Anne-Lieve': 'Oma', Jij: 'Mama' };
+  for (const p in lot) await page.locator(`.lt-row select[data-p="${p}"]`).selectOption(lot[p]);
+  await page.locator('#lt-go').click();
+  await expect(page.locator('#lt-fb')).toContainText('Papa heeft Papa');
+  await page.locator('.lt-row select[data-p="Papa"]').selectOption('Jij');
+  await page.locator('#lt-go').click();
+  await expect(page.locator('#lt-fb')).toHaveClass(/good/);
+  await waitModalClosed(page);
+  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 4 · Pakjesavond');
+  await page.waitForTimeout(600); await skip(page);
+
   // de surprise: welke bouwplaten worden een kubus?
   await hs(page, 'zak4');
-  await page.locator('.nt-card[data-k="A"]').click();
   await page.locator('.nt-card[data-k="B"]').click();
+  await page.locator('.nt-card[data-k="A"]').click();
   await page.locator('#nt-go').click();
   await expect(page.locator('#nt-fb')).toContainText('rechthoek');
-  await page.locator('.nt-card[data-k="B"]').click();
+  await page.locator('.nt-card[data-k="A"]').click();
   await page.locator('.nt-card[data-k="C"]').click();
   await page.locator('#nt-go').click();
   await expect(page.locator('#nt-fb')).toHaveClass(/good/);
@@ -64,4 +100,5 @@ test('Hoofdstuk 4: pakjesavond', async ({ page }) => {
   await expectWin(page, 'Pakjesavond · alle hoofdstukken klaar');
   await expect(page.locator('#btn-next')).toBeHidden();
   await expect(page.locator('#pa-wave')).toBeAttached();
+  await expect(page.locator('#w-ach .got', { hasText: 'Een Saab gespot' })).toBeVisible();
 });

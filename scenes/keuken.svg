@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" class="scene" id="sc-keuken" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-label="De keuken">
+  <defs>
+    <pattern id="kkTile" width="60" height="60" patternUnits="userSpaceOnUse"><rect width="60" height="60" fill="#eef1f2"/><rect width="60" height="60" fill="none" stroke="#c9d3d8" stroke-width="2"/><path d="M30 18 l6 12 l-6 12 l-6 -12z" fill="#3d6fa8" opacity=".7"/><circle cx="30" cy="30" r="3" fill="#eef1f2"/></pattern>
+    <pattern id="kkFloor" width="80" height="80" patternUnits="userSpaceOnUse"><rect width="80" height="80" fill="#d9c9a8"/><rect width="40" height="40" fill="#8a6a4a"/><rect x="40" y="40" width="40" height="40" fill="#8a6a4a"/></pattern>
+    <linearGradient id="kkNight" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b1330"/><stop offset="1" stop-color="#28345e"/></linearGradient>
+    <radialGradient id="kkOven" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#ffb24a"/><stop offset="1" stop-color="#7a2a0a"/></radialGradient>
+    <radialGradient id="kkLamp" cx=".5" cy=".3" r=".7"><stop offset="0" stop-color="#fff3c4" stop-opacity=".35"/><stop offset="1" stop-color="#fff3c4" stop-opacity="0"/></radialGradient>
+    <radialGradient id="kkWarm" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ff9a3c" stop-opacity=".35"/><stop offset="1" stop-color="#ff9a3c" stop-opacity="0"/></radialGradient>
+    <radialGradient id="kkVign" cx=".5" cy=".45" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient>
+  </defs>
+
+  <!-- muur en vloer -->
+  <rect width="1600" height="680" fill="#e9dcc0"/>
+  <rect x="280" y="300" width="1060" height="180" fill="url(#kkTile)"/>
+  <rect y="660" width="1600" height="240" fill="url(#kkFloor)"/>
+  <rect y="652" width="1600" height="14" fill="#5a3a1d"/>
+  <rect width="1600" height="30" fill="#b9a37a"/>
+  <circle cx="800" cy="120" r="420" fill="url(#kkLamp)"/>
+  <path d="M800 30 V80" stroke="#333" stroke-width="3"/><path d="M770 110 Q800 70 830 110Z" fill="#c21f2b"/><ellipse cx="800" cy="110" rx="30" ry="5" fill="#ffe3a0"/>
+
+  <!-- de deur terug naar de woonkamer -->
+  <rect x="40" y="220" width="210" height="440" fill="#5a3a1d"/>
+  <rect x="56" y="236" width="178" height="424" fill="#3a2414"/>
+  <rect x="70" y="250" width="150" height="410" fill="#7a3a2a" opacity=".5"/>
+  <circle cx="150" cy="420" r="120" fill="url(#kkWarm)" class="pulse"/>
+  <path d="M80 660 V560 H210 V660" fill="#9e4646" opacity=".7"/>
+
+  <!-- de keukenklok -->
+  <g><circle cx="430" cy="190" r="46" fill="#fff" stroke="#c21f2b" stroke-width="7"/>
+    <g stroke="#333" stroke-width="3" stroke-linecap="round"><path d="M430 152 v6 M468 190 h-6 M430 228 v-6 M392 190 h6"/></g>
+    <g id="kk-hands2"><path d="M430 190 L417 207" stroke="#222" stroke-width="5" stroke-linecap="round"/><path d="M430 190 L462 190" stroke="#222" stroke-width="3" stroke-linecap="round"/></g>
+    <g id="kk-hands4" style="display:none"><path d="M430 190 L412 200" stroke="#222" stroke-width="5" stroke-linecap="round"/><path d="M430 190 L430 158" stroke="#222" stroke-width="3" stroke-linecap="round"/></g>
+    <circle cx="430" cy="190" r="4" fill="#c21f2b"/></g>
+
+  <!-- het raam -->
+  <rect x="610" y="140" width="300" height="230" fill="#f6f1e6"/>
+  <rect x="626" y="156" width="268" height="198" fill="url(#kkNight)"/>
+  <circle cx="840" cy="210" r="22" fill="#f6efd0"/>
+  <path d="M626 300 L690 260 L760 300 L820 270 L894 310 V354 H626Z" fill="#0d1124"/>
+  <g fill="#f6d77a"><rect x="660" y="320" width="10" height="12"/><rect x="840" y="326" width="10" height="12"/></g>
+  <path d="M760 156 V354 M626 255 H894" stroke="#f6f1e6" stroke-width="8"/>
+  <path d="M600 140 q60 50 0 230 z M920 140 q-60 50 0 230z" fill="#f2b631" opacity=".85"/>
+  <!-- een plantje en een potje speculaaskruiden op de vensterbank -->
+  <rect x="600" y="370" width="320" height="10" fill="#c9b893"/>
+  <g><path d="M640 370 l4 -20 h22 l4 20z" fill="#c4502b"/><path d="M655 350 q-10 -20 -4 -32 M655 350 q6 -22 16 -28" stroke="#3f7a3a" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+  <g><rect x="850" y="340" width="26" height="30" rx="4" fill="#8a3a2a"/><rect x="848" y="334" width="30" height="8" rx="2" fill="#c9a24a"/></g>
+
+  <!-- het aanrecht met de kastjes -->
+  <rect x="280" y="480" width="1060" height="20" fill="#c9b893"/>
+  <rect x="290" y="500" width="1040" height="160" fill="#4f7a5a"/>
+  <g stroke="#3a5a42" stroke-width="4" fill="none"><rect x="306" y="516" width="180" height="128" rx="6"/><rect x="500" y="516" width="180" height="128" rx="6"/><rect x="1150" y="516" width="166" height="128" rx="6"/></g>
+  <g fill="#c9a24a"><circle cx="470" cy="580" r="5"/><circle cx="516" cy="580" r="5"/><circle cx="1166" cy="580" r="5"/></g>
+  <!-- de oven, met het fornuis erboven -->
+  <rect x="700" y="500" width="430" height="160" fill="#2a2a2a"/>
+  <rect x="720" y="526" width="390" height="112" rx="10" fill="#141414" stroke="#555" stroke-width="5"/>
+  <rect x="740" y="544" width="350" height="78" rx="6" fill="url(#kkOven)" opacity=".8" id="kk-ovenglow"/>
+  <path d="M760 600 h310" stroke="#555" stroke-width="3"/>
+  <rect x="760" y="510" width="310" height="8" rx="3" fill="#888"/>
+  <g fill="#2a2a2a"><ellipse cx="760" cy="476" rx="40" ry="8"/><ellipse cx="880" cy="476" rx="40" ry="8"/><ellipse cx="1000" cy="476" rx="40" ry="8"/></g>
+  <!-- de kookwekker op het aanrecht -->
+  <g id="kk-timer"><circle cx="1090" cy="454" r="24" fill="#f2b631" stroke="#c48a10" stroke-width="3"/><circle cx="1090" cy="454" r="16" fill="#fffaf0"/><path d="M1090 454 V442" stroke="#c21f2b" stroke-width="3" stroke-linecap="round"/><rect x="1084" y="424" width="12" height="8" rx="2" fill="#c48a10"/></g>
+  <!-- het receptenboek en de mengkom -->
+  <g><path d="M330 474 l90 -14 l90 14 v8 l-90 -12 l-90 12z" fill="#fffaf0" stroke="#b9a37a" stroke-width="2"/>
+    <path d="M346 470 l60 -9 M346 462 l60 -9 M434 461 l60 9 M434 469 l60 9" stroke="#8a7a5a" stroke-width="2"/>
+    <text x="378" y="452" font-family="Caveat, cursive" font-size="20" fill="#7a1a16" transform="rotate(-8 378 452)">Pepernoten</text></g>
+  <g><path d="M540 440 h120 q-6 40 -60 40 q-54 0 -60 -40z" fill="#3d6fa8"/><ellipse cx="600" cy="440" rx="60" ry="10" fill="#c9a26a"/><path d="M640 400 l-30 40" stroke="#c9a467" stroke-width="7" stroke-linecap="round"/></g>
+  <g><rect x="1160" y="430" width="60" height="50" rx="6" fill="#f6ead2" stroke="#b9a37a" stroke-width="2"/><text x="1190" y="462" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="14" fill="#7a5a3a">MEEL</text></g>
+  <g><rect x="1240" y="440" width="44" height="40" rx="6" fill="#fff" stroke="#b9a37a" stroke-width="2"/><text x="1262" y="466" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="11" fill="#7a5a3a">SUIKER</text></g>
+
+  <!-- de koelkast -->
+  <rect x="1370" y="200" width="200" height="456" rx="12" fill="#eef2f3" stroke="#9aa1a8" stroke-width="4"/>
+  <path d="M1370 380 h200" stroke="#9aa1a8" stroke-width="4"/>
+  <rect x="1394" y="230" width="8" height="120" rx="3" fill="#9aa1a8"/><rect x="1394" y="400" width="8" height="160" rx="3" fill="#9aa1a8"/>
+  <rect x="1440" y="250" width="90" height="70" fill="#fffaf0" transform="rotate(4 1485 285)"/><path d="M1452 290 q20 -24 40 0 M1500 280 l10 12 l10 -12" stroke="#c21f2b" stroke-width="3" fill="none" transform="rotate(4 1485 285)"/>
+  <circle cx="1460" cy="420" r="9" fill="#c4302b"/><circle cx="1520" cy="440" r="9" fill="#f2b631"/>
+
+  <!-- de keukentafel met de brief van Anne-Lieve -->
+  <rect x="250" y="700" width="420" height="18" rx="4" fill="#a8743f"/>
+  <rect x="272" y="718" width="14" height="140" fill="#7a4a26"/><rect x="634" y="718" width="14" height="140" fill="#7a4a26"/>
+  <g id="kk-letter"><rect x="330" y="664" width="110" height="40" fill="#fffaf0" stroke="#ccc" transform="rotate(-6 385 684)"/>
+    <path d="M342 676 q10 -6 20 0 t20 0 t20 0 M342 688 q10 -6 20 0 t20 0" stroke="#4f9a4a" stroke-width="2.5" fill="none" transform="rotate(-6 385 684)"/></g>
+  <g><rect x="470" y="680" width="80" height="6" fill="#c21f2b" transform="rotate(8 510 683)"/><rect x="480" y="690" width="70" height="6" fill="#1f4fa8" transform="rotate(-5 515 693)"/></g>
+  <!-- de schaal met pepernoten (als ze gebakken zijn) -->
+  <g id="kk-pepers" style="display:none"><path d="M560 704 h90 q-6 22 -45 22 q-39 0 -45 -22z" fill="#c21f2b"/>
+    <g fill="#a8642a"><circle cx="580" cy="702" r="6"/><circle cx="594" cy="698" r="6"/><circle cx="608" cy="702" r="6"/><circle cx="622" cy="698" r="6"/><circle cx="636" cy="702" r="6"/><circle cx="601" cy="692" r="6"/><circle cx="616" cy="691" r="6"/></g></g>
+
+  <!-- het etensbakje van Poes -->
+  <g><ellipse cx="1300" cy="780" rx="40" ry="12" fill="#c21f2b"/><ellipse cx="1300" cy="776" rx="30" ry="7" fill="#8a5a2a"/><text x="1300" y="800" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="12" fill="#fff">POES</text></g>
+
+  <rect width="1600" height="900" fill="url(#kkVign)" pointer-events="none"/>
+
+  <!-- klikvlakken -->
+  <g>
+    <rect class="hit" data-hs="terugkamer" data-label="Terug naar de woonkamer" x="40" y="220" width="210" height="440"/>
+    <rect class="hit" data-hs="keukenklok" data-label="Keukenklok" x="380" y="140" width="100" height="100"/>
+    <rect class="hit" data-hs="kkraam" data-label="Keukenraam" x="610" y="140" width="300" height="230"/>
+    <rect class="hit" data-hs="kruiden" data-label="Speculaaskruiden" x="842" y="328" width="42" height="46"/>
+    <rect class="hit" data-hs="recept" data-label="Receptenboek en mengkom" x="320" y="396" width="350" height="92"/>
+    <rect class="hit" data-hs="oven" data-label="Oven en kookwekker" x="700" y="420" width="420" height="240"/>
+    <rect class="hit" data-hs="wekker" data-label="De kookwekker" x="1060" y="420" width="60" height="62"/>
+    <rect class="hit" data-hs="koelkast" data-label="Koelkast" x="1366" y="196" width="208" height="464"/>
+    <rect class="hit" data-hs="brief" data-label="Een brief van Anne-Lieve" x="320" y="650" width="140" height="64"/>
+    <rect class="hit" data-hs="etensbak" data-label="Etensbakje van Poes" x="1250" y="756" width="100" height="50"/>
+  </g>
+</svg>

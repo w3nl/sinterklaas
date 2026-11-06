@@ -13,8 +13,12 @@ function ambKey(){
   const f = S.f;
   switch(S.scene){
     case 'boot': return 'boot' + (f.engine && !f.lock ? '+engine' : '') + (f.lock ? '+quay' : '');
+    case 'ruim': return 'ruim' + (f.engine && !f.lock ? '+engine' : '');
     case 'kamer': return 'kamer';
-    case 'dak': return 'dak' + (f.gust && !f.wind ? '+gust' : '');
+    case 'keuken': return 'keuken';
+    case 'dak': case 'dak2': return 'dak' + (f.gust && !f.wind ? '+gust' : '');
+    case 'gang': if(S.ch === 2) return 'kamer';
+    // falls through
     case 'feest': return 'feest' + (f.out4 ? '+cheer' : '');
   }
   return null;
@@ -22,6 +26,7 @@ function ambKey(){
 function ambUpdate(){
   let want = null;
   try{ want = ambKey(); }catch(e){}
+  if(!want) stopSinging();
   if(want === AMB.cur) return;
   ambStop();
   AMB.cur = want;
@@ -29,7 +34,7 @@ function ambUpdate(){
 }
 
 function ambStop(){
-  AMB.timers.forEach(clearTimeout); AMB.timers = [];
+  AMB.timers.forEach(clearTimeout); AMB.timers = []; AMB.music = null;
   const m = AMB.master, nodes = AMB.nodes;
   AMB.master = null; AMB.nodes = [];
   if(!m || !ac) return;
@@ -101,10 +106,12 @@ function every(min, max, fn){
 }
 const later = (ms, fn) => AMB.timers.push(setTimeout(() => AMB.master && fn(), ms));
 
-/* Speel liedjes uit js/liedjes.js steeds opnieuw (om de beurt) zolang deze geluidsomgeving klinkt, met gap ms ertussen. */
-function songLoop(out, ids, kind, vol, gap, first = 1200, octave = 0){
+/* Speel liedjes uit js/liedjes.js steeds opnieuw (om de beurt) zolang deze geluidsomgeving klinkt, met gap ms ertussen.
+   Ze gaan via AMB.music, zodat ze even zwijgen als iemand in het verhaal zingt (singSong). */
+function songLoop(out, ids, kind, vol, gap, first = 1200, octave = 0, lowpass){
+  const mg = keep(ac.createGain()); mg.connect(out); AMB.music = mg;
   let i = 0;
-  const next = () => { if(!AMB.master) return; const dur = playSong(ids[i++ % ids.length], { out, kind, vol, octave }); AMB.timers.push(setTimeout(next, dur * 1000 + gap)); };
+  const next = () => { if(!AMB.master) return; const dur = playSong(ids[i++ % ids.length], { out: mg, kind, vol, octave, lowpass }); AMB.timers.push(setTimeout(next, dur * 1000 + gap)); };
   AMB.timers.push(setTimeout(next, first));
 }
 
@@ -122,27 +129,39 @@ const SOUNDSCAPES = {
       songLoop(m, ['stoomboot'], 'fanfare', .016, 2500);
     }
   },
+  // Hoofdstuk 1, het ruim: klotsend water onder de planken, krakend hout, af en toe een druppel.
+  ruim(m, mods){
+    bed(m, { freq: 260, gain: .03, wobble: .8, rate: .1 });
+    every(2500, 6000, () => blip(m, 140 + Math.random() * 60, .5, .012, 'triangle', 90));
+    every(1500, 4000, () => blip(m, 900 + Math.random() * 300, .12, .02, 'sine', 500));
+    if(mods.includes('engine')) every(520, 520, () => burst(m, .18, .04, 300, 'lowpass'));
+  },
+  // Hoofdstuk 2, de keuken: het zoemen van de koelkast en de kookwekker die tikt.
+  keuken(m){
+    hum(m, 50, .008, 'sawtooth', 200);
+    every(500, 500, () => burst(m, .02, .01, 4200));
+  },
   // Hoofdstuk 2, de woonkamer: een knisperende houtkachel en een tikkende klok.
   kamer(m){
     bed(m, { freq: 180, gain: .025, wobble: .4, rate: .3 });
     every(80, 420, () => burst(m, .04 + Math.random() * .06, .01 + Math.random() * .025, 1800 + Math.random() * 2500, 'highpass'));
     every(1000, 1000, () => burst(m, .03, .015, 3800));
   },
-  // Hoofdstuk 3, op het dak: wind, een uil in de verte, af en toe het getik van hoefjes over de pannen.
+  // Hoofdstuk 3, op het dak: wind, een uil in de verte, het getik van hoefjes over de pannen, en zacht gezang uit een schoorsteen.
   dak(m, mods){
     bed(m, { type: 'bandpass', freq: 600, q: .4, gain: .02, wobble: .9, rate: .07 });
     every(12000, 22000, () => { blip(m, 420, .35, .015, 'sine', 380); later(500, () => blip(m, 400, .55, .015, 'sine', 360)); });
     every(9000, 16000, () => [0, 1, 2, 3, 4, 5].forEach(i => later(i * 170, () => burst(m, .04, .02, 2600, 'bandpass'))));
     if(mods.includes('gust')) bed(m, { type: 'bandpass', freq: 900, q: .6, gain: .03, wobble: .9, rate: .3 });
-    // heel zacht, ergens in een huis, als Ozosnel over de daken loopt
-    else songLoop(m, ['paardenvoetjes'], 'speeldoos', .012, 18000, 6000);
+    // heel zacht, uit een schoorsteen: kinderen die nog bij de kachel zingen
+    else songLoop(m, ['paardenvoetjes', 'daken'], 'zang', .01, 18000, 6000, 0, 900);
   },
-  // Hoofdstuk 4, pakjesavond: de kachel, gezellig gemurmel, en een vrolijk deuntje op de speeldoos; aan het eind gejuich.
+  // Hoofdstuk 4, pakjesavond: de kachel, gezellig gemurmel, en oude liedjes op de speeldoos; aan het eind gejuich.
   feest(m, mods){
     bed(m, { freq: 200, gain: .018, wobble: .4, rate: .3 });
     every(120, 500, () => burst(m, .04, .012, 2200 + Math.random() * 2000, 'highpass'));
     // een speeldoos speelt de oude liedjes, om de beurt
-    songLoop(m, ['kapoentje', 'kloppen', 'stoomboot'], 'speeldoos', .014, 6000, 1500, 1);
+    songLoop(m, ['maan', 'kloppen', 'kapoentje', 'wind'], 'speeldoos', .014, 6000, 1500, 1);
     if(mods.includes('cheer')) every(3000, 6000, () => burst(m, 1, .02, 1500, 'bandpass'));
   }
 };
