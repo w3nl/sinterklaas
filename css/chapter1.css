@@ -106,3 +106,45 @@
 .plank{display:flex;flex-direction:column;gap:12px}
 .plank-svg{width:100%;height:auto;max-height:220px;background:#c9d6e0;border-radius:8px}
 .pl-card{font-size:14px;background:#3a2016;padding:8px 12px;border-radius:4px}
+
+/* ---------- meer leven op en rond de Maas ---------- */
+@keyframes sbReed{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(3deg)}}
+.sb-reed{transform-box:fill-box;transform-origin:50% 100%;animation:sbReed 3.4s ease-in-out infinite}
+.sb-reed.b{animation-duration:4.2s;animation-delay:-1.3s}
+@keyframes sbHeron{0%,70%,100%{transform:rotate(0)}78%,90%{transform:rotate(28deg)}}
+.sb-heronhead{transform-box:fill-box;transform-origin:0% 100%;animation:sbHeron 7s ease-in-out infinite}
+@keyframes sbGlint{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:.9;transform:scale(1)}}
+.sb-glint{transform-box:fill-box;transform-origin:center;opacity:0;animation:sbGlint 4s ease-in-out infinite}
+/* de eendjes zwemmen heen en weer langs de kade; met Beweging uit liggen ze stil in het midden */
+@keyframes sbDucks{0%{transform:translate(120px,786px) scaleX(1)}46%{transform:translate(330px,792px) scaleX(1)}50%{transform:translate(330px,792px) scaleX(-1)}96%{transform:translate(120px,786px) scaleX(-1)}100%{transform:translate(120px,786px) scaleX(1)}}
+.sb-ducks{transform:translate(220px,788px);animation:sbDucks 40s linear infinite}
+@keyframes sbDuck{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(2px) rotate(-3deg)}}
+.sb-duck{animation:sbDuck 1.6s ease-in-out infinite}
+.sb-duck.b{animation-delay:-.6s}
+/* een vis springt af en toe op: hij bestaat alleen als hij beweegt */
+@keyframes sbFish{0%,74%{transform:translate(700px,800px) rotate(0);opacity:0}76%{transform:translate(700px,780px) rotate(-50deg);opacity:1}82%{transform:translate(735px,738px) rotate(0);opacity:1}88%{transform:translate(770px,782px) rotate(50deg);opacity:1}90%,100%{transform:translate(775px,800px) rotate(50deg);opacity:0}}
+.sb-fish{opacity:0;transform:translate(-100px,-100px);animation:sbFish 11s ease-in-out infinite}
+@keyframes sbBalloon{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(3px,-6px) rotate(2deg)}}
+.sb-balloon{transform-box:fill-box;transform-origin:50% 100%;animation:sbBalloon 3s ease-in-out infinite}
+.sb-balloon.b{animation-duration:3.8s}
+@keyframes sbBanner{0%,100%{transform:skewY(0)}50%{transform:skewY(.8deg)}}
+.sb-banner{transform-box:fill-box;transform-origin:50% 0;animation:sbBanner 4s ease-in-out infinite}
+@keyframes sbLantern{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+.sb-lantern{transform-box:fill-box;transform-origin:50% 0;animation:sbLantern 3s ease-in-out infinite}
+.sb-lantern rect{animation:flick 5s infinite}
+@keyframes sbClimber{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.sb-climber{animation:sbClimber 1.8s ease-in-out infinite}
+
+/* ---------- aan wal: Sint loopt over de loopplank naar de kade, Ozosnel loopt achter hem aan over het dek ---------- */
+.sb-out #sb-sint{transform:translate(-380px,60px)}
+.sb-out #sb-horsewalk{transform:translateX(-760px)}
+@keyframes sbAshoreSint{0%{transform:none}35%{transform:translate(-175px,0)}100%{transform:translate(-380px,60px)}}
+@keyframes sbAshoreHorse{0%{transform:none}100%{transform:translateX(-760px)}}
+.sb-ashore #sb-sint{animation:sbAshoreSint 6s ease-in-out}
+.sb-ashore #sb-horsewalk{animation:sbAshoreHorse 6s ease-in-out}
+.sb-ashore #sb-horsewalk .hleg{transform-box:fill-box;transform-origin:50% 4%;animation:hlegStep .9s ease-in-out infinite}
+.sb-ashore #sb-horsewalk .hleg.b{animation-delay:-.45s}
+.sb-ashore #sb-horsehead{animation:none!important}
+/* confetti dwarrelt omlaag: hij begint boven het beeld */
+@keyframes sbConf{0%{transform:translate(0,-60px) rotate(0)}100%{transform:translate(30px,960px) rotate(540deg)}}
+.sb-conf{transform-box:fill-box;transform-origin:center;animation:sbConf 5s linear infinite}

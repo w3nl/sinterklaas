@@ -19,6 +19,7 @@ function applyKamer(){
   show('#wk-koek', !f.koekTaken); show('#hit-koek2', !f.koekTaken);
   show('#wk-shoe', !!f.plek); show('#hit-shoe', !!f.plek);
   show('#wk-carrot', !!f.wortelIn); show('#wk-drawing', !!f.tekeningIn);
+  show('#wk-notes', !!f.liedje && !f.out2);
 }
 /* Wat er vanavond allemaal moet (mama's lijstje). */
 const TODO2 = [['maat', 'je eigen schoen pakken'], ['plek', 'je schoen bij de kachel zetten'], ['wortelIn', 'een wortel voor Ozosnel in je schoen'], ['tekeningIn', 'een tekening voor Sint erbij'], ['liedje', 'een liedje zingen bij de kachel'], ['nachten', 'uitrekenen hoeveel nachtjes het nog is']];
@@ -61,7 +62,10 @@ Object.assign(H, {
     if(S.f.katTaps >= 3){ S.ach.kat = true; save(); return say(["Je kriebelt Poes achter haar oren. Ze rolt op haar rug en spint als een stoomboot.", "Prrrrrr. Puf, puf."]); }
     say("Poes ligt op het kleed bij de kachel. Ze doet één oog open, kijkt je aan, en doet het weer dicht."); },
   schoen(){ if(!S.f.wortelIn || !S.f.tekeningIn) return say(["Je schoen staat bij de kachel, op een veilig plekje.", "Er hoort nog iets in: een wortel voor het paard, en een tekening voor Sint."]); say("Je schoen staat klaar, met een wortel en een tekening erin. Mooi zo."); },
-  hout(){ say("De houtmand. Papa hakt elke zaterdag hout. Hij zegt dat het goed is voor zijn spieren."); }
+  hout(){ say("De houtmand. Papa hakt elke zaterdag hout. Hij zegt dat het goed is voor zijn spieren."); },
+  klok(){ say(["Een Friese staartklok, van Oma gekregen. Tik, tak, tik, tak. De slinger zwaait heen en weer.", "Het is kwart over zeven. Nog een uurtje, dan moet je naar bed."]); },
+  stokpaard(){ say(["Het stokpaardje van je broertje Sem. Het heet Ozosnel.", "Sem galoppeert er de hele dag mee door het huis en roept: \"Hihihi!\""]); },
+  kast(){ say(["Een boekenkastje vol prentenboeken. Onderin staat de speelgoedkist.", "Op een rug staat: \"Het Grote Sinterklaasboek\". Niet te verwarren met het Grote Boek van Sint zelf."]); }
 });
 
 /* ---------- puzzel 1: welke schoen is van jou? (schoenmaat ≈ voetlengte × 1,5) ---------- */

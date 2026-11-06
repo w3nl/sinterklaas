@@ -31,6 +31,8 @@ function applyBoot(){
   show('#sb-boxlock', !f.box);
   show('#sb-koek', !f.koekTaken); show('#hit-koek', !f.koekTaken);
   show('#sb-gangway', !!f.plank);
+  show('#sb-confetti', !!f.out1);
+  $('#sc-boot').classList.toggle('sb-out', !!f.out1);
   show('#hit-gangway', !!f.plank);
   $('#sc-boot').classList.toggle('sb-fed', !!f.voer);
   $('#sb-lockred').setAttribute('fill', f.lock ? '#4a1a16' : '#e2483d');
@@ -62,6 +64,7 @@ const H = {
     say("TOEEET! Het geluid rolt over de Maas.");
   },
   sint(){
+    if(S.f.out1) return say([['sint', "Wat een welkom, beste Hulppiet! Kijk eens hoeveel kinderen er zijn. Ik zwaai nog even, en dan gaan we naar het kasteel."]]);
     if(ready1()) return win1();
     if(!S.f.engine) return say([['sint', "Ach, beste Hulppiet. Daar liggen we, stil op de Maas, en heel Grave staat op ons te wachten."], ['sint', "Wil jij eens in de machinekamer kijken? Ik ben goed in heel veel dingen, maar niet in stoommachines."]]);
     if(!S.f.mijter) return say([['sint', "Weet jij waar mijn mijter is? Ik heb hem gisteravond in de hoedendoos gelegd, op slot, zodat Klimpiet er niet mee gaat voetballen."], ['sint', "Alleen weet ik de code niet meer. Iets met mijn leeftijd. Hoe oud word ik ook alweer?"]]);
@@ -98,7 +101,8 @@ const H = {
   kade(){ S.ach.zwaai = true; save(); say(["Honderden kinderen op de kade! Ze zwaaien met vlaggetjes en dragen papieren mijters en Pietenmutsen.", "Je zwaait terug. Een klein meisje gilt: \"Kijk, een Hulppiet!\""]); },
   burg(){ say([['burg', "Welkom in Grave! Ik heb een hele toespraak geschreven. Vier kantjes."], ['burg', "Maar ik zie dat Sinterklaas nog niet van de boot af kan. Ik oefen nog even."]]); },
   kerk(){ say("De toren van de Sint-Elisabethkerk in Grave. Het is bijna elf uur."); },
-  loopplank(){ if(ready1()) return win1(); say("De loopplank ligt klaar. Maar is alles op het lijstje van Hoofdpiet al gedaan?"); }
+  mast(){ say([['piet', "Hoi Hulppiet! Ik ben Klimpiet. Vanaf hier zie ik heel Grave al liggen!"], ['piet', "Ik klim overal op: masten, daken, schoorstenen. Behalve op Ozosnel. Die vindt dat niet leuk."]]); },
+  loopplank(){ if(S.f.out1) return startCh2(); if(ready1()) return win1(); say("De loopplank ligt klaar. Maar is alles op het lijstje van Hoofdpiet al gedaan?"); }
 };
 
 /* ---------- puzzel 1: de stoomketel (water kookt bij 100 °C en wordt stoom) ---------- */
@@ -347,7 +351,7 @@ function intro1(){
        ['sint', "Rustig maar, Hoofdpiet. Wij hebben toch een Hulppiet? Kijk jij eens rond, beste kind. Klik maar overal op."]], () => { S.f.introDone = true; save(); });
 }
 function win1(){
-  S.f.out1 = true; save(); applyVisuals(); chord([523,659,784,1046,1318], 120);
+  S.f.out1 = true; save(); moment('boot', 'sb-ashore', 6500); applyVisuals(); chord([523,659,784,1046,1318], 120);
   say([['sint', "Dank je wel, beste Hulppiet. Wat een hulp ben jij!"],
        ['sys', "Sinterklaas loopt over de loopplank, met zijn staf en zijn mijter. Ozosnel loopt rustig achter hem aan."],
        ['burg', "Welkom in Grave, Sinterklaas!"],

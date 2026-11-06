@@ -4,8 +4,9 @@
 .dk-smoke circle{animation:dkSmoke 4s ease-out infinite}
 .dk-smoke circle:nth-child(2){animation-delay:-1.3s} .dk-smoke circle:nth-child(3){animation-delay:-2.6s}
 .dk-smoke.b circle{animation-duration:5s}
-@keyframes dkRide{0%,100%{transform:translate(0,0)}25%{transform:translate(6px,-4px)}50%{transform:translate(12px,0)}75%{transform:translate(6px,-4px)}}
-.dk-ride{animation:dkRide 3s ease-in-out infinite}
+/* Sint rijdt op Ozosnel heen en weer over het platte dak: eerst naar links (waar Ozosnel naartoe kijkt), dan draait hij om */
+@keyframes dkRide{0%{transform:translateX(0) scaleX(1)}44%{transform:translateX(-40px) scaleX(1)}50%{transform:translateX(-40px) scaleX(-1)}94%{transform:translateX(0) scaleX(-1)}100%{transform:translateX(0) scaleX(1)}}
+.dk-ride{transform-box:fill-box;transform-origin:50% 100%;animation:dkRide 16s linear infinite}
 @keyframes dkSwing{0%,100%{transform:rotate(0)}50%{transform:rotate(2deg)}}
 .dk-swing{transform-box:fill-box;transform-origin:50% 90%;animation:dkSwing 2.6s ease-in-out infinite}
 @keyframes dkCapFly{0%{transform:translate(945px,528px) rotate(0)}50%{transform:translate(1300px,420px) rotate(200deg)}100%{transform:translate(1700px,470px) rotate(400deg)}}
@@ -60,3 +61,28 @@
 .wd-rooster{transform-box:view-box;transform-origin:100px 100px;animation:wdWobble 2s ease-in-out infinite}
 .wd-side{flex:1 1 220px;min-width:0}
 .wd-side p{margin:0 0 10px;font-size:14px}
+
+/* ---------- meer leven op de daken ---------- */
+/* wolkjes drijven voor de maan langs */
+@keyframes dkCloud{from{transform:translate(1700px,150px)}to{transform:translate(-200px,150px)}}
+.dk-cloud{transform:translate(1250px,150px);animation:dkCloud 70s linear infinite}
+.dk-cloud.b{transform:translate(600px,90px);animation-duration:110s;animation-delay:-50s}
+/* een vallende ster (bestaat alleen als hij beweegt) */
+@keyframes dkShoot{0%,88%{transform:translate(900px,40px);opacity:0}90%{opacity:1}97%{transform:translate(620px,130px);opacity:1}100%{transform:translate(580px,142px);opacity:0}}
+.dk-shoot{opacity:0;animation:dkShoot 14s linear infinite}
+/* de uil knippert met zijn ogen */
+@keyframes dkBlink{0%,92%,100%{opacity:0}94%,97%{opacity:1}}
+.dk-blink{opacity:0;animation:dkBlink 5s infinite}
+/* lampjes in de dakkapellen gaan aan en uit */
+@keyframes dkLit{0%,40%{opacity:1}45%,80%{opacity:.12}85%,100%{opacity:1}}
+.dk-lit{animation:dkLit 16s infinite}
+.dk-lit.b{animation-duration:23s}
+@keyframes dkCatTail{0%,100%{transform:rotate(0)}50%{transform:rotate(18deg)}}
+.dk-cattail{transform-box:fill-box;transform-origin:0% 100%;animation:dkCatTail 2.4s ease-in-out infinite}
+/* de windvlaag: de rook waait ver en plat weg */
+@keyframes dkGust{0%{transform:translate(0,0);opacity:.9}100%{transform:translate(140px,-6px);opacity:0}}
+.dk-gust .dk-smoke circle{animation:dkGust 1.6s linear infinite}
+/* het pakje zakt aan het touw de schoorsteen in */
+@keyframes dkParcel{0%{transform:translateY(-40px)}100%{transform:translateY(60px)}}
+.dk-parcel{transform:translateY(60px)}
+.dk-lower .dk-parcel{animation:dkParcel 2.4s ease-in}

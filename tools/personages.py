@@ -158,6 +158,8 @@ def piet_head(p, c, cx, cy, r, mouth='smile', cap_id=None):
     for i, (dx, dy, rr) in enumerate([(-.95, .1, .32), (-.82, -.3, .34), (.95, .1, .32), (.82, -.3, .34), (-.5, -.7, .36), (.5, -.7, .36), (0, -.85, .38)]):
         g.append(f'<circle cx="{cx + dx * r:.1f}" cy="{cy + dy * r:.1f}" r="{rr * r:.1f}" fill="{c["hair"]}"/>')
     g.append(face(p, cx, cy, r, c['skin'], mouth=mouth))
+    # krullen bovenop het hoofd (te zien als de muts wegwaait)
+    g.append(''.join(f'<circle cx="{cx + dx * r:.1f}" cy="{cy + dy * r:.1f}" r="{rr * r:.1f}" fill="{c["hair"]}"/>' for dx, dy, rr in [(-.7, -.72, .3), (-.3, -.95, .32), (.15, -1.0, .32), (.58, -.82, .3), (.85, -.5, .26), (-.88, -.45, .26)]))
     g.append(soot(cx, cy, r))
     # de baret met een grote veer
     g.append((f'<g id="{cap_id}">' if cap_id else '<g>') + f'<path d="M{cx - r * 1.2:.1f} {cy - r * .62:.1f} C{cx - r * 1.3:.1f} {cy - r * 1.35:.1f} {cx + r * 1.2:.1f} {cy - r * 1.55:.1f} {cx + r * 1.32:.1f} {cy - r * .75:.1f} C{cx + r * .6:.1f} {cy - r * .45:.1f} {cx - r * .5:.1f} {cy - r * .4:.1f} {cx - r * 1.2:.1f} {cy - r * .62:.1f}Z" fill="{c["cap"]}" stroke="#1f1530" stroke-width="{r * .05:.2f}" stroke-opacity=".4"/>'
@@ -231,6 +233,16 @@ def piet(p, kind='hoofd', pose='stand', cap_id=None):
 
 
 # ---------------------------------------------------------------- Ozosnel
+def hoof(x):
+    return f'<path d="M{x} -6 h12 l1 6 h-14z" fill="#4a4d55"/>'
+
+
+def stepping(pair, body):
+    """Een been dat kan stappen: de klasse hleg + a of b (diagonale paren: dichte voorbeen + verre achterbeen = a).
+    Het draait vanuit de heup of de schouder als de kamer de klasse 'walking' op een ouder zet (css: .walking .hleg)."""
+    return f'<g class="hleg {pair}">{body}</g>'
+
+
 def horse_body(p):
     """De romp, de benen en de staart van Ozosnel (naar links kijkend; hoeven op 0)."""
     d = f'<defs>{grad(p + "Coat", "#ffffff", "#c9cbcf")}{grad(p + "Leg", "#f4f4f2", "#b9bcc2")}{grad(p + "Mane", "#c2c7cf", "#7d8590")}</defs>'
@@ -240,8 +252,8 @@ def horse_body(p):
     g.append(f'<path d="M86 -116 C112 -110 116 -80 108 -52 C104 -36 110 -26 104 -18 C96 -34 92 -46 94 -62 C96 -80 90 -96 80 -104Z" fill="url(#{p}Mane)"/>'
              f'<path d="M92 -104 C104 -88 102 -66 100 -48" stroke="#6d747e" stroke-width="1.5" fill="none"/>')
     # de benen aan de verre kant (iets donkerder)
-    g.append(leg('M-40 -80 C-42 -56 -40 -36 -38 -16 L-36 -6 L-26 -6 L-27 -18 C-28 -40 -28 -60 -26 -80Z', '#d7d9dd')
-             + leg('M50 -84 C58 -64 60 -50 52 -36 C48 -28 50 -16 50 -6 L60 -6 L60 -16 C62 -30 70 -48 66 -84Z', '#d7d9dd'))
+    g.append(stepping('b', leg('M-40 -80 C-42 -56 -40 -36 -38 -16 L-36 -6 L-26 -6 L-27 -18 C-28 -40 -28 -60 -26 -80Z', '#d7d9dd') + hoof(-37))
+             + stepping('a', leg('M50 -84 C58 -64 60 -50 52 -36 C48 -28 50 -16 50 -6 L60 -6 L60 -16 C62 -30 70 -48 66 -84Z', '#d7d9dd') + hoof(50)))
     # de romp
     g.append(f'<path d="M-66 -84 C-82 -100 -82 -128 -66 -140 C-46 -152 -10 -146 30 -146 C66 -146 92 -138 94 -110 C96 -88 82 -74 60 -72 C30 -68 -10 -68 -40 -72 C-52 -74 -60 -78 -66 -84Z" fill="url(#{p}Coat)" stroke="#a5a9b0" stroke-width="1.4"/>'
              f'<path d="M-40 -74 C-20 -82 30 -82 56 -76" stroke="#c4c7cc" stroke-width="2" fill="none"/>'
@@ -256,10 +268,8 @@ def horse_body(p):
              + f'<path d="M-36 -146 L-40 -96 M40 -146 L46 -96" stroke="{GOLD}" stroke-width="3"/>'
              f'<path d="M-18 -150 C-14 -166 18 -166 24 -150 C10 -146 -6 -146 -18 -150Z" fill="#6b3a1d" stroke="#3a1d0c" stroke-width="1.2"/>')
     # de benen aan de dichte kant, met knieën, kogels en hoeven
-    g.append(leg('M-62 -84 C-64 -60 -60 -44 -58 -30 C-58 -22 -60 -14 -60 -6 L-48 -6 C-48 -16 -46 -24 -46 -32 C-46 -50 -46 -66 -44 -82Z', f'url(#{p}Leg)')
-             + leg('M66 -86 C80 -70 80 -54 70 -40 C66 -32 68 -18 68 -6 L80 -6 C80 -18 78 -30 82 -40 C92 -58 90 -78 84 -94Z', f'url(#{p}Leg)'))
-    for x in (-60, -37, 50, 68):
-        g.append(f'<path d="M{x} -6 h12 l1 6 h-14z" fill="#4a4d55"/>')
+    g.append(stepping('a', leg('M-62 -84 C-64 -60 -60 -44 -58 -30 C-58 -22 -60 -14 -60 -6 L-48 -6 C-48 -16 -46 -24 -46 -32 C-46 -50 -46 -66 -44 -82Z', f'url(#{p}Leg)') + hoof(-60))
+             + stepping('b', leg('M66 -86 C80 -70 80 -54 70 -40 C66 -32 68 -18 68 -6 L80 -6 C80 -18 78 -30 82 -40 C92 -58 90 -78 84 -94Z', f'url(#{p}Leg)') + hoof(68)))
     return ''.join(g)
 
 
@@ -407,7 +417,7 @@ def oma(p):
             # breinaalden met een oranje sjaal
             f'<path d="M-30 -20 C-10 -26 10 -26 30 -20 L32 -6 C10 -10 -10 -10 -32 -6Z" fill="#e8902e"/>'
             + ''.join(f'<path d="M{x} -22 v14" stroke="#c46a20" stroke-width="1.4"/>' for x in range(-26, 30, 6))
-            + f'<path d="M-20 -48 L4 -24 M20 -48 L-4 -24" stroke="#b8b8b8" stroke-width="2.4"/>'
+            + f'<path class="knit" d="M-20 -48 L4 -24" stroke="#b8b8b8" stroke-width="2.4"/><path class="knit b" d="M20 -48 L-4 -24" stroke="#b8b8b8" stroke-width="2.4"/>'
             + hand(-8, -32, 6, s, sd) + hand(8, -32, 6, s, sd))
     return seated(p, 'licht', '#7a4fa0', '#5a4a6a', (back, front), arms=arms, shoes='#5a3a2a',
                   extra_front='<g fill="#f2b631"><circle cx="-4" cy="-60" r="2"/><circle cx="-4" cy="-50" r="2"/></g>')
@@ -505,7 +515,8 @@ SCENES = {
     'boot': {
         'sint': lambda: place(sint('sbS', mitre=False, ids={'hair': 'sb-hair', 'mitre': 'sb-mitre', 'staff': 'sb-staff'}), 589, 546, .84),
         'hoofd': lambda: place(piet('sbH', 'hoofd'), 1201, 546, 1.0),
-        'paard': lambda: place(horse('sbP', head_id='sb-horsehead'), 1352, 546, .84),
+        'paard': lambda: '<g id="sb-horsewalk">' + place(horse('sbP', head_id='sb-horsehead'), 1352, 546, .84) + '</g>',
+        'mast': lambda: place(piet('sbM', 'klim', pose='sit'), 1001, 200, .5),
         'kids': lambda: ''.join(place(f'<g class="sb-kid{" b" if i % 2 else ""}">' + kid(f'sbK{i}', *a) + '</g>', x, 590, 1.05)
                                 for i, (x, a) in enumerate([(26, ('licht', '#e5b84a', 'long', '#2f6fb1', 'mitre', 'r')), (74, ('bruin', '#1f1f1f', 'curly', '#e07a2e', None, 'l')),
                                                             (122, ('roze', '#8a4a20', 'short', '#4f9a4a', 'piet', 'r')), (168, ('midden', '#2a1a10', 'bun', '#c73f6d', 'beanie', 'l')),

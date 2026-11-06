@@ -160,3 +160,9 @@ button.chip:hover{border-color:var(--amber);color:var(--amber)}
 
 /* een losse knop onderaan een close-up is niet zo breed als het venster */
 .panel #m-body > div > .btn{align-self:flex-start}
+
+/* Ozosnel loopt: elk been (.hleg, uit tools/personages.py) zwaait vanuit de heup of schouder; de diagonale paren a en b
+   lopen een halve pas uit elkaar. Zet de klasse walking op een ouder om hem te laten lopen. */
+@keyframes hlegStep{0%,100%{transform:rotate(13deg)}50%{transform:rotate(-13deg)}}
+.walking .hleg{transform-box:fill-box;transform-origin:50% 4%;animation:hlegStep .9s ease-in-out infinite}
+.walking .hleg.b{animation-delay:-.45s}

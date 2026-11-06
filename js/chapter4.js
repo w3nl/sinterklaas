@@ -22,13 +22,14 @@ function applyFeest(){
   show('#pa-surprise', !!f.net);
   show('#pa-big', !!f.speur); show('#pa-hit-big', !!f.speur && !f.out4);
   show('#pa-wave', !!f.out4);
+  show('#pa-paper', !!f.namen); show('#pa-pepers', !!f.zak); show('#pa-confetti', !!f.out4);
 }
 KOEK_SAY[4] = ["Tussen de pepernoten op tafel staat een speculaaspop. Je kent hem wel!", ['mama', "Die heeft iemand vanochtend in je schoen gestopt. Raad eens wie?"], "Je stopt hem in je zak. Ook op pakjesavond kan een beetje wijsheid geen kwaad."];
 const TODO4 = [['zak', 'de jutezak naar binnen halen'], ['namen', 'uitzoeken van wie de pakjes zijn'], ['gedicht', 'het gedicht voor Oma afmaken'], ['net', 'de surprise vouwen'], ['speur', 'het grootste pakje vinden']];
 
 Object.assign(H, {
   voordeur(){
-    if(!S.f.zak){ vis('#pa-knock', true); setTimeout(() => vis('#pa-knock', false), 1600); beep(110, .12, 'square', .06); setTimeout(() => beep(110, .12, 'square', .06), 220); setTimeout(() => beep(110, .12, 'square', .06), 440);
+    if(!S.f.zak){ moment('feest', 'pa-strooi', 2600); vis('#pa-knock', true); setTimeout(() => vis('#pa-knock', false), 1600); beep(110, .12, 'square', .06); setTimeout(() => beep(110, .12, 'square', .06), 220); setTimeout(() => beep(110, .12, 'square', .06), 440);
       return say(["Je rent naar de voordeur en trekt hem open. Er is niemand! Alleen voetstappen in het natte gras, en het geluid van hoefjes in de verte.", "Maar op de stoep staat een enorme jutezak. Er hangt een label aan: VOOR DE FAMILIE VAN HULPPIET."], openZak); }
     say("De voordeur. Buiten is het donker en stil. Sint en de Pieten zijn al verder, naar het volgende huis.");
   },

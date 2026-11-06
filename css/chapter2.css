@@ -74,3 +74,33 @@
 .kl-in{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
 .kl-in input{font:inherit;font-family:var(--f-mono);font-size:18px;width:120px;max-width:100%;padding:8px 10px;border-radius:4px;border:1px solid var(--line);background:#fffaf0;color:#2b2118}
 @media (max-width:480px){.kl-months{grid-template-columns:1fr}}
+
+/* ---------- meer leven in de woonkamer ---------- */
+@keyframes wkPendulum{0%,100%{transform:rotate(9deg)}50%{transform:rotate(-9deg)}}
+.wk-pendulum{transform-box:view-box;transform-origin:625px 186px;animation:wkPendulum 2s ease-in-out infinite}
+@keyframes wkLamp{0%,100%{transform:rotate(-1.5deg)}50%{transform:rotate(1.5deg)}}
+.wk-lamp{transform-box:view-box;transform-origin:300px 30px;animation:wkLamp 6s ease-in-out infinite}
+@keyframes wkSpark{0%{transform:translate(0,0);opacity:0}15%{opacity:1}100%{transform:translate(6px,-70px);opacity:0}}
+.wk-spark{opacity:0;animation:wkSpark 2.2s ease-out infinite}
+@keyframes wkTail{0%,100%{transform:rotate(0)}50%{transform:rotate(-24deg)}}
+.wk-tail{transform-box:fill-box;transform-origin:0% 100%;animation:wkTail 2.6s ease-in-out infinite}
+@keyframes wkCurtain{0%,100%{transform:skewX(0)}50%{transform:skewX(1.2deg)}}
+.wk-curtain{transform-box:fill-box;transform-origin:50% 0;animation:wkCurtain 7s ease-in-out infinite}
+.wk-curtain.b{animation-delay:-3s}
+@keyframes wkMitre{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+.wk-mitre{transform-box:fill-box;transform-origin:50% 0;animation:wkMitre 3s ease-in-out infinite}
+@keyframes wkPlant{0%,100%{transform:rotate(0)}50%{transform:rotate(2deg)}}
+.wk-plant{transform-box:fill-box;transform-origin:50% 100%;animation:wkPlant 5s ease-in-out infinite}
+@keyframes wkSmoke{0%{transform:translate(0,0);opacity:.8}100%{transform:translate(18px,-30px);opacity:0}}
+.wk-smoke circle{animation:wkSmoke 4s ease-out infinite}
+.wk-smoke circle:nth-child(2){animation-delay:-1.3s} .wk-smoke circle:nth-child(3){animation-delay:-2.6s}
+/* een Piet sluipt over de daken, een eind na de ruiter; met Beweging uit staat hij buiten het raam */
+@keyframes wkPiet{0%,40%{transform:translate(1090px,330px)}55%{transform:translate(1170px,302px)}62%{transform:translate(1200px,322px)}75%{transform:translate(1262px,322px)}100%{transform:translate(1380px,330px)}}
+.wk-piet{transform:translate(1090px,330px);animation:wkPiet 18s linear infinite}
+/* herfstblaadjes waaien langs het raam (ze beginnen buiten beeld) */
+@keyframes wkLeaf{0%{transform:translate(1090px,190px) rotate(0)}100%{transform:translate(1380px,420px) rotate(720deg)}}
+.wk-leaf{animation:wkLeaf 9s linear infinite}
+.wk-leaf.b{animation-duration:12s}
+/* muzieknootjes zweven naar de kachelpijp als je het liedje speelt */
+@keyframes wkNote{0%{transform:translate(0,0);opacity:0}15%{opacity:1}100%{transform:translate(220px,-560px);opacity:0}}
+.wk-note{opacity:0;animation:wkNote 3.4s ease-in infinite}
