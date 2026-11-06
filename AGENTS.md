@@ -28,7 +28,8 @@ Een point-and-click escaperoom over het Sinterklaasfeest, voor kinderen van onge
 | `js/chapter4.js` | `buildFeest()`, `applyFeest()`, `TODO4`, close-ups `openZak`, `openNamen`, `openGedicht`, `openNet`, `openSpeur`; `intro4()`, `startCh4()`, `win4()` |
 | `js/items.js` | `useItem(ding, klikvlak)` |
 | `js/hints.js` | `HINTS` en `stage1()` … `stage4()`, `stage_()` |
-| `js/ambience.js` | Gegenereerd achtergrondgeluid per kamer (`ambKey()`, `SOUNDSCAPES`) |
+| `js/liedjes.js` | De oude Sinterklaasliedjes (`SONGS`, als "lettergreep=NOOT/tellen") en de speler: `parseSong()`, `noteHz()`, `playSong()`, `singSong()`. De melodieën zijn uit het hoofd opgeschreven; verbeter een noot hier en hij klopt overal (achtergrondgeluid, xylofoonpuzzel, hint) |
+| `js/ambience.js` | Gegenereerd achtergrondgeluid per kamer (`ambKey()`, `SOUNDSCAPES`); `songLoop()` speelt liedjes: de fanfare op de kade (stoomboot), een speeldoos op het dak (paardenvoetjes) en op pakjesavond (kapoentje, kloppen, stoomboot) |
 | `js/voice.js` | Stemmen (Web Speech API, `nl-NL`); `VOICE_STYLE` per spreker |
 | `js/app.js` | `LAST_CH`, `START`, `chapterDone`, `exitLabels`, `refreshMenu`, `CH_END`, `showWin`, scores, `ACH`, knoppen, klok, titelmenu, PWA, `start()` |
 | `portraits/*.svg` | `you`, `sint`, `hoofd`, `piet`, `paard`, `koek`, `mama`, `burg` (120×120), gemaakt door `tools/personages.py` |
@@ -75,7 +76,7 @@ Hoofdstuk 2, schoen zetten:
 | 2 | Plek (chocolade smelt bij ~34 °C) | Schoen op de kachel → **D: anderhalve meter, 21 °C** | `plek` |
 | – | Wortel | Keuken → wortel, op de schoen | `wortelIn` |
 | 3 | Tekening (spiegelsymmetrie) | Rechterhelft = gespiegelde linkerhelft (`MIJTER_HALF`); tekening op de schoen | `tekening`, `tekeningIn` |
-| 4 | Liedje (noten lezen) | **G E G A G E D C** op de xylofoon | `liedje` |
+| 4 | Liedje (noten lezen) | Het begin van "Sinterklaas kapoentje" op de xylofoon (`SONG2`, uit `SONGS.kapoentje` in `js/liedjes.js`; nu **G E G E A G G E G E A G**) | `liedje` |
 | 5 | Kalender (dagen tellen over twee maanden) | 16 + 5 = **21** | `nachten` |
 | – | Naar bed | De trap | `out2` |
 
@@ -137,7 +138,7 @@ Alles uit "Lessons learned" in de blueprint geldt. Vooral:
   - **Ozosnel:** het schimmelpaard van Sint; zegt "Hihihi", loopt over de daken.
   - **De speculaaspop:** de gratis hint; zegt "…" of "Psst…".
   - **De familie:** Mama, Papa (vist graag, draagt een mijter van krantenpapier), Oma (breit al haar sjaals zelf, 43 stuks), Sem (het kleine broertje).
-- Neem geen teksten, liedjes of tekeningen over uit tv-programma's of boeken; schrijf en teken alles zelf. Het liedje op de xylofoon is een eigen melodie.
+- Neem geen teksten, liedjes of tekeningen over uit tv-programma's of boeken; schrijf en teken alles zelf. Uitzondering: de **oude Sinterklaasliedjes** in `js/liedjes.js` ("Zie ginds komt de stoomboot", "Sinterklaas kapoentje", "Zachtjes gaan de paardenvoetjes", "Hoor wie klopt daar kinderen"). Die zijn traditioneel of zo oud dat ze vrij te gebruiken zijn; geen liedjes van radio of tv.
 - Elke puzzel heeft twee hints in `HINTS`: een duwtje en het antwoord.
 
 ## Ideeën

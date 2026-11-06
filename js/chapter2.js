@@ -161,23 +161,28 @@ function openTeken(){
 
 /* ---------- puzzel 4: een liedje bij de kachel (noten lezen: hoe hoger op de balk, hoe hoger de toon) ---------- */
 const XYLO = [['C', 523, '#e2483d'], ['D', 587, '#ef8a2e'], ['E', 659, '#f2c94c'], ['F', 698, '#4f9a4a'], ['G', 784, '#3aa0c8'], ['A', 880, '#1f4fa8'], ['B', 988, '#6a4fb0'], ['C2', 1046, '#c73f6d']];
-const SONG2 = ['G', 'E', 'G', 'A', 'G', 'E', 'D', 'C'];
+/* Het liedje is het begin van "Sinterklaas kapoentje" (de eerste twee zinnen uit js/liedjes.js), op de xylofoon:
+   C4 … B4 zijn de staafjes C … B, en C5 is het hoge C-staafje (C2). Alleen noten zonder kruis of mol passen. */
+const SONG2_PART = parseSong(SONGS.kapoentje.noten).filter(n => n.line < 2 && n.note !== 'R');
+const SONG2 = SONG2_PART.map(n => n.note === 'C5' ? 'C2' : n.note[0]);
 /* Waar een noot op de notenbalk staat: E op de onderste lijn; elke stap omhoog is een halve lijnafstand. */
 const NOTE_Y = { C: 80, D: 75, E: 70, F: 65, G: 60, A: 55, B: 50, C2: 45 };
 function openXylo(){
   if(!S.f.plek || !S.f.wortelIn || !S.f.tekeningIn) return say(["De xylofoon met het liedjesboek. Daarop speel je straks een liedje bij de kachel.", "Maar eerst moet je schoen klaarstaan, met een wortel en een tekening erin."]);
   let played = [];
-  const staff = (notes, names) => `<svg viewBox="0 0 330 ${names ? 112 : 100}" class="xy-staff${names ? ' small' : ''}" aria-label="${names ? 'De noten van laag naar hoog, met hun namen' : 'Het liedje op de notenbalk'}">
-      ${[0, 1, 2, 3, 4].map(i => `<path d="M10 ${70 - i * 10} H320" stroke="#3a2a1a" stroke-width="1.4"/>`).join('')}
+  // labels: onder elke noot de naam (de sleutel) of de lettergreep (het liedje)
+  const staff = (notes, labels, small) => { const step = small ? 28 : 34, w = 66 + notes.length * step;
+    return `<svg viewBox="0 0 ${w} 114" class="xy-staff${small ? ' small' : ''}" aria-label="${small ? 'De noten van laag naar hoog, met hun namen' : 'Het liedje op de notenbalk'}">
+      ${[0, 1, 2, 3, 4].map(i => `<path d="M10 ${70 - i * 10} H${w - 10}" stroke="#3a2a1a" stroke-width="1.4"/>`).join('')}
       <text x="14" y="66" font-size="40" font-family="serif" fill="#3a2a1a">𝄞</text>
-      ${notes.map((n, i) => { const x = 66 + i * 32, y = NOTE_Y[n]; return `${y >= 80 ? `<path d="M${x - 11} 80 h22" stroke="#3a2a1a" stroke-width="1.4"/>` : ''}<ellipse cx="${x}" cy="${y}" rx="7" ry="5.2" fill="#3a2a1a" transform="rotate(-20 ${x} ${y})"/><path d="M${x + 6.5} ${y - 1} v-28" stroke="#3a2a1a" stroke-width="1.6"/>${names ? `<text x="${x}" y="106" text-anchor="middle" font-size="13" font-weight="700" font-family="IBM Plex Mono, monospace" fill="#c21f2b">${n === 'C2' ? 'C' : n}</text>` : ''}`; }).join('')}
-    </svg>`;
-  openModal('Het liedjesboek', '"Zachtjes, Piet, je bent op het dak" · een liedje voor bij de kachel', `
+      ${notes.map((n, i) => { const x = 66 + i * step, y = NOTE_Y[n]; return `${y >= 80 ? `<path d="M${x - 11} 80 h22" stroke="#3a2a1a" stroke-width="1.4"/>` : ''}<ellipse cx="${x}" cy="${y}" rx="7" ry="5.2" fill="#3a2a1a" transform="rotate(-20 ${x} ${y})"/><path d="M${x + 6.5} ${y - 1} v-28" stroke="#3a2a1a" stroke-width="1.6"/>${labels ? `<text x="${x}" y="106" text-anchor="middle" font-size="${small ? 13 : 11}" font-weight="700" font-family="${small ? 'IBM Plex Mono, monospace' : 'Fredoka, sans-serif'}" fill="${small ? '#c21f2b' : '#3a2a1a'}">${esc(labels[i])}</text>` : ''}`; }).join('')}
+    </svg>`; };
+  openModal('Het liedjesboek', '"Sinterklaas kapoentje" · een oud liedje voor bij de kachel', `
     <div class="xylo">
-      ${staff(SONG2)}
+      ${staff(SONG2, SONG2_PART.map(n => n.syl))}
       <div class="xy-key">
         <span>Welke noot is het? De noten van laag naar hoog:</span>
-        ${staff(['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C2'], true)}
+        ${staff(['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C2'], ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C'], true)}
       </div>
       <div class="xy-bars">${XYLO.map(([n, , c], i) => `<button type="button" class="xy-bar" data-n="${n}" style="background:${c};height:${118 - i * 7}px">${n === 'C2' ? 'C' : n}</button>`).join('')}</div>
       <div class="xy-played" id="xy-played">♪</div>
@@ -195,7 +200,8 @@ function openXylo(){
       fb('#xy-fb', '');
       if(played.length === SONG2.length){
         S.f.liedje = true; save();
-        fb('#xy-fb', 'Het hele liedje, zonder één valse noot! Boven in de schoorsteen klinkt een zacht "Bravo!". Of was dat de wind?', 'good');
+        fb('#xy-fb', '"Sinterklaas kapoentje, gooi wat in mijn schoentje!" Zonder één valse noot! Boven in de schoorsteen klinkt een zacht "Bravo!". Of was dat de wind?', 'good');
+        setTimeout(() => singSong('kapoentje', { octave: 1 }), 400);
         solved(() => say([['mama', "Wat mooi! Dat hebben ze op het dak vast gehoord."], ...(S.f.nachten ? [] : [['mama', "Nog één ding, slimmerik: hoeveel nachtjes nog tot pakjesavond? Kijk maar op de kalender."]])]), 2400);
       }
     });

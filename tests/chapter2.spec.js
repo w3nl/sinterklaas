@@ -54,11 +54,14 @@ test('Hoofdstuk 2: schoen zetten bij de houtkachel', async ({ page }) => {
   await useSlot(page, 'Je tekening');
   await hs(page, 'schoen'); await skip(page);
 
-  // het liedje: noten lezen
+  // het liedje: noten lezen (het begin van "Sinterklaas kapoentje", uit js/liedjes.js)
   await hs(page, 'xylo');
-  await page.locator('.xy-bar[data-n="C"]').click();
+  await expect(page.locator('.xylo')).toContainText('kapoentje');
+  const song = await page.evaluate(() => SONG2);
+  expect(song.length).toBeGreaterThan(6);
+  await page.locator(`.xy-bar[data-n="${song[0] === 'B' ? 'C' : 'B'}"]`).click();
   await expect(page.locator('#xy-fb')).toContainText('vals');
-  for (const n of ['G', 'E', 'G', 'A', 'G', 'E', 'D', 'C']) await page.locator(`.xy-bar[data-n="${n}"]`).click();
+  for (const n of song) await page.locator(`.xy-bar[data-n="${n}"]`).click();
   await expect(page.locator('#xy-fb')).toHaveClass(/good/);
   await waitModalClosed(page);
 

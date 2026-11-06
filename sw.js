@@ -1,7 +1,7 @@
 // Service worker: maakt het spel installeerbaar en offline speelbaar.
 // Verhoog CACHE bij elke wijziging, zodat telefoons de nieuwe versie krijgen, en houd GAME_VERSION in js/boot.js
 // hetzelfde getal (tests/pwa.spec.js controleert dat). De pagina toont dat getal en biedt herladen aan bij een nieuwere versie.
-const CACHE = 'sint-v4';
+const CACHE = 'sint-v5';
 const CORE = [
   './',
   './index.html',
@@ -19,6 +19,7 @@ const CORE = [
   './css/animations.css',
   './js/boot.js',
   './js/core.js',
+  './js/liedjes.js',
   './js/chapter1.js',
   './js/chapter2.js',
   './js/chapter3.js',

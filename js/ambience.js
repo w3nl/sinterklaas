@@ -101,6 +101,13 @@ function every(min, max, fn){
 }
 const later = (ms, fn) => AMB.timers.push(setTimeout(() => AMB.master && fn(), ms));
 
+/* Speel liedjes uit js/liedjes.js steeds opnieuw (om de beurt) zolang deze geluidsomgeving klinkt, met gap ms ertussen. */
+function songLoop(out, ids, kind, vol, gap, first = 1200, octave = 0){
+  let i = 0;
+  const next = () => { if(!AMB.master) return; const dur = playSong(ids[i++ % ids.length], { out, kind, vol, octave }); AMB.timers.push(setTimeout(next, dur * 1000 + gap)); };
+  AMB.timers.push(setTimeout(next, first));
+}
+
 /* ---------- een geluidsomgeving per kamer ---------- */
 const SOUNDSCAPES = {
   // Hoofdstuk 1, de stoomboot: kabbelend water en meeuwen; het puffen van de stoommachine als hij draait;
@@ -109,11 +116,10 @@ const SOUNDSCAPES = {
     bed(m, { freq: 420, gain: .025, wobble: .7, rate: .12 });
     every(6000, 13000, () => [0, 1, 2].forEach(i => later(i * 180, () => blip(m, 1500 + Math.random() * 300, .18, .012, 'sine', 1100))));
     if(mods.includes('engine')) every(520, 520, () => burst(m, .18, .03, 400, 'lowpass'));
+    // aan de kade speelt de fanfare "Zie ginds komt de stoomboot", steeds opnieuw, met wat gejuich ertussen
     if(mods.includes('quay')){
       bed(m, { type: 'bandpass', freq: 900, q: .5, gain: .018, wobble: .5, rate: .2 });
-      const tune = [67, 67, 69, 69, 67, 64, 0, 0, 65, 65, 67, 67, 65, 62, 0, 0]; let i = 0;
-      const play = () => { if(!AMB.master) return; const n = tune[i++ % tune.length]; if(n) blip(m, 440 * Math.pow(2, (n - 69) / 12), .32, .012, 'square'); AMB.timers.push(setTimeout(play, 360)); };
-      AMB.timers.push(setTimeout(play, 800));
+      songLoop(m, ['stoomboot'], 'fanfare', .016, 2500);
     }
   },
   // Hoofdstuk 2, de woonkamer: een knisperende houtkachel en een tikkende klok.
@@ -128,14 +134,15 @@ const SOUNDSCAPES = {
     every(12000, 22000, () => { blip(m, 420, .35, .015, 'sine', 380); later(500, () => blip(m, 400, .55, .015, 'sine', 360)); });
     every(9000, 16000, () => [0, 1, 2, 3, 4, 5].forEach(i => later(i * 170, () => burst(m, .04, .02, 2600, 'bandpass'))));
     if(mods.includes('gust')) bed(m, { type: 'bandpass', freq: 900, q: .6, gain: .03, wobble: .9, rate: .3 });
+    // heel zacht, ergens in een huis, als Ozosnel over de daken loopt
+    else songLoop(m, ['paardenvoetjes'], 'speeldoos', .012, 18000, 6000);
   },
   // Hoofdstuk 4, pakjesavond: de kachel, gezellig gemurmel, en een vrolijk deuntje op de speeldoos; aan het eind gejuich.
   feest(m, mods){
     bed(m, { freq: 200, gain: .018, wobble: .4, rate: .3 });
     every(120, 500, () => burst(m, .04, .012, 2200 + Math.random() * 2000, 'highpass'));
-    const tune = [72, 76, 79, 76, 77, 74, 72, 0, 72, 76, 79, 84, 79, 77, 76, 0]; let i = 0;
-    const play = () => { if(!AMB.master) return; const n = tune[i++ % tune.length]; if(n) blip(m, 440 * Math.pow(2, (n - 69) / 12), .5, .008, 'sine'); AMB.timers.push(setTimeout(play, 420)); };
-    AMB.timers.push(setTimeout(play, 1000));
+    // een speeldoos speelt de oude liedjes, om de beurt
+    songLoop(m, ['kapoentje', 'kloppen', 'stoomboot'], 'speeldoos', .014, 6000, 1500, 1);
     if(mods.includes('cheer')) every(3000, 6000, () => burst(m, 1, .02, 1500, 'bandpass'));
   }
 };
