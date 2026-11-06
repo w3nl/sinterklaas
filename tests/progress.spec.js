@@ -74,3 +74,20 @@ test('een uitgespeeld hoofdstuk zet het volgende open op het titelscherm', async
   await expect(page.locator('#btn-ch3')).toBeVisible();
   await expect(page.locator('#btn-ch4')).toBeHidden();
 });
+
+test('de oude liedjes: elke melodie is goed te lezen en speelt', async ({ page }) => {
+  await seed(page);
+  await expect(page.locator('#title')).not.toHaveClass(/loading/);
+  const songs = await page.evaluate(() => Object.fromEntries(Object.entries(SONGS).map(([id, s]) => [id, parseSong(s.noten).map(n => [n.note, noteHz(n.note), n.beats])])));
+  for (const id of ['stoomboot', 'kapoentje', 'paardenvoetjes', 'kloppen']) {
+    expect(songs[id].length, id).toBeGreaterThan(10);
+    for (const [note, hz, beats] of songs[id]) {
+      expect(note === 'R' || hz > 100, `${id}: ${note}`).toBe(true);
+      expect(beats, `${id}: ${note}`).toBeGreaterThan(0);
+    }
+  }
+  // de xylofoon kan het begin van "Sinterklaas kapoentje" spelen
+  const xylo = await page.evaluate(() => SONG2.every(n => n in NOTE_Y));
+  expect(xylo).toBe(true);
+  expect(await page.evaluate(() => playSong('stoomboot'))).toBeGreaterThan(5);
+});

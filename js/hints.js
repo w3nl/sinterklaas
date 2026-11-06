@@ -15,7 +15,7 @@ const HINTS = {
   plek: ["Zet je schoen bij de kachel. Maar wat gebeurt er met chocolade als het te warm is? Lees de wikkel van de chocoladeletters op de plank.", "Kies je schoen in je zakken, klik op de kachel en kies D: anderhalve meter ervandaan (21 °C). Chocolade smelt bij ongeveer 34 °C."],
   wortel: ["Ozosnel heeft honger. Waar bewaar je groente?", "Klik op de keuken om een wortel uit de koelkast te pakken, en gebruik hem op je schoen."],
   tekening: ["Sint vindt het leuk als je een tekening maakt. Op tafel liggen papier en kleurpotloden. Een mijter is links en rechts precies hetzelfde.", "Maak de rechterkant het spiegelbeeld van de linkerkant: elk vakje rechts is hetzelfde als het vakje er precies tegenover, links van de streep. Leg de tekening daarna bij je schoen."],
-  liedje: ["Je schoen is klaar. Nu nog een liedje zingen! Op de grond staat een xylofoon met een liedjesboek.", "Speel G E G A G E D C. Hoe hoger de noot op de balk, hoe hoger de toon."],
+  liedje: ["Je schoen is klaar. Nu nog een liedje zingen! Op de grond staat een xylofoon met een liedjesboek.", "Speel " + SONG2.map(n => n === "C2" ? "C" : n).join(" ") + ". Hoe hoger de noot op de balk, hoe hoger de toon."],
   nachten: ["Mama wil weten hoeveel nachtjes het nog is tot pakjesavond. Kijk op de kalender.", "Van 14 tot 30 november zijn het 16 nachtjes, plus 5 in december: 21."],
   bed: ["Alles is klaar voor vannacht.", "Klik op de trap om naar bed te gaan."],
   /* hoofdstuk 3 */
