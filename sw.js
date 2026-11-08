@@ -1,7 +1,7 @@
 // Service worker: maakt het spel installeerbaar en offline speelbaar.
 // Verhoog CACHE bij elke wijziging, zodat telefoons de nieuwe versie krijgen, en houd GAME_VERSION in js/boot.js
 // hetzelfde getal (tests/pwa.spec.js controleert dat). De pagina toont dat getal en biedt herladen aan bij een nieuwere versie.
-const CACHE = 'sint-v19';
+const CACHE = 'sint-v20';
 const CORE = [
   './',
   './index.html',
@@ -15,6 +15,7 @@ const CORE = [
   './css/chapter2.css',
   './css/chapter3.css',
   './css/chapter4.css',
+  './css/chapter5.css',
   './css/phone.css',
   './css/animations.css',
   './js/boot.js',
@@ -24,6 +25,7 @@ const CORE = [
   './js/chapter2.js',
   './js/chapter3.js',
   './js/chapter4.js',
+  './js/chapter5.js',
   './js/items.js',
   './js/hints.js',
   './js/ambience.js',
@@ -35,6 +37,8 @@ const CORE = [
   './scenes/keuken.svg',
   './scenes/dak.svg',
   './scenes/dak2.svg',
+  './scenes/werk.svg',
+  './scenes/magazijn.svg',
   './scenes/feest.svg',
   './scenes/gang.svg',
   './portraits/you.svg',
@@ -44,7 +48,9 @@ const CORE = [
   './portraits/paard.svg',
   './portraits/koek.svg',
   './portraits/mama.svg',
-  './portraits/burg.svg'
+  './portraits/burg.svg',
+  './portraits/inpak.svg',
+  './portraits/vera.svg'
 ];
 self.addEventListener('install', event => {
   // cache: 'reload' skips the browser's HTTP cache, so the offline copy is the new version, not a 10-minute-old one

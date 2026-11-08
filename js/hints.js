@@ -33,7 +33,7 @@ const HINTS = {
   wip: ["De zak staat op een plank over de nok, als een wip. Klimpiet (40 kilo) moet aan de andere kant gaan zitten, zodat de plank recht ligt.", "De zak: 20 kilo op plek 4, dat is 80. Klimpiet: 40 kilo op plek 2, ook 80. Kies plek 2."],
   spiegel: ["Welk pakje is voor Hidde? Achter het dakraam hangt een briefje van Sint, maar je ziet het van de achterkant.", "Het briefje staat in spiegelschrift: het groene pakje met de stippen."],
   terug: ["Hidde heeft zijn pakje. Terug naar het dak van Twan!", "Klik linksonder op het bordje Naar Twan."],
-  /* hoofdstuk 4 */
+  /* hoofdstuk 5 */
   deur: ["Er wordt op de deur gebonsd!", "Klik op de kamerdeur, dan in de gang op de voordeur, en zet de zware zak op het skateboard van Silvie: wielen geven minder wrijving."],
   delen: ["Er liggen pepernoten op de vloer. Raap ze op en verdeel ze eerlijk over Papa, Mama, Oma, Silvie, Anne-Lieve en jou.", "27 pepernoten over 6 mensen: ieder krijgt er 4 (dat is 24), en er blijven er 3 over."],
   lootjes: ["Er viel iets door de brievenbus in de gang: lootjes van Sint!", "Papa heeft Jij, Mama heeft Silvie, Oma heeft Papa, Silvie heeft Anne-Lieve, Anne-Lieve heeft Oma en Jij hebt Mama."],
@@ -41,7 +41,14 @@ const HINTS = {
   gedicht: ["Oma heeft een gedicht met gaten erin. Klik op Oma. Een gedicht rijmt: de laatste woorden klinken aan het eind hetzelfde.", "Stoel rijmt op doel, bank rijmt op dank."],
   net: ["Er zit nog iets in de zak: een surprise van karton. Klik op de zak.", "Kies bouwplaat B en C: een rij van vier, met één vlakje boven en één onder."],
   speur: ["Het laatste briefje van Sint in de zak: een speurtocht. Begin bij de kachel op B1.", "4 vakjes naar rechts is F1, en 3 omhoog is F4. Klik op F4."],
-  groot: ["Je hebt het grootste pakje gevonden!", "Klik op het grote goudgele pakje."]
+  groot: ["Je hebt het grootste pakje gevonden!", "Klik op het grote goudgele pakje."],
+  // hoofdstuk 4
+  logboek: ["Wie was er gisteravond in de werkkamer, toen het boek verdween? Naast de deur hangt het logboek. Sint legde het boek om 10 uur neer, en om half 11 was het weg.", "Klik op het logboek. Inpakpiet was er van vijf over tien tot twintig over tien: precies tussen 10 uur en half 11."],
+  magazijn4: ["Inpakpiet werkt in het magazijn. De deur links is nu open.", "Ga door de deur links naar het magazijn en klik op Inpakpiet."],
+  maat4: ["Inpakpiet heeft vannacht vijf pakjes ingepakt. Op zijn werkbon staan de maten, maar in allerlei eenheden. Het boek is 40 bij 30 bij 8 centimeter.", "Reken alles om naar centimeters: 0,4 m = 40 cm, 3 dm = 30 cm, 80 mm = 8 cm. Kies pakje B."],
+  robot: ["Pakje B ligt bovenin de stelling, achter een zware kist. Het paneel naast de lopende band bestuurt de grijparm.", "Klik op het paneel. Een goed programma: ▲, dan ◀ ◀ ◀ ◀ (onder de kist door en boven de dozen langs), ▲ ▲, ✊ pak, ▼ ▼, ▶ ▶ ▶ ▶, ▼ en ✋ laat los."],
+  unwrap: ["Er is iets met een flinke bonk uit de glijbaan op het bureau van Sint gevallen.", "Ga terug naar de werkkamer en klik op het pakje op het bureau."],
+  route: ["Het boek is terug, maar hoe laat moet Sint vertrekken? Kijk op de kaart aan de muur.", "24 kilometer met 12 kilometer per uur is 2 uur draven. Om 18:00 in Grave, dus om 16:00 vertrekken."],
 };
 function stage1(){
   const f = S.f;
@@ -80,6 +87,14 @@ function stage3(){
 }
 function stage4(){
   const f = S.f;
+  if(!f.logboek) return 'logboek';
+  if(!f.maat4) return S.scene === 'magazijn' ? 'maat4' : 'magazijn4';
+  if(!f.robot) return 'robot';
+  if(!f.uitgepakt) return 'unwrap';
+  return 'route';
+}
+function stage5(){
+  const f = S.f;
   if(!f.zak) return 'deur';
   if(!f.delen) return 'delen';
   if(!f.namen) return 'namen';
@@ -89,4 +104,4 @@ function stage4(){
   if(!f.speur) return 'speur';
   return 'groot';
 }
-function stage_(){ return [stage1, stage2, stage3, stage4][S.ch - 1](); }
+function stage_(){ return [stage1, stage2, stage3, stage4, stage5][S.ch - 1](); }

@@ -53,10 +53,11 @@ const nope = () => beep(140,.2,'sawtooth',.04);   // de "fout"-zoemer
 /* Wie er praat. Een nieuwe spreker heeft een naam hier, een portret in portraits/ (of geen), een kleur in de css
    en een stem in js/voice.js. */
 const WHO = { you:'Jij', sys:'Verteller', sint:'Sinterklaas', hoofd:'Hoofdpiet', piet:'Klimpiet', paard:'Ozosnel', koek:'De speculaaspop',
-  mama:'Mama', papa:'Papa', oma:'Oma', sem:'Anne-Lieve', silvie:'Silvie', burg:'De burgemeester', sluis:'De sluiswachter', hond:'De hond' };
-const FACES = ['you', 'sint', 'hoofd', 'piet', 'paard', 'koek', 'mama', 'burg'];
+  mama:'Mama', papa:'Papa', oma:'Oma', sem:'Anne-Lieve', silvie:'Silvie', burg:'De burgemeester', sluis:'De sluiswachter', hond:'De hond',
+  inpak:'Inpakpiet', vera:'Vera van het Pepernotennieuws' };
+const FACES = ['you', 'sint', 'hoofd', 'piet', 'paard', 'koek', 'mama', 'burg', 'inpak', 'vera'];
 /* Wat er boven de tekst van de verteller staat, per hoofdstuk. */
-const NARRATOR = { 1:'Op de stoomboot', 2:'Thuis · 14 november', 3:'Op het dak · 4 december', 4:'Pakjesavond · 5 december' };
+const NARRATOR = { 1:'Op de stoomboot', 2:'Thuis · 14 november', 3:'Op het dak · 4 december', 4:'Het Pakjeshuis · 5 december', 5:'Pakjesavond · 5 december' };
 let queue = [], typing = null, full = '', onDone = null, curLine = null;
 function say(lines, done){
   // say('tekst'), say(['tekst', 'nog een']) of say([['sint', 'tekst'], 'tekst van jou', …]); ['sys', '♪ …', 'maan'] zingt een liedje (SONGS in js/liedjes.js)
@@ -162,8 +163,10 @@ const ROOMS = {
   keuken:{ ch:2, title:() => `Hoofdstuk ${S.ch} · In de keuken`, apply:() => applyKeuken() },
   dak:   { ch:3, title:'Hoofdstuk 3 · Op het dak', apply:() => applyDak() },
   dak2:  { ch:3, title:'Hoofdstuk 3 · Op het dak van Hidde', apply:() => applyDak2() },
-  feest: { ch:4, title:'Hoofdstuk 4 · Pakjesavond', apply:() => applyFeest() },
-  gang:  { ch:4, title:() => `Hoofdstuk ${S.ch} · In de gang`, apply:() => applyGang() }
+  werk:  { ch:4, title:'Hoofdstuk 4 · De werkkamer van Sint', apply:() => applyWerk() },
+  magazijn: { ch:4, title:'Hoofdstuk 4 · Het pakjesmagazijn', apply:() => applyMagazijn() },
+  feest: { ch:5, title:'Hoofdstuk 5 · Pakjesavond', apply:() => applyFeest() },
+  gang:  { ch:5, title:() => `Hoofdstuk ${S.ch} · In de gang`, apply:() => applyGang() }
 };
 function applyVisuals(){
   // een kamer waar je net binnenkomt (of een nieuw spel) wordt meteen getekend; veranderingen die je ziet gaan zacht

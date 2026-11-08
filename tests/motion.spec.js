@@ -43,7 +43,7 @@ test('"Beweging uit" zet alles stil, in elke kamer', async ({ page }) => {
   // ook als Sint aan wal is en de confetti valt
   await page.evaluate(() => { S.f = { introDone: true, engine: true, lock: true, mijter: true, voer: true, plank: true, out1: true }; applyVisuals(); });
   expect(await moving(page)).toBe(0);
-  for (const [ch, scene, f] of [[2, 'kamer', { liedje: true }], [3, 'dak', { gust: true, touw: true }], [4, 'feest', { zak: true, namen: true, out4: true }]]) {
+  for (const [ch, scene, f] of [[2, 'kamer', { liedje: true }], [3, 'dak', { gust: true, touw: true }], [4, 'werk', { uitgepakt: true, out4: true }], [4, 'magazijn', { maat4: true }], [5, 'feest', { zak: true, namen: true, out5: true }]]) {
     await page.evaluate(([ch, scene, f]) => { S.ch = ch; S.scene = scene; S.f = f; applyVisuals(); }, [ch, scene, f]);
     expect(await moving(page), scene).toBe(0);
   }
@@ -71,7 +71,13 @@ test('de kamers leven: wat er beweegt met Beweging aan', async ({ page }) => {
   expect(await anim(page, '#dk-sint')).toBe('dkRide');
   expect(await anim(page, '#dk-sint .hleg')).toBe('hlegStep');
   expect(await anim(page, '.dk-blink')).toBe('dkBlink');
-  await page.evaluate(() => { S.ch = 4; S.scene = 'feest'; S.f = { introDone4: true }; applyVisuals(); H.voordeur(); });
+  await page.evaluate(() => { S.ch = 4; S.scene = 'werk'; S.f = { robot: true }; applyVisuals(); });
+  expect(await anim(page, '.wr-ticker')).toBe('wrTicker');
+  expect(await anim(page, '.wr-slide')).toBe('wrSlide');
+  await page.evaluate(() => { S.scene = 'magazijn'; S.f = {}; applyVisuals(); moment('magazijn', 'mg-send', 4200); });
+  expect(await anim(page, '.mg-robotmove')).toBe('mgFetch');
+  expect(await anim(page, '.mg-ride')).toBe('mgRide');
+  await page.evaluate(() => { S.ch = 5; S.scene = 'feest'; S.f = { introDone5: true }; applyVisuals(); H.voordeur(); });
   await expect(page.locator('#sc-feest')).toHaveClass(/pa-strooi/);
   expect(await anim(page, '.pa-throw')).toBe('paThrow');
   expect(await anim(page, '.pa-flake')).toBe('paFlake');

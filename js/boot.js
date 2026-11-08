@@ -1,9 +1,9 @@
 // Opstarten: zet de tekeningen van de kamers (scenes/*.svg) in het speelveld en laadt daarna de spelbestanden op volgorde.
 // De tekeningen worden opgehaald, dus het spel moet via http(s) draaien: GitHub Pages, `npm start` of een andere webserver.
-const GAME_VERSION = 19;   // staat op het titelscherm; hetzelfde getal als CACHE in sw.js
+const GAME_VERSION = 20;   // staat op het titelscherm; hetzelfde getal als CACHE in sw.js
 (async () => {
-  const scenes = ['boot', 'ruim', 'kamer', 'keuken', 'dak', 'dak2', 'feest', 'gang'];
-  const scripts = ['core', 'liedjes', 'chapter1', 'chapter2', 'chapter3', 'chapter4', 'items', 'hints', 'ambience', 'voice', 'app'];
+  const scenes = ['boot', 'ruim', 'kamer', 'keuken', 'dak', 'dak2', 'werk', 'magazijn', 'feest', 'gang'];
+  const scripts = ['core', 'liedjes', 'chapter1', 'chapter2', 'chapter3', 'chapter4', 'chapter5', 'items', 'hints', 'ambience', 'voice', 'app'];
   const title = document.getElementById('title');
   try {
     if (location.protocol === 'file:') throw new Error('file');

@@ -2,8 +2,8 @@
 // de installeerbare app en het opstarten. Geladen op volgorde door js/boot.js; alle spelbestanden delen dezelfde ruimte.
 
 /* ---------- hoofdstukken ---------- */
-const LAST_CH = 4;   // het nieuwste hoofdstuk; verhoog het als je er een toevoegt
-const START = { 1: () => startNew(), 2: () => startCh2(), 3: () => startCh3(), 4: () => startCh4() };
+const LAST_CH = 5;   // het nieuwste hoofdstuk; verhoog het als je er een toevoegt
+const START = { 1: () => startNew(), 2: () => startCh2(), 3: () => startCh3(), 4: () => startCh4(), 5: () => startCh5() };
 function chapterDone(){ return !!S.f['out' + S.ch]; }
 function nextChapter(){ const f = START[S.ch + 1]; if(f) f(); }
 /* De uitgang van een kamer leidt naar het volgende hoofdstuk zodra het hoofdstuk klaar is. */
@@ -12,6 +12,7 @@ function exitLabels(){
   setLabel('#sc-boot [data-hs="loopplank"]', open && S.ch === 1 ? tx('Naar huis: door naar hoofdstuk {n}', { n }) : 'Naar de kade');
   setLabel('#sc-gang [data-hs="trap4"]', S.ch !== 2 ? 'De trap naar boven' : open ? tx('Trap naar boven: door naar hoofdstuk {n}', { n }) : 'Trap naar boven (naar bed)');
   setLabel('#sc-dak [data-hs="ladder"]', open && S.ch === 3 ? tx('Ladder naar beneden: door naar hoofdstuk {n}', { n }) : 'Ladder');
+  setLabel('#sc-werk [data-hs="uitgang4"]', open && S.ch === 4 ? tx('Voordeur: door naar hoofdstuk {n}', { n }) : 'Voordeur van het Pakjeshuis');
 }
 function refreshMenu(){
   const fin = chapterDone();
@@ -24,8 +25,9 @@ function refreshMenu(){
 const CH_END = {
   1: ['Aan wal in Grave · hoofdstuk 1 klaar', 'Hij is er', "Sinterklaas is in het land! Volgende: thuis, bij de houtkachel. Vanavond mag je voor het eerst je schoen zetten…", 'Door naar hoofdstuk 2'],
   2: ['Schoen gezet · hoofdstuk 2 klaar', 'Slaap lekker', "Er zat een chocoladeletter in je schoen, en een briefje van Klimpiet. Volgende: in de nacht van 4 december help jij de Pieten op de daken…", 'Door naar hoofdstuk 3'],
-  3: ['Middernacht · hoofdstuk 3 klaar', 'Heel goed', "De pakjes van Twan staan bij zijn schoen, en Klimpiet heeft zijn muts terug. Volgende: 5 december. Pakjesavond!", 'Door naar hoofdstuk 4'],
-  4: ['Pakjesavond · alle hoofdstukken klaar', 'Hoera', "Je bent nu een echte Hulppiet, voor altijd. Dag Sinterklaasje, dag lieve Pieten, dag Ozosnel! Tot volgend jaar, als de stoomboot weer komt.", '']
+  3: ['Middernacht · hoofdstuk 3 klaar', 'Heel goed', "De pakjes van Twan staan bij zijn schoen, en Klimpiet heeft zijn muts terug. Volgende: 5 december, 's ochtends. Op tv is er groot nieuws, en het is geen goed nieuws…", 'Door naar hoofdstuk 4'],
+  4: ['Het Grote Boek is terug · hoofdstuk 4 klaar', 'Gevonden', "Het Grote Boek is terug, en het Pepernotennieuws meldt: pakjesavond gaat door! Volgende: 5 december, 's avonds. Pakjesavond!", 'Door naar hoofdstuk 5'],
+  5: ['Pakjesavond · alle hoofdstukken klaar', 'Hoera', "Je bent nu een echte Hulppiet, voor altijd. Dag Sinterklaasje, dag lieve Pieten, dag Ozosnel! Tot volgend jaar, als de stoomboot weer komt.", '']
 };
 function showWin(){
   if(S.ch < LAST_CH) setUnlocked(S.ch + 1);
@@ -43,7 +45,7 @@ function showWin(){
 
 /* ---------- scores: het beste resultaat per hoofdstuk, ook na een nieuw spel (KEY-scores) ---------- */
 const SCORES_KEY = KEY + '-scores';
-const CH_NAMES = ['De stoomboot komt', 'Schoen zetten', 'Op het dak', 'Pakjesavond'];
+const CH_NAMES = ['De stoomboot komt', 'Schoen zetten', 'Op het dak', 'Het Grote Boek is zoek', 'Pakjesavond'];
 const rankFor = hints => hints === 0 ? 'Hoofdpiet' : hints <= 2 ? 'Klimpiet' : hints <= 5 ? 'Hulppiet' : 'Pietje in opleiding';
 let scoresMem = null;   // werkt ook als de browser opslaan blokkeert (dan alleen voor dit bezoek)
 function getScores(){
@@ -96,7 +98,8 @@ setInterval(() => { if(S.started && !chapterDone() && $('#title').hidden && docu
 const ACH = [['koek', 'Raad gevraagd aan de speculaaspop'], ['toet', 'Drie keer getoeterd'], ['boek', 'Stiekem in het Grote Boek gekeken'], ['zwaai', 'Naar de kinderen gezwaaid'],
   ['paardmaan', 'Een paard voor de maan gezien'], ['kat', 'Poes laten spinnen'],
   ['sint3', 'Sint op het dak gezien'],
-  ['pepernoot', 'Veel te veel pepernoten'], ['sem', 'Meegezongen met Anne-Lieve'], ['saab', 'Een Saab gespot'], ['pang', 'Alle ballonnen kapot']];
+  ['pepernoot', 'Veel te veel pepernoten'], ['sem', 'Meegezongen met Anne-Lieve'], ['saab', 'Een Saab gespot'], ['pang', 'Alle ballonnen kapot'],
+  ['tv', 'Gezapt tijdens het nieuws'], ['noppen', 'Alle noppen geknapt']];
 
 /* ---------- spelverloop ---------- */
 function startNew(){ S = Object.assign(fresh(), { ach: S.ach || {} }); S.started = true; sel = null; $('#title').hidden = true; $('#win').hidden = true; renderInv(); applyVisuals(); $('#timer').textContent = '00:00'; save(); intro1(); }
@@ -108,6 +111,8 @@ function contLine(){
   if(S.scene === 'keuken') return "Terug in de keuken. Het ruikt naar speculaas.";
   if(S.scene === 'dak') return f.gust && !f.wind ? "Terug op het dak. Klimpiet kijkt treurig naar de plek waar zijn muts zat." : "Terug op het dak. Klimpiet zwaait vanaf de nok.";
   if(S.scene === 'dak2') return "Terug op het dak van Hidde, op nummer 4.";
+  if(S.scene === 'werk') return f.uitgepakt ? "Terug in de werkkamer van Sint. Het Grote Boek ligt weer op de lessenaar." : "Terug in de werkkamer van Sint. Op de tv: nog steeds spoednieuws.";
+  if(S.scene === 'magazijn') return "Terug in het magazijn. De lopende band rolt en Inpakpiet pakt in.";
   if(S.scene === 'gang') return S.ch === 2 ? "Terug in de gang. De trap naar boven wacht op je." : "Terug in de gang. Uit de kamer klinkt gezang.";
   return "Terug op pakjesavond. Iedereen kijkt naar jou.";
 }
@@ -121,7 +126,8 @@ const STAY = {
   1: "Kijk maar rustig rond. Sinterklaas schudt handjes op de kade. Klik op de loopplank als je door wilt naar hoofdstuk {n}.",
   2: "Kijk maar rustig rond. De kachel brandt en je schoen staat klaar. Klik in de gang op de trap als je door wilt naar hoofdstuk {n}.",
   3: "Kijk maar rustig rond. De maan schijnt en Klimpiet neuriet een liedje. Klik op de ladder als je door wilt naar hoofdstuk {n}.",
-  4: "Kijk maar rustig rond. Anne-Lieve speelt met haar bal, Silvie past haar kettinkje, Papa oefent met zijn hengel, en Sint en Klimpiet zwaaien vanaf het dak aan de overkant."
+  4: "Kijk maar rustig rond. De Pieten juichen, Inpakpiet pakt alles opnieuw in (behalve boeken), en op tv staat nog steeds het goede nieuws. Klik op de deur als je door wilt naar hoofdstuk {n}.",
+  5: "Kijk maar rustig rond. Anne-Lieve speelt met haar bal, Silvie past haar kettinkje, Papa oefent met zijn hengel, en Sint en Klimpiet zwaaien vanaf het dak aan de overkant."
 };
 $('#btn-stay').onclick = () => { $('#win').hidden = true; exitLabels(); say([['sys', tx(STAY[S.ch] || STAY[1], { n: S.ch + 1 })]]); };
 $('#btn-menu').onclick = () => { closeModal(); $('#dialog').hidden = true; queue = []; stopSpeaking(); $('#title').hidden = false; $('#win').hidden = true; refreshMenu(); };
@@ -150,12 +156,30 @@ $('#btn-motion').onclick = () => {
 };
 matchMedia('(prefers-reduced-motion: reduce)').addEventListener?.('change', applyMotion);
 
+/* Het Grote Boek is zoek werd hoofdstuk 4, dus pakjesavond schoof op van 4 naar 5. Eén keer per browser schuiven de
+   vrijgespeelde hoofdstukken en de scores mee (sleutel KEY-ord); een opgeslagen spel op pakjesavond schuift mee in start(). */
+function renumber(){
+  try{
+    if(localStorage.getItem(KEY + '-ord') === '5') return;
+    localStorage.setItem(KEY + '-ord', '5');
+    if(localStorage.getItem(KEY + '-ch4') === '1') localStorage.setItem(KEY + '-ch5', '1');
+    const sc = JSON.parse(localStorage.getItem(SCORES_KEY) || 'null');
+    if(sc && sc[4]){ sc[5] = sc[4]; delete sc[4]; localStorage.setItem(SCORES_KEY, JSON.stringify(sc)); scoresMem = null; }
+  }catch(e){}
+}
 function start(data){
   setupRotate();
+  renumber();
   buildBoot(); buildDak(); buildFeest();
   applyMotion();
   const saved = (data && data.v === 1) ? data : load();
   if(saved){ S = Object.assign(fresh(), saved); }
+  // een spel van vóór het nieuwe hoofdstuk 4, opgeslagen op pakjesavond: dat is nu hoofdstuk 5
+  if(S.ch === 4 && ['feest', 'gang', 'keuken'].includes(S.scene)){
+    S.ch = 5;
+    for(const k of ['out', 'introDone']) if(k + '4' in S.f){ S.f[k + '5'] = S.f[k + '4']; delete S.f[k + '4']; }
+    save();
+  }
   refreshMenu();
   renderInv(); applyVisuals(); $('#timer').textContent = fmt(S.t);
 }

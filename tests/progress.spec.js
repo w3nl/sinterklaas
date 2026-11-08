@@ -129,7 +129,7 @@ test('de verstopte Saab op de dijk bij de sluis', async ({ page }) => {
 });
 
 test('pakjesavond: de lamp, het spandoek en even de keuken in', async ({ page }) => {
-  await seed(page, { ch: 4, scene: 'feest', f: { introDone4: true } });
+  await seed(page, { ch: 5, scene: 'feest', f: { introDone5: true } });
   await page.locator('#btn-cont').click();
   await skip(page);
   await hs(page, 'lamp2');
@@ -138,12 +138,12 @@ test('pakjesavond: de lamp, het spandoek en even de keuken in', async ({ page })
   await expect(page.locator('#sc-feest .pa-banner')).toHaveClass(/droop/);
   await skip(page);
   await hs(page, 'keuken');
-  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 4 · In de keuken');
+  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 5 · In de keuken');
   await skip(page);
   await hs(page, 'koelkast');
   await expect(page.locator('#d-txt')).toContainText('slagroomtaart');
   await skip(page);
   expect(await page.evaluate(() => S.inv.includes('wortel'))).toBe(false);
   await hs(page, 'terugkamer');
-  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 4 · Pakjesavond');
+  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 5 · Pakjesavond');
 });

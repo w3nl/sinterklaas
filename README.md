@@ -27,7 +27,8 @@ Kom je er niet uit? Klik op **Hint** (eerst een duwtje, dan het antwoord), of pa
 1. **De stoomboot komt** (14 november, op de Maas, op weg naar Grave): de stoommachine is stilgevallen. Water koken tot stoom (100 °C), een sluis bedienen, Romeinse cijfers en aftrekken (hoe oud is Sinterklaas?), wat een paard wel en niet mag eten (chocolade is giftig voor paarden!), en hoe lang een loopplank moet zijn zodat hij niet te steil is.
 2. **Schoen zetten** (thuis bij de houtkachel): je schoenmaat uitrekenen uit de lengte van je voet, een symmetrische tekening voor Sint, waar je je schoen neerzet zodat de chocolade niet smelt, noten lezen op de xylofoon, en tellen hoeveel nachtjes het nog is tot pakjesavond.
 3. **Op het dak** (de nacht van 4 december, met Klimpiet): de Pietencode kraken, even en oneven huisnummers, welke pakjes door de schoorsteen passen, hoe lang het touw moet zijn (op schaal), en de windhaan lezen.
-4. **Pakjesavond** (5 december): de zware jutezak naar binnen krijgen (wielen geven minder wrijving), logisch redeneren van wie welk pakje is, rijmen voor het gedicht, welke bouwplaat een kubus wordt, en een speurtocht met coördinaten.
+4. **Het Grote Boek is zoek!** (5 december, 's ochtends, in het Pakjeshuis): het Pepernotennieuws meldt dat pakjesavond misschien niet doorgaat! Klokken lezen in het logboek, maten omrekenen (mm, cm, dm en m), een grijparm programmeren, en uitrekenen hoe laat Sint moet vertrekken (afstand, snelheid en tijd).
+5. **Pakjesavond** (5 december): de zware jutezak naar binnen krijgen (wielen geven minder wrijving), logisch redeneren van wie welk pakje is, rijmen voor het gedicht, welke bouwplaat een kubus wordt, en een speurtocht met coördinaten.
 
 ## Installeren als app
 
