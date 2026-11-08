@@ -1,104 +1,104 @@
 const { test, expect } = require('@playwright/test');
-const { seed, hs, skip, waitModalClosed, expectWin } = require('./helpers');
+const { seed, hs, skip, closeModal, waitModalClosed, expectWin } = require('./helpers');
 
-test('Hoofdstuk 4: pakjesavond', async ({ page }) => {
+const cmd = (page, k) => page.locator(`.rb-cmd[data-k="${k}"]`).click();
+
+test('Hoofdstuk 4: het Grote Boek is zoek', async ({ page }) => {
   await seed(page, null, ['-ch2', '-ch3', '-ch4']);
   await page.locator('#btn-ch4').click();
-  await expect(page.locator('#d-who')).toHaveText('Pakjesavond · 5 december');
+  // het Pepernotennieuws met spoednieuws
+  await expect(page.locator('.tv4')).toContainText('Het Grote Boek is zoek!');
+  await closeModal(page);
+  await expect(page.locator('#d-who')).toHaveText('Het Pakjeshuis · 5 december');
   await skip(page);
+  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 4 · De werkkamer van Sint');
 
-  // de zware zak: door de gang naar de voordeur; wielen geven minder wrijving
-  await hs(page, 'voordeur');
-  await skip(page);
-  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 4 · In de gang');
-  await hs(page, 'buitendeur');
-  await skip(page);
-  await page.locator('.zk-btns .btn[data-k="sleep"]').click();
-  await expect(page.locator('#zk-fb')).toContainText('wrijving');
-  await page.locator('.zk-btns .btn[data-k="skate"]').click();
-  await expect(page.locator('#zk-fb')).toHaveClass(/good/);
+  // het magazijn zit op slot tot je het logboek hebt bekeken
+  await hs(page, 'naarmag'); await skip(page);
+  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 4 · De werkkamer van Sint');
+
+  // het logboek: wie was er tussen 10 uur en half 11?
+  await hs(page, 'logboek');
+  await page.locator('.lb-pick[data-i="1"]').click();
+  await expect(page.locator('#lb-fb')).toContainText('vijf voor tien');
+  await page.locator('.lb-pick[data-i="2"]').click();
+  await expect(page.locator('#lb-fb')).toHaveClass(/good/);
   await waitModalClosed(page);
-  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 4 · Pakjesavond');
+  await expect(page.locator('#wr-doorlock')).toBeHidden();
+
+  // het magazijn: de werkbon (maten omrekenen)
+  await hs(page, 'naarmag');
+  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 4 · Het pakjesmagazijn');
   await page.waitForTimeout(600); await skip(page);
-  await expect(page.locator('#pa-sack')).toBeVisible();
-  await hs(page, 'saab4');
-  await expect(page.locator('#sc-feest .gag-txt', { hasText: 'BROEM BROEM!' })).toBeAttached();
-  await expect(page.locator('#d-txt')).toContainText('Saab 900', { timeout: 5_000 });
-  await skip(page);
-
-  // eerlijk delen: 27 pepernoten over 6 mensen
-  await hs(page, 'strooigoed');
-  await page.locator('#dl-each').fill('5'); await page.locator('#dl-rest').fill('0');
-  await page.locator('#dl-go').click();
-  await expect(page.locator('#dl-fb')).toContainText('maar 27');
-  await page.locator('#dl-each').fill('4'); await page.locator('#dl-rest').fill('3');
-  await page.locator('#dl-go').click();
-  await expect(page.locator('#dl-fb')).toHaveClass(/good/);
-  await waitModalClosed(page);
-  await expect(page.locator('#pa-pepers')).toBeHidden();
-
-  // van wie is welk pakje? logisch redeneren
-  await hs(page, 'pakjes');
-  for (const k of ['rond', 'plat', 'klein', 'lang', 'zacht']) await page.locator(`select[data-k="${k}"]`).selectOption('Papa');
-  await page.locator('#nm-go').click();
-  await expect(page.locator('#nm-fb')).toContainText('twee pakjes');
-  const right = { rond: 'Anne-Lieve', plat: 'Oma', klein: 'Silvie', lang: 'Papa', zacht: 'Mama' };
-  for (const k in right) await page.locator(`select[data-k="${k}"]`).selectOption(right[k]);
-  await page.locator('#nm-go').click();
-  await expect(page.locator('#nm-fb')).toHaveClass(/good/);
+  await hs(page, 'inpakpiet'); await skip(page);
+  await hs(page, 'werkbon');
+  await page.locator('.mt-row[data-k="A"]').click();
+  await expect(page.locator('#mt-fb')).toContainText('luciferdoosje');
+  await page.locator('.mt-row[data-k="B"]').click();
+  await expect(page.locator('#mt-fb')).toHaveClass(/good/);
   await waitModalClosed(page);
 
-  // het gedicht: rijmen
-  await hs(page, 'oma');
-  await page.locator('.gd-opt[data-w="doel"]').click();
-  await page.locator('.gd-opt[data-w="bedankt"]').click();
-  await page.locator('#gd-go').click();
-  await expect(page.locator('#gd-fb')).toContainText('rijmen niet');
-  await page.locator('.gd-opt[data-w="dank"]').click();
-  await page.locator('#gd-go').click();
-  await expect(page.locator('#gd-fb')).toHaveClass(/good/);
+  // de grijparm: eerst tegen de kist, dan het goede programma
+  await hs(page, 'paneel');
+  for (const k of ['up', 'up', 'left', 'left']) await cmd(page, k);
+  await page.locator('#rb-go').click();
+  await expect(page.locator('#rb-fb')).toContainText('zware kist', { timeout: 5000 });
+  await page.locator('#rb-clear').click();
+  for (const k of ['up', 'left', 'left', 'left', 'left', 'up', 'up', 'pak', 'down', 'down', 'right', 'right', 'right', 'right', 'down', 'los']) await cmd(page, k);
+  await page.locator('#rb-go').click();
+  await expect(page.locator('#rb-fb')).toHaveClass(/good/, { timeout: 10_000 });
   await waitModalClosed(page);
+  await expect(page.locator('#mg-pkB')).toBeHidden();
 
-  // de lootjes: niemand heeft zichzelf
-  await hs(page, 'voordeur');
-  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 4 · In de gang');
-  await expect(page.locator('#ga-envelope')).toBeVisible();
-  await hs(page, 'brievenbus');
-  const lot = { Papa: 'Papa', Mama: 'Silvie', Oma: 'Papa', Silvie: 'Anne-Lieve', 'Anne-Lieve': 'Oma', Jij: 'Mama' };
-  for (const p in lot) await page.locator(`.lt-row select[data-p="${p}"]`).selectOption(lot[p]);
-  await page.locator('#lt-go').click();
-  await expect(page.locator('#lt-fb')).toContainText('Papa heeft Papa');
-  await page.locator('.lt-row select[data-p="Papa"]').selectOption('Jij');
-  await page.locator('#lt-go').click();
-  await expect(page.locator('#lt-fb')).toHaveClass(/good/);
-  await waitModalClosed(page);
-  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 4 · Pakjesavond');
+  // terug naar de werkkamer: het pakje openmaken
+  await hs(page, 'naarwerk');
   await page.waitForTimeout(600); await skip(page);
+  await expect(page.locator('#wr-parcel')).toBeVisible();
+  await hs(page, 'pakje4'); await skip(page);
+  await expect(page.locator('#wr-book')).toBeVisible();
 
-  // de surprise: welke bouwplaten worden een kubus?
-  await hs(page, 'zak4');
-  await page.locator('.nt-card[data-k="B"]').click();
-  await page.locator('.nt-card[data-k="A"]').click();
-  await page.locator('#nt-go').click();
-  await expect(page.locator('#nt-fb')).toContainText('rechthoek');
-  await page.locator('.nt-card[data-k="A"]').click();
-  await page.locator('.nt-card[data-k="C"]').click();
-  await page.locator('#nt-go').click();
-  await expect(page.locator('#nt-fb')).toHaveClass(/good/);
-  await waitModalClosed(page);
+  // de route: 24 km met 12 km per uur, om 18:00 in Grave
+  await hs(page, 'kaart');
+  await page.locator('.rt-opt[data-o="12 uur"]').click();
+  await expect(page.locator('#rt-fb')).toContainText('Hoeveel keer');
+  await page.locator('.rt-opt[data-o="2 uur"]').click();
+  await expect(page.locator('.rt-q')).toContainText('Hoe laat moet hij vertrekken', { timeout: 5000 });
+  await page.locator('.rt-opt[data-o="17:00"]').click();
+  await expect(page.locator('#rt-fb')).toContainText('te laat');
+  await page.locator('.rt-opt[data-o="16:00"]').click();
+  await expect(page.locator('#rt-fb')).toHaveClass(/good/);
 
-  // de speurtocht: B1, 4 naar rechts, 3 omhoog
-  await hs(page, 'zak4');
-  await page.locator('.sp-c[data-c="E4"]').click();
-  await expect(page.locator('#sp-fb')).toContainText('pepernoot');
-  await page.locator('.sp-c[data-c="F4"]').click();
-  await expect(page.locator('#sp-fb')).toHaveClass(/good/);
-  await waitModalClosed(page);
+  // goed nieuws op de tv, en dan het eindscherm
+  await expect(page.locator('.tv4.good')).toBeVisible({ timeout: 10_000 });
+  await closeModal(page);
+  await expectWin(page, 'Het Grote Boek is terug · hoofdstuk 4 klaar');
+  await expect(page.locator('#btn-next')).toHaveText('Door naar hoofdstuk 5');
+  await page.locator('#btn-next').click();
+  await expect(page.locator('#chap')).toHaveText('Hoofdstuk 5 · Pakjesavond');
+});
 
-  for (let i = 0; i < 5; i++) { await hs(page, 'pepernoten'); await skip(page); }
-  await hs(page, 'groot');
-  await expectWin(page, 'Pakjesavond · alle hoofdstukken klaar');
-  await expect(page.locator('#btn-next')).toBeHidden();
-  await expect(page.locator('#pa-wave')).toBeAttached();
-  await expect(page.locator('#w-ach .got', { hasText: 'Een Saab gespot' })).toBeVisible();
+test('Hoofdstuk 4: de grijparm onthoudt zijn programma en de grapjes werken', async ({ page }) => {
+  await seed(page, { ch: 4, scene: 'magazijn', f: { introDone4: true, logboek: true, maat4: true }, rb: ['up', 'left'] }, ['-ch2', '-ch3', '-ch4']);
+  await page.locator('#btn-cont').click();
+  await skip(page);
+  await hs(page, 'paneel');
+  await expect(page.locator('#rb-prog .rb-step')).toHaveCount(2);
+  await closeModal(page);
+  for (let i = 0; i < 24; i++) { await hs(page, 'noppen'); await skip(page); }
+  await expect(page.locator('#sc-magazijn .mg-bub.popped')).toHaveCount(24);
+  expect(await page.evaluate(() => S.ach.noppen)).toBe(true);
+});
+
+test('Oude spellen: pakjesavond als hoofdstuk 4 wordt hoofdstuk 5', async ({ page }) => {
+  await page.goto('/');
+  await page.evaluate(() => {
+    localStorage.clear();
+    localStorage.setItem('sint-v1-norotate', '1');
+    ['-ch2', '-ch3', '-ch4'].forEach(k => localStorage.setItem('sint-v1' + k, '1'));
+    localStorage.setItem('sint-v1', JSON.stringify({ v: 1, ch: 4, scene: 'feest', inv: [], hl: {}, hints: 0, t: 0, ach: {}, started: true, f: { introDone4: true, zak: true } }));
+  });
+  await page.reload();
+  await expect(page.locator('#btn-ch5')).toBeVisible();
+  await expect(page.locator('#btn-ch4')).toBeVisible();
+  expect(await page.evaluate(() => [S.ch, S.f.introDone5, localStorage.getItem('sint-v1-ord')])).toEqual([5, true, '5']);
 });

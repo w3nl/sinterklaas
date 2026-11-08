@@ -9,6 +9,7 @@ async function seed(page, state = null, unlocked = []) {
   await page.evaluate(([KEY, state, unlocked]) => {
     localStorage.clear();
     localStorage.setItem(KEY + '-norotate', '1');
+    localStorage.setItem(KEY + '-ord', '5');   // de overstap naar vijf hoofdstukken is al gedaan
     unlocked.forEach(k => localStorage.setItem(KEY + k, '1'));
     if (state) localStorage.setItem(KEY, JSON.stringify({ v: 1, inv: [], hl: {}, hints: 0, t: 0, ach: {}, started: true, f: {}, ...state }));
   }, [KEY, state, unlocked]);

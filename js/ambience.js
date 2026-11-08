@@ -17,9 +17,11 @@ function ambKey(){
     case 'kamer': return 'kamer';
     case 'keuken': return 'keuken';
     case 'dak': case 'dak2': return 'dak' + (f.gust && !f.wind ? '+gust' : '');
+    case 'werk': return 'werk' + (f.uitgepakt ? '+blij' : '');
+    case 'magazijn': return 'magazijn';
     case 'gang': if(S.ch === 2) return 'kamer';
     // falls through
-    case 'feest': return 'feest' + (f.out4 ? '+cheer' : '');
+    case 'feest': return 'feest' + (f.out5 ? '+cheer' : '');
   }
   return null;
 }
@@ -156,7 +158,21 @@ const SOUNDSCAPES = {
     // heel zacht, uit een schoorsteen: kinderen die nog bij de kachel zingen
     else songLoop(m, ['paardenvoetjes', 'daken'], 'zang', .01, 18000, 6000, 0, 900);
   },
-  // Hoofdstuk 4, pakjesavond: de kachel, gezellig gemurmel, en oude liedjes op de speeldoos; aan het eind gejuich.
+  // Hoofdstuk 4, de werkkamer van Sint: een tikkende klok, het geruis van de tv, af en toe de telefoon;
+  // als het boek terug is speelt de tv "Zie ginds komt de stoomboot".
+  werk(m, mods){
+    bed(m, { freq: 300, gain: .015, wobble: .3, rate: .2 });
+    every(1000, 1000, () => burst(m, .03, .014, 3600));
+    if(mods.includes('blij')) songLoop(m, ['stoomboot'], 'speeldoos', .012, 5000, 1500);
+    else every(14000, 26000, () => [0, 1].forEach(i => later(i * 420, () => blip(m, 880, .12, .012, 'square', 860))));
+  },
+  // Hoofdstuk 4, het magazijn: de lopende band, het zoemen van de grijparm, en het knisperen van papier.
+  magazijn(m){
+    hum(m, 70, .007, 'sawtooth', 300);
+    every(600, 600, () => burst(m, .05, .012, 900, 'lowpass'));
+    every(4000, 9000, () => burst(m, .4, .012, 5000, 'highpass'));
+  },
+  // Hoofdstuk 5, pakjesavond: de kachel, gezellig gemurmel, en oude liedjes op de speeldoos; aan het eind gejuich.
   feest(m, mods){
     bed(m, { freq: 200, gain: .018, wobble: .4, rate: .3 });
     every(120, 500, () => burst(m, .04, .012, 2200 + Math.random() * 2000, 'highpass'));

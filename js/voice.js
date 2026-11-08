@@ -21,7 +21,9 @@ const VOICE_STYLE = {
   sem:   { pitch: 1.9,  rate: 1.15, slot: 4 },
   silvie:{ pitch: 1.4,  rate: 1.05, slot: 5 },
   burg:  { pitch: .75,  rate: .95,  slot: 3 },
-  sluis: { pitch: .9,   rate: .9,   slot: 0 }
+  sluis: { pitch: .9,   rate: .9,   slot: 0 },
+  inpak: { pitch: 1.25, rate: 1.1,  slot: 3 },   // een beetje verlegen, praat snel als hij zenuwachtig is
+  vera:  { pitch: 1.2,  rate: 1.08, slot: 5 }    // de nieuwslezer: helder en vlot
 };
 function voicesFor(){ return speechSynthesis.getVoices().filter(v => /^nl/i.test(v.lang)); }
 

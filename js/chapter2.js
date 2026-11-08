@@ -37,7 +37,7 @@ KOEK_SAY[2] = ["Een speculaaspop op de plank, naast de chocoladeletters. Hij lij
 Object.assign(H, {
   deur(){ go('gang'); },
   rek(){ if(S.f.maat) return say("Het schoenenrek. Jouw schoen heb je al gepakt."); openRek(); },
-  kal(){ if(S.ch === 4) return say("De kalender staat op december. De 5 is rood omcirkeld: vandaag!"); if(S.f.nachten) return say("Je hebt het uitgerekend: nog 21 nachtjes slapen tot pakjesavond."); openKal(); },
+  kal(){ if(S.ch === 5) return say("De kalender staat op december. De 5 is rood omcirkeld: vandaag!"); if(S.f.nachten) return say("Je hebt het uitgerekend: nog 21 nachtjes slapen tot pakjesavond."); openKal(); },
   mama(){
     if(!S.f.introDone2) return;
     if(ready2()) return say([['mama', "Alles is klaar! Tijd voor bed, Hulppiet. De trap op, en lekker slapen."]]);
@@ -58,24 +58,24 @@ Object.assign(H, {
   tekentafel(){ if(S.f.tekening) return say("Je tekening is klaar. Je hebt hem al meegenomen."); openTeken(); },
   voet(){ openVoet(); },
   keuken(){ go('keuken'); if(!S.f.keukenSeen){ S.f.keukenSeen = true; save();
-    setTimeout(() => say(S.ch === 4 ? ["Je loopt even de keuken in. Hier hoef je vanavond niks te doen: alle pepernoten liggen al in de kamer.", ['oma', "(uit de kamer) Neem je nog een pakje melk mee, lieverd?"]]
+    setTimeout(() => say(S.ch === 5 ? ["Je loopt even de keuken in. Hier hoef je vanavond niks te doen: alle pepernoten liggen al in de kamer.", ['oma', "(uit de kamer) Neem je nog een pakje melk mee, lieverd?"]]
       : ["Je loopt de keuken in. Het ruikt naar speculaaskruiden.", ['mama', "(uit de kamer) Het recept voor pepernoten ligt al klaar, lieverd! Dan heeft Piet vannacht ook wat lekkers."]]), 400); } },
-  /* de keuken (in hoofdstuk 4 zijn er alleen grapjes) */
-  terugkamer(){ go(S.ch === 4 ? 'feest' : 'kamer'); },
-  koelkast(){ if(S.ch === 4) return say("De koelkast. Een grote slagroomtaart voor straks, met een marsepeinen mijter erop. Niet aankomen!");
+  /* de keuken (in hoofdstuk 5 zijn er alleen grapjes) */
+  terugkamer(){ go(S.ch === 5 ? 'feest' : 'kamer'); },
+  koelkast(){ if(S.ch === 5) return say("De koelkast. Een grote slagroomtaart voor straks, met een marsepeinen mijter erop. Niet aankomen!");
     if(S.f.wortel) return say("De koelkast. Melk, kaas, een halve chocoladeletter van Papa. De wortel heb je al."); S.f.wortel = true; give('wortel');
     say(["Je doet de koelkast open. In de groentela liggen dikke oranje wortels.", "Je pakt de mooiste. Paarden zijn dol op wortels, en Ozosnel heeft het vast druk vannacht."]); },
-  recept(){ if(S.ch === 4) return say("Het receptenboek, open bij de pepernoten. Er zitten nog vingerafdrukken van meel op, van 14 november.");
+  recept(){ if(S.ch === 5) return say("Het receptenboek, open bij de pepernoten. Er zitten nog vingerafdrukken van meel op, van 14 november.");
     if(S.f.bakken) return say("Het deeg is klaar en ligt in de oven. Het receptenboek zit onder het meel."); openBakken(); },
-  oven(){ if(S.ch === 4) return say("De oven is uit. Achterin ligt nog één pepernoot, zwart verbrand. Die is vast van Klimpiet.");
+  oven(){ if(S.ch === 5) return say("De oven is uit. Achterin ligt nog één pepernoot, zwart verbrand. Die is vast van Klimpiet.");
     if(!S.f.bakken) return say(["De oven is al warm. Maar er ligt nog niks in.", "Eerst het deeg maken. Het recept ligt naast de mengkom."]); if(S.f.oven) return say("De pepernoten zijn klaar. De keuken ruikt naar Sinterklaas."); openOven(); },
-  keukenklok(){ if(S.ch === 4) return say("De keukenklok. Het is precies acht uur, 5 december. Pakjesavond!"); say(["De keukenklok. De kleine wijzer staat net voorbij de 7, de grote wijzer op de 3.", "Het is kwart over zeven."]); },
+  keukenklok(){ if(S.ch === 5) return say("De keukenklok. Het is precies acht uur, 5 december. Pakjesavond!"); say(["De keukenklok. De kleine wijzer staat net voorbij de 7, de grote wijzer op de 3.", "Het is kwart over zeven."]); },
   kkraam(){ say(["Buiten is het donker en stil. De maan schijnt op de daken van de buren.", "Op de vensterbank staat een potje speculaaskruiden: kaneel, kruidnagel, nootmuskaat en gember."]); },
-  brief(){ if(S.ch === 4) return say("Een kopie van Anne-Lieves brief aan Sint, met de verbeteringen erin. Onderaan staat in grote letters: BAL!!!");
+  brief(){ if(S.ch === 5) return say("Een kopie van Anne-Lieves brief aan Sint, met de verbeteringen erin. Onderaan staat in grote letters: BAL!!!");
     if(S.f.brief) return say("Anne-Lieves brief is helemaal goed. Hij ligt klaar voor Sint, naast haar laarsje bij de kachel."); openBrief(); },
   etensbak(){ say("Het etensbakje van Poes. Leeg, natuurlijk. Poes vindt dat het altijd leeg is."); },
   wekker(){ const w = $('#kk-timer'); if(!gag(w, 'ring', 1500)) return; gagText(w, 'TRRRING!'); for(let i = 0; i < 10; i++) setTimeout(() => beep(1800, .05, 'square', .04), i * 120);
-    if(!S.f.wekkerTaps){ S.f.wekkerTaps = 1; save(); setTimeout(() => say(S.ch === 4 ? [['sem', "(uit de kamer) Is Sinterklaas er?! Was dat de bel?"]] : [['mama', "(uit de kamer) Zijn de pepernoten al klaar? O, het was de wekker maar."]]), 1400); } },
+    if(!S.f.wekkerTaps){ S.f.wekkerTaps = 1; save(); setTimeout(() => say(S.ch === 5 ? [['sem', "(uit de kamer) Is Sinterklaas er?! Was dat de bel?"]] : [['mama', "(uit de kamer) Zijn de pepernoten al klaar? O, het was de wekker maar."]]), 1400); } },
   plantje(){ const p = $('#sc-kamer .wk-plant'); if(!gag(p, 'shake', 1200)) return; gagText(p, 'Ritsel!'); beep(3000, .08, 'sawtooth', .015); },
   kruiden(){ const k = $('#sc-keuken [data-hs="kruiden"]'); gagText(k, 'HATSJOE!'); beep(500, .05, 'square', .05); setTimeout(() => beep(160, .3, 'sawtooth', .06), 300);
     if(!S.f.niesTaps){ S.f.niesTaps = 1; save(); setTimeout(() => say(["Je ruikt aan het potje speculaaskruiden. Kaneel, kruidnagel, nootmuskaat\u2026 en peper. Veel peper.", ['mama', "(uit de kamer) Gezondheid!"]]), 700); } },
@@ -83,13 +83,13 @@ Object.assign(H, {
     S.f.lampTaps = (S.f.lampTaps || 0) + 1; save(); if(S.f.lampTaps === 3) setTimeout(() => say([['mama', "Niet aan de lamp hangen, Hulppiet! Je bent geen Klimpiet."]]), 900); },
   xylo(){ if(S.f.liedje) return say("Pling plong. Je hebt je liedje al gespeeld."); openXylo(); },
   kat(){ S.f.katTaps = (S.f.katTaps || 0) + 1; save();
-    const c = $(S.ch === 4 ? '#pa-cat' : '#wk-cat');
+    const c = $(S.ch === 5 ? '#pa-cat' : '#wk-cat');
     if(gag(c, 'purr', 2200)){ gagText(c, 'Prrrrr…'); for(let i = 0; i < 12; i++) setTimeout(() => beep(i % 2 ? 70 : 85, .12, 'sawtooth', .03), i * 160); }
-    if(S.f.katTaps >= 3){ S.ach.kat = true; save(); return say(S.ch === 4 ? ["Je kriebelt Poes achter haar oren. Ze spint zo hard dat het kastje ervan trilt.", ['oma', "Die poes is slimmer dan wij allemaal. Zij ligt lekker hoog, waar Anne-Lieve niet bij kan."]] : ["Je kriebelt Poes achter haar oren. Ze rolt op haar rug en spint als een stoomboot.", "Prrrrrr. Puf, puf."]); }
-    say(S.ch === 4 ? "Poes ligt boven op het boekenkastje. Daar is het warm, en daar kan Anne-Lieve niet bij." : "Poes ligt op het kleed bij de kachel. Ze doet één oog open, kijkt je aan, en doet het weer dicht."); },
+    if(S.f.katTaps >= 3){ S.ach.kat = true; save(); return say(S.ch === 5 ? ["Je kriebelt Poes achter haar oren. Ze spint zo hard dat het kastje ervan trilt.", ['oma', "Die poes is slimmer dan wij allemaal. Zij ligt lekker hoog, waar Anne-Lieve niet bij kan."]] : ["Je kriebelt Poes achter haar oren. Ze rolt op haar rug en spint als een stoomboot.", "Prrrrrr. Puf, puf."]); }
+    say(S.ch === 5 ? "Poes ligt boven op het boekenkastje. Daar is het warm, en daar kan Anne-Lieve niet bij." : "Poes ligt op het kleed bij de kachel. Ze doet één oog open, kijkt je aan, en doet het weer dicht."); },
   schoen(){ if(!S.f.wortelIn || !S.f.tekeningIn) return say(["Je schoen staat bij de kachel, op een veilig plekje.", "Er hoort nog iets in: een wortel voor het paard, en een tekening voor Sint."]); say("Je schoen staat klaar, met een wortel en een tekening erin. Mooi zo."); },
   hout(){ say("De houtmand. Papa hakt elke zaterdag hout. Hij zegt dat het goed is voor zijn spieren."); },
-  klok(){ if(S.ch === 4) return say("De Friese staartklok van Oma. Tik, tak: acht uur. Vanavond mag je opblijven tot alle pakjes open zijn!"); say(["Een Friese staartklok, van Oma gekregen. Tik, tak, tik, tak. De slinger zwaait heen en weer.", "Het is kwart over zeven. Nog een uurtje, dan moet je naar bed."]); },
+  klok(){ if(S.ch === 5) return say("De Friese staartklok van Oma. Tik, tak: acht uur. Vanavond mag je opblijven tot alle pakjes open zijn!"); say(["Een Friese staartklok, van Oma gekregen. Tik, tak, tik, tak. De slinger zwaait heen en weer.", "Het is kwart over zeven. Nog een uurtje, dan moet je naar bed."]); },
   stokpaard(){ say(["Het stokpaardje van je zusje Anne-Lieve. Het heet Ozosnel.", "Anne-Lieve galoppeert er de hele dag mee door het huis en roept: \"Hihihi!\""]); },
   kast(){ say(["Een boekenkastje vol prentenboeken. Onderin staat de speelgoedkist.", "Op een rug staat: \"Het Grote Sinterklaasboek\". Niet te verwarren met het Grote Boek van Sint zelf."]); }
 });
@@ -285,7 +285,7 @@ function intro2(){
        ['mama', "Pak je eigen schoen, zet hem op een goed plekje, doe er een wortel voor Ozosnel in en een tekening voor Sint, en zing een liedje. Dan naar bed!"],
        ['mama', "O, en in de keuken ligt het recept voor pepernoten. Een schaaltje bij je schoen, voor Piet, dat vindt hij altijd fijn."]], () => { S.f.introDone2 = true; save(); });
 }
-function applyKeuken(){ vis('#kk-pepers', !!S.f.oven || S.ch === 4); vis('#kk-hands2', S.ch !== 4); vis('#kk-hands4', S.ch === 4); }
+function applyKeuken(){ vis('#kk-pepers', !!S.f.oven || S.ch === 5); vis('#kk-hands2', S.ch !== 5); vis('#kk-hands4', S.ch === 5); }
 
 /* ---------- extra puzzel: pepernoten bakken (een recept drie keer zo groot maken) ---------- */
 const RECIPE2 = [['meel', 'bloem', 100, 'gram'], ['suiker', 'bruine suiker', 50, 'gram'], ['boter', 'boter', 40, 'gram'], ['kruiden', 'speculaaskruiden', 2, 'theelepels']];

@@ -148,6 +148,7 @@ def sint(p, mitre=True, ids=None, staff=True):
 PIET_COLS = {
     'hoofd': dict(a='#5b2a86', b='#f2b631', cap='#5b2a86', plume='#ffffff', plume2='#f2b631', skin='midden', hair='#3a2414'),
     'klim': dict(a='#2e7d4f', b='#ef8a2e', cap='#2e7d4f', plume='#f2b631', plume2='#ffffff', skin='licht', hair='#5a3418'),
+    'inpak': dict(a='#1f5fa8', b='#e5484d', cap='#1f5fa8', plume='#ffffff', plume2='#e5484d', skin='bruin', hair='#2a1a10'),
 }
 
 
@@ -209,7 +210,18 @@ def piet(p, kind='hoofd', pose='stand', cap_id=None):
              + ''.join(f'<circle cx="0" cy="{T(y)}" r="2.2" fill="{GOLD}"/>' for y in (-128, -118, -108, -98))
              + f'<rect x="-24" y="{T(-94)}" width="48" height="6" rx="2" fill="#3a2414"/><rect x="-4" y="{T(-95)}" width="8" height="8" rx="1.5" fill="{GOLD}"/>')
     # pofmouwen en armen
-    if pose == 'stand':
+    if pose == 'stand' and kind == 'inpak':
+        # Inpakpiet houdt een half ingepakt pakje vast, met een rol plakband om zijn pols
+        g.append(f'<ellipse cx="-24" cy="-126" rx="10" ry="12" fill="url(#{p}A)"/><path d="M-30 -132 v14 M-24 -136 v20 M-18 -132 v14" stroke="{b}" stroke-width="2.4"/>'
+                 f'<ellipse cx="24" cy="-126" rx="10" ry="12" fill="url(#{p}A)"/><path d="M30 -132 v14 M24 -136 v20 M18 -132 v14" stroke="{b}" stroke-width="2.4"/>'
+                 f'<path d="M-28 -116 C-34 -102 -28 -92 -18 -92" stroke="{b}" stroke-width="9" fill="none" stroke-linecap="round"/>'
+                 f'<path d="M28 -116 C34 -102 28 -92 18 -92" stroke="{b}" stroke-width="9" fill="none" stroke-linecap="round"/>'
+                 f'<rect x="-20" y="-112" width="40" height="30" rx="2" fill="#f2b631" stroke="#b07a10" stroke-width="1.4"/>'
+                 f'<path d="M0 -112 v30 M-20 -97 h40" stroke="{RED}" stroke-width="4"/><path d="M0 -112 q-10 -10 -14 -2 q6 4 14 2 q10 -10 14 -2 q-6 4 -14 2z" fill="{RED}"/>'
+                 f'<path d="M-20 -112 L-8 -104 L-20 -96Z" fill="#fff6d0" opacity=".7"/>'
+                 + hand(-18, -92, 6, '#fbfbf7', '#cfcfc8') + hand(18, -92, 6, '#fbfbf7', '#cfcfc8')
+                 + f'<circle cx="-30" cy="-100" r="7" fill="none" stroke="#c9c2b2" stroke-width="4"/><circle cx="-30" cy="-100" r="3" fill="#8a8478"/>')
+    elif pose == 'stand':
         # Hoofdpiet houdt zijn lijstje vast
         g.append(f'<ellipse cx="-24" cy="-126" rx="10" ry="12" fill="url(#{p}A)"/><path d="M-30 -132 v14 M-24 -136 v20 M-18 -132 v14" stroke="{b}" stroke-width="2.4"/>'
                  f'<ellipse cx="24" cy="-126" rx="10" ry="12" fill="url(#{p}A)"/><path d="M30 -132 v14 M24 -136 v20 M18 -132 v14" stroke="{b}" stroke-width="2.4"/>'
@@ -494,6 +506,23 @@ def keeper(p):
 
 
 # ---------------------------------------------------------------- portretten
+def vera(p):
+    """Vera, de verslaggever van het Pepernotennieuws (bovenlijf; oorsprong onder aan het lijf), met een microfoon."""
+    s, sd, _ = SKIN['midden']
+    g = [f'<path d="M-34 0 C-36 -36 -24 -52 0 -54 C24 -52 36 -36 34 0Z" fill="#c8202d"/>',
+         f'<path d="M-12 -52 L0 -30 L12 -52" fill="none" stroke="#8e1420" stroke-width="3"/>',
+         f'<path d="M-16 -52 C-8 -44 8 -44 16 -52 L12 -40 C4 -36 -4 -36 -12 -40Z" fill="#f2b631"/>',
+         f'<path d="M26 -34 C34 -24 30 -12 18 -10" stroke="#c8202d" stroke-width="11" fill="none" stroke-linecap="round"/>',
+         hand(14, -12, 6, s, sd),
+         f'<rect x="4" y="-30" width="7" height="22" rx="3" fill="#2a2a2a" transform="rotate(-30 8 -19)"/><circle cx="2" cy="-32" r="7" fill="#3a3a3a"/>'
+         f'<rect x="7" y="-26" width="12" height="10" rx="2" fill="#1f5fa8" transform="rotate(-30 13 -21)"/><text x="10" y="-18" font-size="6" font-weight="700" fill="#fff" font-family="Fredoka, sans-serif" transform="rotate(-30 13 -21)">PN</text>',
+         f'<path d="M-24 -96 C-30 -70 -26 -58 -18 -56 L18 -56 C26 -58 30 -70 24 -96Z" fill="#2a1a10"/>']
+    g.append(face(p, 0, -80, 20, 'midden', mouth='open'))
+    g.append(f'<path d="M-21 -82 C-24 -104 -4 -108 2 -104 C14 -108 26 -98 21 -80 C16 -94 6 -96 -2 -96 C-10 -94 -16 -90 -21 -82Z" fill="#2a1a10"/>'
+             f'<path d="M20 -86 q8 4 6 14" stroke="#2a2a2a" stroke-width="2" fill="none"/><circle cx="21" cy="-84" r="3" fill="#2a2a2a"/>')
+    return ''.join(g)
+
+
 def portrait(name, title, bg, body, tx, ty, sc):
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><title>{title}</title>'
             f'<defs><clipPath id="clip"><rect width="120" height="120" rx="14"/></clipPath>{rgrad("bg", bg[0], bg[1], .5, .3, .9)}</defs>'
@@ -530,6 +559,8 @@ PORTRAITS = {
     'burg': ('De burgemeester', ('#3a4a6a', '#141c2e'), lambda: mayor('pB'), 60, 284, 1.6),
     'you': ('Jij, de Hulppiet', ('#8e1c26', '#3e0a10'), lambda: you('pY'), 58, 82, 1.1),
     'koek': ('De speculaaspop', ('#7a4a26', '#2e1a0c'), lambda: koek('pC'), 60, 66, 1.05),
+    'inpak': ('Inpakpiet', ('#2f6fb8', '#0f2a50'), lambda: piet('pI', 'inpak'), 50, 296, 1.5),
+    'vera': ('Vera van het Pepernotennieuws', ('#3a4a6a', '#141c2e'), lambda: vera('pV'), 54, 168, 1.15),
 }
 
 # ---------------------------------------------------------------- in de kamers
@@ -560,6 +591,16 @@ SCENES = {
     },
     'dak2': {
         'piet': lambda: place(piet('d2P', 'klim', pose='sit'), 900, 436, .9),
+    },
+    'werk': {
+        'sint': lambda: place(sint('wrS'), 930, 652, .94),
+        'hoofd': lambda: place(piet('wrH', 'hoofd'), 1394, 652, 1.06),
+        'paard': lambda: place(horse_head('wrP'), 640, 500, .62),
+        'vera': lambda: place(vera('wrV'), 1124, 318, .9),
+    },
+    'magazijn': {
+        'inpak': lambda: place(piet('mgI', 'inpak'), 1040, 648, 1.12),
+        'klim': lambda: place(piet('mgK', 'klim', pose='sit'), 730, 92, .82),
     },
     'feest': {
         'papa': lambda: place(papa('paD'), 432, 560, 1.0),

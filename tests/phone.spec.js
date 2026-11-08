@@ -24,7 +24,7 @@ test('rechtop: melding om te draaien, een kamer om door te vegen, klikvlakken om
 
 test('in de breedte: de hele kamer en het titelscherm passen', async ({ page }) => {
   await page.setViewportSize({ width: 915, height: 412 });
-  await seed(page, { f: { introDone: true } }, ['-ch2', '-ch3', '-ch4']);
+  await seed(page, { f: { introDone: true } }, ['-ch2', '-ch3', '-ch4', '-ch5']);
   const fits = await page.locator('#title').evaluate(e => e.scrollHeight <= e.clientHeight + 1);
   expect(fits).toBe(true);
   await expect(page.locator('#rotate')).toBeHidden();
@@ -36,7 +36,8 @@ const CLOSEUPS = [
   [{ ch: 1, scene: 'boot', f: { introDone: true } }, [], ['openKetel()', 'openSluis()', 'openHatbox()', 'openOorkonde()', 'openRomeins()', 'openVoer()', 'S.f.lock = true; openPlank()', 'openScores()']],
   [{ ch: 2, scene: 'kamer', f: { introDone2: true, plek: true, wortelIn: true, tekeningIn: true } }, ['-ch2'], ['openVoet()', 'openRek()', 'openPlek()', 'openTeken()', 'openXylo()', 'openKal()']],
   [{ ch: 3, scene: 'dak', f: { introDone3: true } }, ['-ch2', '-ch3'], ['openCode()', 'openAdres()', 'openPast()', 'openTouw()', 'openWind()']],
-  [{ ch: 4, scene: 'feest', f: { introDone4: true, gedicht: true } }, ['-ch2', '-ch3', '-ch4'], ['openZak()', 'openNamen()', 'openGedicht()', 'openNet()', 'openSpeur()']]
+  [{ ch: 4, scene: 'werk', f: { introDone4: true } }, ['-ch2', '-ch3', '-ch4'], ["openNieuws('spoed')", 'openLogboek()', 'openMaten()', 'openRobot()', 'openRoute()']],
+  [{ ch: 5, scene: 'feest', f: { introDone5: true, gedicht: true } }, ['-ch2', '-ch3', '-ch4', '-ch5'], ['openZak()', 'openNamen()', 'openGedicht()', 'openNet()', 'openSpeur()']]
 ];
 for (const [w, h] of [[412, 915], [915, 412]]) {
   test(`elke close-up past op een telefoon zonder zijwaarts scrollen (${w}×${h})`, async ({ page }) => {
