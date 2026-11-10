@@ -50,7 +50,7 @@ Een point-and-click escaperoom over het Sinterklaasfeest, voor kinderen van onge
 ### Toestand en opslaan
 - `S` is het hele spel: `{ v:1, ch, scene, f:{}, inv:[], hl:{}, hints, t, ach:{}, started }`, opgeslagen in `localStorage['sint-v1']` na elke actie.
 - Close-ups blijven zoals je ze achterliet: `S.ktl` (`{w, t, lit}` ketel), `S.slu` (sluis), `S.boxd` (cijferslot), `S.vr` (voeremmer), `S.plk` (plank), `S.drj` (drijven of zinken); `S.tk`/`S.tkPen` (tekening), `S.kln` (getypt aantal nachtjes), `S.bk` (recept), `S.ovm` (kookwekker), `S.br` (verbeterde woorden); `S.cdi` (getypt wachtwoord), `S.adr` (gevonden huizen), `S.pst` (gekozen pakjes), `S.wp` (plek op de wip); `S.rb` (het programma van de grijparm), `S.rt` (`{r}`: de vraag van de route); `S.nm` (namen), `S.gd` (gedicht), `S.nt` (bouwplaten), `S.dl` (delen), `S.lt` (lootjes).
-- Andere sleutels: `sint-v1-ch2` … `-ch4`, `-scores`, `-sound`, `-motion`, `-voice`, `-norotate`. Elke toegang tot `localStorage` staat in `try/catch`.
+- Andere sleutels: `sint-v1-ch2` … `-ch4`, `-scores`, `-sound`, `-motion` (`on` is de standaard, dan `off`, dan `auto`), `-voice`, `-norotate`. Elke toegang tot `localStorage` staat in `try/catch`.
 - Een nieuw spel houdt de prestaties (`S.ach`).
 
 ### Gesprekken

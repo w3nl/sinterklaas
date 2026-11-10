@@ -13,8 +13,8 @@ let justGiven = null;   // het ding dat net in je zakken ging: dat vakje springt
 function tx(s, vars){ if(s == null) return s; let out = String(s); if(vars) out = out.replace(/\{(\w+)\}/g, (m, k) => k in vars ? vars[k] : m); return out; }
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 
-/* Beweging: 'auto' volgt de instelling "minder beweging" van het apparaat; 'on' en 'off' gaan daar overheen. */
-let motionPref = (() => { try{ return localStorage.getItem(KEY + '-motion') || 'auto'; }catch(e){ return 'auto'; } })();
+/* Beweging: 'on' (de standaard) en 'off' gaan over het apparaat heen; 'auto' volgt de instelling "minder beweging" van het apparaat. */
+let motionPref = (() => { try{ return localStorage.getItem(KEY + '-motion') || 'on'; }catch(e){ return 'on'; } })();
 const deviceReducesMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 function reducedMotion(){ return motionPref === 'off' || (motionPref === 'auto' && deviceReducesMotion()); }
 function applyMotion(){

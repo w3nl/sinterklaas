@@ -147,7 +147,7 @@ function setupRotate(){
 }
 const MOTION_NEXT = { auto: 'on', on: 'off', off: 'auto' };
 $('#btn-motion').onclick = () => {
-  motionPref = MOTION_NEXT[motionPref] || 'auto';
+  motionPref = MOTION_NEXT[motionPref] || 'on';
   try{ localStorage.setItem(KEY + '-motion', motionPref); }catch(e){}
   applyMotion();
   say([['sys', motionPref === 'on' ? 'Beweging aan: vlaggetjes wapperen en vuurtjes flakkeren, ook als je apparaat liever minder beweging wil.'
